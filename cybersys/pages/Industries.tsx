@@ -1,0 +1,268 @@
+
+import React, { useEffect } from 'react';
+import { 
+  Landmark, 
+  ShieldCheck, 
+  Smartphone, 
+  Zap, 
+  Activity, 
+  Book, 
+  Building, 
+  ArrowRight,
+  ChevronLeft,
+  AlertCircle,
+  Shield,
+  Search,
+  Compass,
+  Server,
+  Network,
+  Scale,
+  // Fix: Added missing icon imports
+  RefreshCw,
+  Lock
+} from 'lucide-react';
+import { Page } from '../types';
+import { CS5_FRAMEWORK } from '../constants';
+
+const IndustryCard: React.FC<{ 
+  icon: React.ReactNode; 
+  title: string; 
+  description: string; 
+  index: number;
+  onAction: () => void;
+}> = ({ icon, title, description, index, onAction }) => (
+  <div className="bg-white p-12 border border-slate-100 rounded-[2.5rem] group hover:border-brand-primary transition-all duration-700 flex flex-col h-full relative overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-brand-primary/5 active:scale-[0.99]">
+    <div className="absolute top-10 right-10 text-[10px] font-black text-slate-200 group-hover:text-brand-primary/20 transition-colors tracking-[0.5em] uppercase">
+      IND-{String(index + 1).padStart(2, '0')}
+    </div>
+    <div className="absolute inset-0 blueprint-grid-fine opacity-0 group-hover:opacity-[0.1] pointer-events-none transition-opacity duration-1000"></div>
+    
+    <div className="mb-12 relative">
+      <div className="text-brand-primary transform group-hover:scale-110 transition-transform duration-700 origin-left">
+        {React.cloneElement(icon as React.ReactElement<{size?: number, strokeWidth?: number}>, { size: 40, strokeWidth: 1.25 })}
+      </div>
+    </div>
+    
+    <div className="space-y-6 flex-grow mb-12">
+      <h3 className="text-2xl font-black text-brand-text tracking-tighter uppercase leading-tight group-hover:translate-x-1 transition-transform">{title}</h3>
+      <p className="text-base text-brand-muted font-medium leading-relaxed max-w-[90%]">{description}</p>
+    </div>
+    
+    <button 
+      onClick={onAction}
+      className="flex items-center justify-between w-full group/btn pt-6 border-t border-slate-50"
+    >
+      <span className="text-brand-primary font-black text-[11px] uppercase tracking-[0.4em] group-hover:translate-x-2 transition-transform duration-500">Explore {title} Solutions</span>
+      <div className="h-10 w-10 bg-slate-50 border border-slate-100 rounded-full flex items-center justify-center group-hover/btn:bg-brand-primary group-hover/btn:text-white group-hover/btn:border-brand-primary transition-all duration-500 shadow-sm">
+        <ArrowRight size={18} />
+      </div>
+    </button>
+  </div>
+);
+
+const Industries: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) => {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="animate-in fade-in duration-1000 bg-white">
+      {/* 1. PAGE HERO */}
+      <section className="bg-slate-50 border-b border-slate-200 py-32 md:py-60 blueprint-grid relative overflow-hidden">
+        <div className="absolute inset-0 blueprint-grid-fine opacity-40 pointer-events-none"></div>
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
+          <div className="max-w-5xl">
+            <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-10">
+               <div className="h-px w-12 bg-brand-primary"></div>
+               <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Sector Intelligence Group</span>
+            </div>
+            <h1 className="text-5xl md:text-8xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
+              Technology Solutions <br /> for Critical and <br /> 
+              <span className="text-brand-primary">Regulated Industries.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-brand-muted max-w-3xl font-medium leading-relaxed mb-16 border-l-2 border-brand-primary pl-12 py-2">
+              CyberSys Technologies partners with organizations operating in high-impact, regulated, and mission-critical environments — where security, uptime, and compliance are non-negotiable.
+            </p>
+            <div className="flex flex-wrap gap-6 pt-4">
+              <button 
+                onClick={() => onPageChange('contact')}
+                className="px-14 py-7 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[12px] uppercase tracking-[0.4em] transition-all shadow-2xl shadow-brand-primary/20 transform hover:-translate-y-1"
+              >
+                Talk to a Solutions Architect
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. INDUSTRIES INTRODUCTION */}
+      <section className="py-40 bg-white">
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
+            <div className="lg:col-span-4">
+              <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em] mb-10">01 / Industry Focus</h2>
+              <h3 className="text-4xl md:text-5xl font-black text-brand-text tracking-tighter uppercase leading-[1] italic">
+                Built for Environments <br /> Where Failure Is <br /> Not an Option.
+              </h3>
+            </div>
+            <div className="lg:col-span-8 space-y-12">
+              <p className="text-2xl text-brand-muted font-medium leading-relaxed">
+                Different industries face different regulatory pressures, risk profiles, and operational challenges. CyberSys designs secure digital infrastructure and cloud solutions tailored to the realities of each sector.
+              </p>
+              <p className="text-xl text-brand-muted leading-relaxed font-medium">
+                Our industry-focused approach enables organizations to modernize confidently while protecting critical systems and sensitive data — ensuring continuity, compliance, and performance at scale.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. INDUSTRIES GRID */}
+      <section className="py-40 bg-slate-50 relative border-y border-slate-200">
+        <div className="absolute inset-0 blueprint-grid opacity-[0.03] pointer-events-none"></div>
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { icon: <Landmark />, title: 'Government & Public Sector', desc: 'Secure digital platforms that support public services, national infrastructure, and data sovereignty.' },
+              { icon: <ShieldCheck />, title: 'Financial Services', desc: 'Resilient, compliant infrastructure for banks, fintechs, and financial institutions operating in high-risk environments.' },
+              { icon: <Smartphone />, title: 'Telecommunications', desc: 'Cloud and security solutions that support large-scale networks, data flows, and always-on connectivity.' },
+              { icon: <Zap />, title: 'Energy & Utilities', desc: 'Protect critical infrastructure and operational systems with secure, resilient digital platforms.' },
+              { icon: <Activity />, title: 'Healthcare', desc: 'Secure healthcare data, digital health platforms, and systems that protect patient privacy and service continuity.' },
+              { icon: <Book />, title: 'Education & Research', desc: 'Scalable and secure digital infrastructure for learning platforms, research data, and academic institutions.' },
+              { icon: <Building />, title: 'Enterprise & SMEs', desc: 'Secure, scalable cloud solutions that support growth, efficiency, and operational resilience.' }
+            ].map((industry, i) => (
+              <IndustryCard 
+                key={i} 
+                index={i}
+                icon={industry.icon} 
+                title={industry.title} 
+                description={industry.desc} 
+                onAction={() => onPageChange('contact')}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. INDUSTRY-SPECIFIC CHALLENGES */}
+      <section className="py-40 bg-white">
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16">
+          <div className="max-w-4xl space-y-12 mb-24">
+            <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">02 / The Challenge</h2>
+            <h3 className="text-4xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-none italic">Understanding <br /> Industry Risk.</h3>
+            <p className="text-2xl text-brand-muted font-medium leading-relaxed">Managing mission-critical infrastructure requires an acute understanding of sector-specific regulatory and operational hurdles.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { title: 'Regulatory Pressure', icon: <Scale />, desc: 'Compliance requirements differ across industries. We design systems that align with specific governance frameworks.' },
+              { title: 'Security Threats', icon: <Lock />, desc: 'Industries managing sensitive services face increasing cyber threats requiring proactive, multi-layered protection.' },
+              { title: 'Operational Continuity', icon: <Activity />, desc: 'Downtime is costly. Infrastructure must be resilient, monitored, and recoverable by design.' },
+              { icon: <RefreshCw />, title: 'Scalability & Modernization', desc: 'Legacy systems must evolve without disrupting operations or increasing the organizational risk profile.' }
+            ].map((item, i) => (
+              <div key={i} className="p-10 bg-slate-50 rounded-3xl space-y-10 border border-slate-100 group hover:bg-white hover:shadow-xl transition-all duration-700 h-full">
+                <div className="text-brand-primary transform group-hover:scale-110 transition-transform">
+                  {React.cloneElement(item.icon as React.ReactElement<{size?: number, strokeWidth?: number}>, { size: 36, strokeWidth: 1.5 })}
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-lg font-black text-brand-text uppercase tracking-tight leading-none italic">{item.title}</h4>
+                  <p className="text-sm text-brand-muted font-medium leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. HOW CYBERSYS SUPPORTS INDUSTRIES */}
+      <section className="py-40 bg-slate-50 border-y border-slate-200 relative overflow-hidden">
+        <div className="absolute inset-0 blueprint-grid-fine opacity-[0.2] pointer-events-none"></div>
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-32 items-center">
+            <div className="lg:col-span-5 space-y-12">
+              <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">03 / Delivery Framework</h2>
+              <h3 className="text-4xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.95]">A Consistent <br /> Standard Across <br /> All Sectors.</h3>
+              <p className="text-xl text-brand-muted font-medium leading-relaxed">
+                While every industry is unique, CyberSys applies a consistent delivery framework that ensures secure, reliable, and scalable outcomes across all sectors.
+              </p>
+            </div>
+            <div className="lg:col-span-7">
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {[
+                    { label: 'Security', title: 'Security-by-design architecture' },
+                    { label: 'Compliance', title: 'Compliance-aware system design' },
+                    { label: 'Flexibility', title: 'Multicloud and hybrid flexibility' },
+                    { label: 'Optimization', title: 'Continuous monitoring and yield optimization' },
+                    { label: 'Standard', title: 'Local expertise with global standards' }
+                  ].map((item, i) => (
+                    <div key={i} className="p-10 border border-slate-200 rounded-[2.5rem] bg-white group hover:border-brand-primary transition-all shadow-sm">
+                       <div className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-primary mb-4 opacity-50">{item.label}</div>
+                       <div className="text-lg font-black text-brand-text uppercase tracking-tight leading-tight">{item.title}</div>
+                    </div>
+                  ))}
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. CS5 INDUSTRY ALIGNMENT */}
+      <section className="py-40 bg-white">
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-32 items-center">
+            <div className="lg:col-span-6 space-y-12">
+              <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">04 / Performance Standard</h2>
+              <h3 className="text-4xl md:text-6xl font-black text-brand-text tracking-tighter uppercase leading-[0.95]">Delivered at <br /> World-Class <br /> Standards.</h3>
+              <p className="text-2xl text-brand-muted font-medium leading-relaxed">
+                CyberSys industry solutions are delivered using our CS5 framework — ensuring systems are secure, integrated, resilient, and built for long-term scalability.
+              </p>
+            </div>
+            <div className="lg:col-span-6">
+               <div className="bg-brand-primary p-24 rounded-[5rem] text-white flex flex-col items-center justify-center text-center space-y-12 shadow-[0_80px_120px_-30px_rgba(32,130,166,0.3)] relative overflow-hidden group">
+                  <div className="absolute inset-0 blueprint-grid opacity-20 group-hover:scale-125 transition-transform duration-[20s] ease-linear"></div>
+                  <div className="text-[12px] font-black uppercase tracking-[1em] opacity-40 relative z-10">CS5 Reference</div>
+                  <div className="text-4xl md:text-[5rem] font-black tracking-tighter uppercase italic leading-[0.9] relative z-10 drop-shadow-2xl">
+                    Cyber <br /> Synergy <br /> Security <br /> Systems <br /> Scalability <br /> Solutions
+                  </div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. PRIMARY CALL TO ACTION */}
+      <section className="py-40 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-8 md:px-16">
+          <div className="max-w-6xl mx-auto bg-brand-text rounded-[6rem] p-24 md:p-40 text-center relative overflow-hidden shadow-2xl">
+            <div className="absolute inset-0 blueprint-grid opacity-10"></div>
+            <div className="relative z-10 space-y-16">
+              <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-[0.85] mb-12">
+                Let’s Build <br /> Industry-Ready <br /> <span className="text-brand-primary italic">Infrastructure.</span>
+              </h2>
+              <p className="text-2xl text-slate-400 max-w-4xl mx-auto font-medium leading-relaxed border-t border-white/10 pt-16">
+                Engage CyberSys to design secure, compliant, and resilient systems tailored to your industry’s unique requirements.
+              </p>
+              <div className="pt-10">
+                <button 
+                  onClick={() => onPageChange('contact')}
+                  className="px-20 py-8 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[14px] uppercase tracking-[0.5em] transition-all shadow-2xl shadow-brand-primary/20 transform hover:-translate-y-2"
+                >
+                  Request a Consultation
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Industries;
