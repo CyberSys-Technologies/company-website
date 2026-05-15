@@ -39,7 +39,7 @@ export const NAV_LINKS: NavLink[] = [
 ];
 
 export const CS5_FRAMEWORK = [
-  { term: 'Cyber', description: 'Advanced protection for the complex digital landscape.' },
+  { term: 'Customer', description: 'Customer-centric approach to product and service delivery' },
   { term: 'Synergy', description: 'Seamless integration across heterogeneous multicloud environments.' },
   { term: 'Security', description: 'Compliance-aware infrastructure engineered by design.' },
   { term: 'Systems', description: 'Resilient architectures for absolute operational continuity.' },

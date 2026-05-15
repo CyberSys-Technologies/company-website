@@ -49,60 +49,137 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
 
   return (
     <div className="bg-white overflow-hidden" ref={containerRef}>
-      {/* HERO: Tighter scale and more focused typography */}
-      <section className="relative min-h-[75vh] flex items-center blueprint-grid border-b border-slate-50">
-        <div className="absolute inset-0 blueprint-grid-fine pointer-events-none opacity-40"></div>
+      {/* HERO: Full width banner */}
+      <section className="relative min-h-[85vh] flex items-center border-b border-slate-50 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000" 
+            alt="CyberSys Digital Infrastructure Hub" 
+            className="w-full h-full object-cover grayscale brightness-[0.4]"
+          />
+          {/* Overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-brand-text/60 bg-gradient-to-t from-brand-text/80 to-transparent"></div>
+        </div>
         
-        <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-10 w-full pt-10 pb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-6 space-y-8">
-              <div className="reveal-on-scroll inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-slate-200 bg-white/80 backdrop-blur-md text-brand-primary text-[10px] font-black uppercase tracking-[0.3em]">
-                <span className="flex h-1.5 w-1.5 rounded-full bg-brand-secondary animate-pulse"></span>
-                Enterprise Resilience Standard
-              </div>
-              
-              <h1 className="reveal-on-scroll text-5xl lg:text-6xl xl:text-[5.5rem] font-black tracking-tighter text-brand-text leading-[0.95] uppercase">
-                Secure <br />
-                The Core<span className="text-brand-primary">.</span>
-              </h1>
-              
-              <p className="reveal-on-scroll text-lg text-brand-muted leading-relaxed max-w-lg font-medium border-l-4 border-brand-primary pl-8 py-1">
-                Engineering technical architecture and operational certainty for global enterprises to scale without compromise.
-              </p>
-              
-              <div className="reveal-on-scroll flex flex-col sm:flex-row gap-4 pt-4">
-                <button 
-                  onClick={() => onPageChange('contact')}
-                  className="px-8 py-4 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[11px] uppercase tracking-[0.25em] flex items-center justify-center gap-3 transition-all shadow-lg shadow-brand-primary/20 transform hover:-translate-y-0.5"
-                >
-                  Request Consultation <ArrowRight size={16} />
-                </button>
-                <button 
-                  onClick={() => onPageChange('solutions')}
-                  className="px-8 py-4 bg-white text-brand-text border-2 border-slate-100 rounded font-black text-[11px] uppercase tracking-[0.25em] hover:bg-slate-50 transition-all"
-                >
-                  Explore Solutions
-                </button>
-              </div>
+        <div className="absolute inset-0 blueprint-grid-fine pointer-events-none opacity-20 z-10"></div>
+        
+        <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-20 w-full pt-20 pb-20 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <div className="space-y-8 max-w-3xl">
+            {/* 
+            <div className="reveal-on-scroll inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-brand-secondary text-[10px] font-black uppercase tracking-[0.3em]">
+              <span className="flex h-1.5 w-1.5 rounded-full bg-brand-secondary animate-pulse"></span>
+              Enterprise Resilience Standard
             </div>
+            */}
+            
+            <h1 className="reveal-on-scroll text-5xl sm:text-6xl lg:text-[6rem] xl:text-[7rem] font-black tracking-tighter text-white leading-[0.95] uppercase">
+              Secure <br />
+              The C.O.R.E<span className="text-brand-primary">.</span>
+            </h1>
+            
+            <p className="reveal-on-scroll text-lg sm:text-xl text-slate-300 leading-relaxed font-medium border-l-4 border-brand-primary pl-6 py-1 max-w-2xl text-left">
+              Engineering technical architecture and operational certainty for global enterprises to scale without compromise.
+            </p>
+            
+            <div className="reveal-on-scroll flex flex-col sm:flex-row gap-4 pt-6 justify-center lg:justify-start">
+              <button 
+                onClick={() => onPageChange('contact')}
+                className="px-10 py-5 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[12px] uppercase tracking-[0.25em] flex items-center justify-center gap-3 transition-all shadow-xl shadow-brand-primary/30 transform hover:-translate-y-1"
+              >
+                Request Consultation <ArrowRight size={16} />
+              </button>
+              <button 
+                onClick={() => onPageChange('solutions')}
+                className="px-10 py-5 bg-white/10 backdrop-blur-md text-white border-2 border-white/20 rounded font-black text-[12px] uppercase tracking-[0.25em] hover:bg-white/20 transition-all"
+              >
+                Explore Solutions
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Right Side: The Brand Image */}
-            <div className="reveal-on-scroll hidden lg:block lg:col-span-6 h-[550px] relative">
-               <div className="w-full h-full rounded-[2rem] overflow-hidden shadow-[0_40px_80px_-20px_rgba(15,23,42,0.15)] border border-slate-100 bg-slate-100 relative group">
-                  <img 
-                    src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000" 
-                    alt="CyberSys Digital Infrastructure Hub" 
-                    className="w-full h-full object-cover grayscale brightness-[0.8] group-hover:scale-105 transition-transform duration-[12s] ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-text/40 via-transparent to-transparent opacity-40"></div>
-                  
-                  <div className="absolute bottom-10 left-10">
-                     <div className="text-[9px] font-black text-white/50 uppercase tracking-[0.4em] mb-2.5">Infrastructure Group</div>
-                     <div className="h-1 w-20 bg-brand-primary rounded-full"></div>
-                  </div>
-               </div>
-            </div>
+      {/* METHODOLOGY: CS5 Framework (Tighter) */}
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+        <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none"></div>
+        <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-10">
+          <div className="text-center mb-20 reveal-on-scroll">
+             <h2 className="text-[10px] font-black text-brand-primary uppercase tracking-[0.5em] mb-4">Architecture Framework</h2>
+             <h3 className="text-4xl lg:text-5xl font-black text-brand-text tracking-tighter uppercase leading-none">The CS5 Standard.</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal-on-scroll">
+            {CS5_FRAMEWORK.map((item, i) => (
+              <div key={i} className="relative group" style={{ transitionDelay: `${i * 80}ms` }}>
+                 <div className="h-full bg-white border border-slate-100 p-10 rounded-[2rem] hover:border-brand-primary/20 transition-all duration-500 transform group-hover:-translate-y-2 shadow-[0_10px_40px_-10px_rgba(15,23,42,0.05)] hover:shadow-[0_20px_60px_-15px_rgba(32,130,166,0.15)] relative overflow-hidden z-10">
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-primary to-brand-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                    
+                    <div className="text-[4rem] leading-none font-black text-slate-100 group-hover:text-white/20 mb-6 transition-colors duration-500 transform group-hover:scale-110 origin-left">
+                      0{i + 1}
+                    </div>
+                    <h4 className="text-xl font-black text-brand-text group-hover:text-white mb-3 uppercase tracking-tighter transition-colors duration-500">{item.term}</h4>
+                    <p className="text-sm text-brand-muted font-medium leading-relaxed group-hover:text-white/90 transition-colors duration-500">
+                      {item.description}
+                    </p>
+                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* VALUE PROPOSITION: C.O.R.E */}
+      <section className="py-32 bg-[#0A0F1C] relative overflow-hidden text-white border-b border-white/5">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-primary/10 blur-[120px] rounded-full mix-blend-screen pointer-events-none transform translate-x-1/3"></div>
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-brand-secondary/5 blur-[100px] rounded-full mix-blend-screen pointer-events-none transform -translate-x-1/2"></div>
+        <div className="absolute inset-0 blueprint-grid opacity-[0.02] pointer-events-none"></div>
+        
+        <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-10">
+          <div className="text-center mb-20 reveal-on-scroll">
+             <h2 className="text-[10px] font-black text-brand-secondary uppercase tracking-[0.5em] mb-4">Value Proposition</h2>
+             <h3 className="text-4xl lg:text-5xl font-black text-white tracking-tighter uppercase leading-none">The C.O.R.E. Engine</h3>
+             <p className="mt-6 text-slate-400 font-medium max-w-2xl mx-auto">Our Enterprise Value Proposition built on four foundational pillars designed to accelerate your digital transformation.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal-on-scroll">
+            {[
+              { 
+                letter: 'C', 
+                title: 'Compliance & Control', 
+                desc: 'Built-in alignment with NDPR, CBN, ISO 27001. Audit-ready evidence.' 
+              },
+              { 
+                letter: 'O', 
+                title: 'Optimized Multi-Cloud', 
+                desc: 'Vendor-neutral advisory (Azure, AWS, OCI, GCP) reducing TCO by 25-50% via AI FinOps.' 
+              },
+              { 
+                letter: 'R', 
+                title: 'Resilient Security', 
+                desc: 'Nigeria-based, 24/7 Managed SOC with AI threat hunting and proactive defense.' 
+              },
+              { 
+                letter: 'E', 
+                title: 'Enterprise Analytics & AI', 
+                desc: 'Real-time dashboards, predictive ML embedded in ERP and cloud workloads.' 
+              }
+            ].map((item, i) => (
+              <div key={i} className="relative group" style={{ transitionDelay: `${i * 100}ms` }}>
+                <div className="h-full bg-white/[0.02] backdrop-blur-xl border border-white/10 p-10 rounded-[2rem] hover:bg-white/[0.06] hover:border-brand-primary/30 transition-all duration-500 transform group-hover:-translate-y-2 shadow-2xl relative overflow-hidden">
+                   {/* Abstract hover glow */}
+                   <div className="absolute -inset-20 bg-gradient-to-r from-brand-primary/0 via-brand-primary/10 to-brand-secondary/0 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none transform -translate-x-full group-hover:translate-x-full"></div>
+                   
+                   <div className="text-[5rem] leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-brand-primary to-brand-primary/20 mb-6 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 transform origin-left">
+                     {item.letter}
+                   </div>
+                   <h4 className="text-xl font-black text-white mb-3 uppercase tracking-tighter">{item.title}</h4>
+                   <p className="text-sm text-slate-400 font-medium leading-relaxed group-hover:text-slate-300 transition-colors">
+                     {item.desc}
+                   </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -120,10 +197,11 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
         </div>
       </section>
 
-      {/* CAPABILITIES: Tightened spacing */}
+      {/* CAPABILITIES: Full width grid */}
       <section className="py-24 bg-white relative">
         <div className="max-w-[1440px] mx-auto px-16">
-          <div className="flex flex-col lg:flex-row gap-16 items-start">
+          <div className="flex flex-col gap-16 items-start">
+            {/* 
             <div className="reveal-on-scroll lg:w-2/5 lg:sticky lg:top-28 space-y-8">
               <h2 className="text-4xl lg:text-5xl font-black text-brand-text tracking-tighter uppercase leading-[0.95] mb-6">
                 The New <br /> Standard.
@@ -138,8 +216,9 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
                 </div>
               </div>
             </div>
+            */}
 
-            <div className="lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { icon: <Cloud />, title: 'Multicloud', desc: 'Unified orchestration across AWS, Azure, and Google Cloud, optimized for yield.' },
                 { icon: <Shield />, title: 'Cyber Governance', desc: 'Advanced perimeter protection aligned with strict regulatory frameworks.' },
@@ -196,26 +275,6 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
                    )}
                 </div>
                 <span className="mt-4 text-[8px] font-black text-slate-300 group-hover:text-brand-primary uppercase tracking-[0.4em] transition-colors">{partner.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* METHODOLOGY: CS5 Framework (Tighter) */}
-      <section className="py-24 bg-brand-subtle">
-        <div className="max-w-[1440px] mx-auto px-16">
-          <div className="text-center mb-16 reveal-on-scroll">
-             <h2 className="text-[9px] font-black text-brand-primary uppercase tracking-[0.6em] mb-6">Architecture Framework</h2>
-             <h3 className="text-4xl lg:text-5xl font-black text-brand-text tracking-tighter uppercase leading-none">The CS5 Standard.</h3>
-          </div>
-
-          <div className="reveal-on-scroll grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-slate-200 border border-slate-200 rounded-[2rem] overflow-hidden shadow-xl">
-            {CS5_FRAMEWORK.map((item, i) => (
-              <div key={i} className="bg-white p-12 hover:bg-brand-primary group transition-all duration-700 cursor-default">
-                 <div className="text-4xl font-black text-brand-primary/15 group-hover:text-white/10 mb-6 transition-colors">{i + 1}</div>
-                 <h4 className="text-xl font-black text-brand-text group-hover:text-white mb-4 uppercase tracking-tighter transition-colors">{item.term}</h4>
-                 <p className="text-sm text-brand-muted group-hover:text-white/80 font-medium leading-relaxed transition-colors">{item.description}</p>
               </div>
             ))}
           </div>

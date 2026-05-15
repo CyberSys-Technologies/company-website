@@ -263,7 +263,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
           
           <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
             <p className="text-[10px] text-slate-500 font-black uppercase tracking-[0.5em]">
-              © 2024 CyberSys Technologies. Resilience standards observed.
+              © 2026 CyberSys Technologies. Resilience standards observed.
             </p>
             <div className="flex gap-12 text-[10px] text-slate-500 font-black uppercase tracking-[0.4em]">
               <span className="hover:text-white cursor-pointer">Compliance</span>
