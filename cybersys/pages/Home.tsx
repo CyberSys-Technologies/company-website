@@ -9,7 +9,12 @@ import {
   Smartphone, 
   Zap, 
   Server,
-  Sparkles
+  Sparkles,
+  Settings,
+  Users,
+  RefreshCcw,
+  Maximize,
+  Target
 } from 'lucide-react';
 import { CS5_FRAMEWORK } from '../constants';
 import { Page } from '../types';
@@ -106,20 +111,32 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
         <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-10">
           <div className="text-center mb-20 reveal-on-scroll">
              <h2 className="text-[10px] font-black text-brand-primary uppercase tracking-[0.5em] mb-4">Architecture Framework</h2>
-             <h3 className="text-4xl lg:text-5xl font-black text-brand-text tracking-tighter uppercase leading-none">The CS5 Standard.</h3>
+             <h3 className="text-4xl lg:text-5xl font-black text-brand-text tracking-tighter uppercase leading-none">The CS5 Standard</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal-on-scroll">
             {CS5_FRAMEWORK.map((item, i) => (
               <div key={i} className="relative group" style={{ transitionDelay: `${i * 80}ms` }}>
-                 <div className="h-full bg-white border border-slate-100 p-10 rounded-[2rem] hover:border-brand-primary/20 transition-all duration-500 transform group-hover:-translate-y-2 shadow-[0_10px_40px_-10px_rgba(15,23,42,0.05)] hover:shadow-[0_20px_60px_-15px_rgba(32,130,166,0.15)] relative overflow-hidden z-10">
-                    <div className="absolute inset-0 bg-gradient-to-br from-brand-primary to-brand-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
-                    
-                    <div className="text-[4rem] leading-none font-black text-slate-100 group-hover:text-white/20 mb-6 transition-colors duration-500 transform group-hover:scale-110 origin-left">
-                      0{i + 1}
+                 <div className="h-full p-8 bg-white border border-slate-100 rounded-[1.5rem] transition-all duration-500 hover:shadow-[0_15px_40px_-15px_rgba(32,130,166,0.15)] hover:border-brand-primary/20 hover:-translate-y-1 relative">
+                    <div className="flex justify-between items-start mb-6">
+                      <div className="p-4 bg-slate-50 text-slate-400 inline-flex items-center justify-center rounded-xl group-hover:bg-brand-primary/5 group-hover:text-brand-primary transition-all duration-500 font-black text-4xl min-w-[4.5rem] min-h-[4.5rem]">
+                        0{i + 1}
+                      </div>
+                      <div className="p-3 rounded-full bg-slate-50 group-hover:bg-brand-primary/5 transition-colors duration-500">
+                        {
+                          [
+                            <Users className="text-slate-300 group-hover:text-brand-primary transition-colors duration-500" size={24} key="icon-0" />,
+                            <RefreshCcw className="text-slate-300 group-hover:text-brand-primary transition-colors duration-500" size={24} key="icon-1" />,
+                            <Shield className="text-slate-300 group-hover:text-brand-primary transition-colors duration-500" size={24} key="icon-2" />,
+                            <Server className="text-slate-300 group-hover:text-brand-primary transition-colors duration-500" size={24} key="icon-3" />,
+                            <Maximize className="text-slate-300 group-hover:text-brand-primary transition-colors duration-500" size={24} key="icon-4" />,
+                            <Target className="text-slate-300 group-hover:text-brand-primary transition-colors duration-500" size={24} key="icon-5" />
+                          ][i]
+                        }
+                      </div>
                     </div>
-                    <h4 className="text-xl font-black text-brand-text group-hover:text-white mb-3 uppercase tracking-tighter transition-colors duration-500">{item.term}</h4>
-                    <p className="text-sm text-brand-muted font-medium leading-relaxed group-hover:text-white/90 transition-colors duration-500">
+                    <h4 className="text-xl font-black text-brand-text mb-3 uppercase tracking-tighter group-hover:text-brand-primary transition-colors duration-500">{item.term}</h4>
+                    <p className="text-sm text-brand-muted font-medium leading-relaxed">
                       {item.description}
                     </p>
                  </div>
@@ -138,7 +155,13 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
         <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-10">
           <div className="text-center mb-20 reveal-on-scroll">
              <h2 className="text-[10px] font-black text-brand-secondary uppercase tracking-[0.5em] mb-4">Value Proposition</h2>
-             <h3 className="text-4xl lg:text-5xl font-black text-white tracking-tighter uppercase leading-none">The C.O.R.E. Engine</h3>
+             <h3 className="text-4xl lg:text-5xl font-black text-white tracking-tighter uppercase leading-none flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+               The C.O.R.E. Engine
+               <div className="relative inline-flex items-center justify-center opacity-90 mt-4 md:mt-0">
+                 <Settings className="text-brand-primary animate-[spin_8s_linear_infinite]" size={56} strokeWidth={1.5} />
+                 <Settings className="text-brand-secondary absolute -bottom-2 -right-4 animate-[spin_8s_linear_infinite_reverse]" size={32} strokeWidth={2} />
+               </div>
+             </h3>
              <p className="mt-6 text-slate-400 font-medium max-w-2xl mx-auto">Our Enterprise Value Proposition built on four foundational pillars designed to accelerate your digital transformation.</p>
           </div>
 
@@ -184,15 +207,19 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
         </div>
       </section>
 
-      {/* CORPORATE STRIP: Compact */}
-      <section className="py-14 bg-white border-b border-slate-50">
-        <div className="max-w-[1440px] mx-auto px-16">
-          <div className="flex flex-wrap justify-between items-center gap-10 grayscale opacity-20">
-             <span className="text-lg font-black tracking-tighter uppercase italic">Financials.</span>
-             <span className="text-lg font-black tracking-tighter uppercase italic">Government.</span>
-             <span className="text-lg font-black tracking-tighter uppercase italic">Telecoms.</span>
-             <span className="text-lg font-black tracking-tighter uppercase italic">Energy.</span>
-             <span className="text-lg font-black tracking-tighter uppercase italic">Public Sector.</span>
+      {/* CORPORATE STRIP: Marquee */}
+      <section className="py-10 md:py-14 bg-white border-b border-slate-50 overflow-hidden flex items-center">
+        <div className="relative flex w-full grayscale opacity-20">
+          <div className="flex w-max animate-marquee whitespace-nowrap">
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className="flex space-x-12 md:space-x-24 px-6 md:px-12 items-center">
+                 <span className="text-2xl md:text-3xl font-black tracking-tighter uppercase italic">Financials</span>
+                 <span className="text-2xl md:text-3xl font-black tracking-tighter uppercase italic">Government</span>
+                 <span className="text-2xl md:text-3xl font-black tracking-tighter uppercase italic">Telecoms</span>
+                 <span className="text-2xl md:text-3xl font-black tracking-tighter uppercase italic">Energy</span>
+                 <span className="text-2xl md:text-3xl font-black tracking-tighter uppercase italic">Public Sector</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
