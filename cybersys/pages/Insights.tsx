@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { ArrowRight, BookOpen, Clock, FileText, Newspaper } from 'lucide-react';
+import { ArrowRight, BookOpen, Clock, FileText, Newspaper, ChevronRight } from 'lucide-react';
 
 const Insights: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'blog' | 'whitepapers' | 'case-studies' | 'news'>('blog');
@@ -25,27 +24,40 @@ const Insights: React.FC = () => {
   };
 
   return (
-    <div className="animate-in fade-in duration-700">
-      <section className="py-24 border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <h1 className="text-5xl font-bold mb-6">Knowledge & Authority.</h1>
-          <p className="text-xl text-slate-400 max-w-3xl">Expert perspectives and framework documentation for the future of enterprise technology.</p>
+    <div className="animate-in fade-in duration-1000 bg-white">
+      {/* 1. PAGE HERO */}
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-40 blueprint-grid relative overflow-hidden">
+        <div className="absolute inset-0 blueprint-grid-fine opacity-40 pointer-events-none"></div>
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
+          <div className="max-w-5xl">
+            <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-10">
+               <div className="h-px w-12 bg-brand-primary"></div>
+               <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Corporate Authority</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
+              Knowledge & <br /> <span className="text-brand-primary">Authority.</span>
+            </h1>
+            <p className="text-xl text-brand-muted max-w-3xl font-medium leading-relaxed border-l-2 border-brand-primary pl-10 py-2">
+              Expert perspectives and framework documentation for the future of enterprise technology in complex jurisdictions.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="py-12 border-b border-white/5 sticky top-20 bg-slate-950/80 backdrop-blur-md z-30">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="flex gap-8 overflow-x-auto pb-4 no-scrollbar">
+      {/* 2. STICKY NAVIGATION */}
+      <section className="sticky top-[80px] bg-white/80 backdrop-blur-xl border-b border-slate-200 z-30 shadow-sm overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16">
+          <div className="flex gap-12 overflow-x-auto pb-0 no-scrollbar">
             {[
-              { id: 'blog', label: 'Analysis & Blog', icon: <Newspaper size={18} /> },
-              { id: 'whitepapers', label: 'Whitepapers & Reports', icon: <FileText size={18} /> },
-              { id: 'case-studies', label: 'Case Studies', icon: <BookOpen size={18} /> },
-              { id: 'news', label: 'Company News', icon: <Clock size={18} /> }
+              { id: 'blog', label: 'Analysis & Blog', icon: <Newspaper size={16} /> },
+              { id: 'whitepapers', label: 'Whitepapers', icon: <FileText size={16} /> },
+              { id: 'case-studies', label: 'Case Studies', icon: <BookOpen size={16} /> },
+              { id: 'news', label: 'Corporate News', icon: <Clock size={16} /> }
             ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`flex items-center gap-2 whitespace-nowrap pb-2 border-b-2 transition-all font-semibold ${activeTab === tab.id ? 'border-blue-500 text-blue-500' : 'border-transparent text-slate-500 hover:text-slate-300'}`}
+                className={`flex items-center gap-3 whitespace-nowrap py-6 border-b-2 transition-all font-black text-[10px] uppercase tracking-[0.3em] ${activeTab === tab.id ? 'border-brand-primary text-brand-primary' : 'border-transparent text-brand-muted hover:text-brand-text'}`}
               >
                 {tab.icon} {tab.label}
               </button>
@@ -54,16 +66,19 @@ const Insights: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-24 min-h-[500px]">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
+      {/* 3. CONTENT GRID */}
+      <section className="py-24 min-h-[600px] bg-white">
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {content[activeTab].map((item, idx) => (
-              <div key={idx} className="group p-8 bg-slate-900 border border-white/5 rounded-2xl hover:border-blue-500/50 transition-all cursor-pointer">
-                <div className="text-blue-500 text-xs font-bold uppercase tracking-widest mb-4">{item.category}</div>
-                <h3 className="text-xl font-bold mb-4 group-hover:text-blue-400 transition-colors">{item.title}</h3>
-                <div className="flex justify-between items-center text-sm text-slate-500 pt-6 border-t border-white/5">
+              <div key={idx} className="group p-10 bg-slate-50 border border-slate-100 rounded-[2rem] hover:border-brand-primary transition-all duration-500 cursor-pointer hover:shadow-xl hover:-translate-y-2">
+                <div className="text-brand-primary text-[10px] font-black uppercase tracking-[0.4em] mb-6">{item.category}</div>
+                <h3 className="text-xl font-black text-brand-text mb-8 uppercase tracking-tighter leading-snug group-hover:text-brand-primary transition-colors">{item.title}</h3>
+                <div className="flex justify-between items-center text-[10px] font-black text-brand-muted uppercase tracking-[0.2em] pt-6 border-t border-slate-200/50">
                   <span>{item.date}</span>
-                  <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
+                  <div className="h-8 w-8 bg-white border border-slate-200 rounded-full flex items-center justify-center group-hover:bg-brand-primary group-hover:text-white group-hover:border-brand-primary transition-all duration-500">
+                    <ArrowRight size={14} />
+                  </div>
                 </div>
               </div>
             ))}
@@ -71,15 +86,25 @@ const Insights: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-blue-600">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col lg:flex-row items-center justify-between gap-8 text-white">
-          <div className="space-y-2 text-center lg:text-left">
-            <h2 className="text-3xl font-bold">Stay ahead of the curve.</h2>
-            <p className="text-blue-100">Subscribe to our monthly Enterprise Intelligence briefing.</p>
-          </div>
-          <div className="flex w-full lg:w-auto gap-4">
-            <input type="email" placeholder="Corporate Email" className="bg-white/10 border border-white/20 rounded-lg px-6 py-4 outline-none w-full lg:w-80 placeholder:text-white/50" />
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold">Subscribe</button>
+      {/* 4. NEWSLETTER CTA */}
+      <section className="py-24 bg-brand-text text-white relative overflow-hidden">
+        <div className="absolute inset-0 blueprint-grid opacity-10"></div>
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
+          <div className="max-w-6xl mx-auto bg-white/5 border border-white/10 rounded-[3rem] p-12 md:p-20 flex flex-col lg:flex-row items-center justify-between gap-12 text-center lg:text-left">
+            <div className="space-y-4">
+              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter italic">Stay ahead <br /> of the curve.</h2>
+              <p className="text-slate-400 font-medium text-lg">Subscribe to our monthly Enterprise Intelligence briefing.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row w-full lg:w-auto gap-4">
+              <input 
+                type="email" 
+                placeholder="Corporate Email" 
+                className="bg-white/5 border border-white/10 rounded-xl px-8 py-5 outline-none w-full lg:w-80 placeholder:text-white/20 focus:border-brand-primary transition-colors font-medium" 
+              />
+              <button className="bg-brand-primary hover:bg-brand-accent text-white px-10 py-5 rounded-xl font-black text-[12px] uppercase tracking-[0.4em] transition-all whitespace-nowrap shadow-xl shadow-brand-primary/20">
+                Subscribe
+              </button>
+            </div>
           </div>
         </div>
       </section>

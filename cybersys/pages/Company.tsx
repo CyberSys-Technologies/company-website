@@ -32,7 +32,7 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
   return (
     <div className="animate-in fade-in duration-1000 bg-white">
       {/* 1. PAGE HERO */}
-      <section className="bg-slate-50 border-b border-slate-200 py-32 md:py-60 blueprint-grid relative overflow-hidden">
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-40 blueprint-grid relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid-fine opacity-40 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
           <div className="max-w-5xl">
@@ -40,11 +40,11 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
                <div className="h-px w-12 bg-brand-primary"></div>
                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Corporate Authority</span>
             </div>
-            <h1 className="text-5xl md:text-8xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
+            <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
               Building Africa’s <br /> 
               <span className="text-brand-primary">Digital Backbone.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-brand-muted max-w-3xl font-medium leading-relaxed mb-16 border-l-2 border-brand-primary pl-12 py-2">
+            <p className="text-xl text-brand-muted max-w-3xl font-medium leading-relaxed mb-16 border-l-2 border-brand-primary pl-10">
               CyberSys Technologies exists to give global organizations the absolute confidence to operate, scale, and compete — powered by resilient, world-class infrastructure.
             </p>
           </div>
@@ -52,7 +52,7 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
       </section>
 
       {/* 2. STRATEGIC INTENT (Purpose & Vision) */}
-      <section className="py-40 bg-white">
+      <section className="py-24 bg-white">
         <div className="max-w-[1600px] mx-auto px-8 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             <div className="lg:col-span-6">
@@ -84,13 +84,13 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
       </section>
 
       {/* 3. CORE VALUES & DIFFERENTIATORS */}
-      <section className="py-40 bg-slate-50 border-y border-slate-200 relative overflow-hidden">
+      <section className="py-24 bg-slate-50 border-y border-slate-200 relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid-fine opacity-[0.2] pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
             <div className="lg:col-span-5 space-y-12">
               <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">02 / Differentiators</h2>
-              <h3 className="text-4xl md:text-6xl font-black text-brand-text tracking-tighter uppercase leading-[0.9] italic">Global Standards, <br /> Local Resilience.</h3>
+              <h3 className="text-4xl md:text-5xl font-black text-brand-text tracking-tighter uppercase leading-[0.9] italic">Global Standards, <br /> Local Resilience.</h3>
               <p className="text-xl text-brand-muted font-medium leading-relaxed">
                 We bridge the gap between global technology providers and regional infrastructure requirements, ensuring every solution is resilient to constraints while remaining competitive.
               </p>
@@ -124,13 +124,13 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
       </section>
 
       {/* 4. GLOBAL OPERATIONS */}
-      <section className="py-40 bg-[#0F172A] text-white relative overflow-hidden">
+      <section className="py-24 bg-[#0F172A] text-white relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid opacity-10"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-32 items-center">
              <div className="lg:col-span-5 space-y-12">
                 <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">03 / Footprint</h2>
-                <h3 className="text-4xl md:text-7xl font-black tracking-tighter uppercase leading-none italic">Global Hubs, <br /> Local Access.</h3>
+                <h3 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none italic">Global Hubs, <br /> Local Access.</h3>
                 <p className="text-xl text-slate-400 font-medium leading-relaxed">
                   Headquartered in the heart of Africa’s technology ecosystem, with global operational nodes to support international enterprise requirements.
                 </p>
@@ -173,12 +173,12 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
       </section>
 
       {/* 5. JOIN THE INTELLIGENCE */}
-      <section className="py-40 bg-white">
+      <section className="py-24 bg-white">
         <div className="max-w-[1600px] mx-auto px-8 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-32 items-center">
             <div className="lg:col-span-6 space-y-12">
               <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">04 / Careers</h2>
-              <h3 className="text-4xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-none">The <br /> Intelligence.</h3>
+              <h3 className="text-4xl md:text-6xl font-black text-brand-text tracking-tighter uppercase leading-none">The <br /> Intelligence.</h3>
               <p className="text-2xl text-brand-muted font-medium leading-relaxed">
                 We are looking for world-class engineering and technical talent to build the next generation of resilient platforms. At CyberSys, we prioritize excellence and bold innovation.
               </p>
@@ -219,21 +219,21 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
       </section>
 
       {/* 6. PRIMARY CALL TO ACTION */}
-      <section className="py-40 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
+      <section className="py-24 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-8 md:px-16">
-          <div className="max-w-6xl mx-auto bg-brand-text rounded-[6rem] p-24 md:p-40 text-center relative overflow-hidden shadow-2xl">
+          <div className="max-w-7xl mx-auto bg-brand-text rounded-[4rem] p-16 md:p-24 text-center relative overflow-hidden shadow-2xl">
             <div className="absolute inset-0 blueprint-grid opacity-10"></div>
-            <div className="relative z-10 space-y-16">
-              <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-[0.85] mb-12">
+            <div className="relative z-10 space-y-12">
+              <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase leading-[0.85] mb-8">
                 Partner with the <br /> <span className="text-brand-primary italic">Authority.</span>
               </h2>
-              <p className="text-2xl text-slate-400 max-w-4xl mx-auto font-medium leading-relaxed border-t border-white/10 pt-16">
+              <p className="text-xl text-slate-400 max-w-4xl mx-auto font-medium leading-relaxed border-t border-white/10 pt-16">
                 Schedule a session with one of our lead architects to discuss your infrastructure modernization roadmap and operational yield.
               </p>
               <div className="pt-10">
                 <button 
                   onClick={() => onPageChange('contact')}
-                  className="px-20 py-8 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[14px] uppercase tracking-[0.5em] transition-all shadow-2xl shadow-brand-primary/20 transform hover:-translate-y-2"
+                  className="px-10 py-5 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[12px] uppercase tracking-[0.4em] transition-all shadow-xl shadow-brand-primary/20 transform hover:-translate-y-1"
                 >
                   Start the Dialogue
                 </button>

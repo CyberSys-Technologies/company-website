@@ -31,30 +31,30 @@ const IndustryCard: React.FC<{
   index: number;
   onAction: () => void;
 }> = ({ icon, title, description, index, onAction }) => (
-  <div className="bg-white p-12 border border-slate-100 rounded-[2.5rem] group hover:border-brand-primary transition-all duration-700 flex flex-col h-full relative overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-brand-primary/5 active:scale-[0.99]">
-    <div className="absolute top-10 right-10 text-[10px] font-black text-slate-200 group-hover:text-brand-primary/20 transition-colors tracking-[0.5em] uppercase">
+  <div className="bg-white p-10 border border-slate-100 rounded-[2rem] group hover:border-brand-primary transition-all duration-700 flex flex-col h-full relative overflow-hidden shadow-sm hover:shadow-xl active:scale-[0.99]">
+    <div className="absolute top-8 right-8 text-[10px] font-black text-slate-200 group-hover:text-brand-primary/20 transition-colors tracking-[0.5em] uppercase">
       IND-{String(index + 1).padStart(2, '0')}
     </div>
     <div className="absolute inset-0 blueprint-grid-fine opacity-0 group-hover:opacity-[0.1] pointer-events-none transition-opacity duration-1000"></div>
     
-    <div className="mb-12 relative">
+    <div className="mb-10 relative">
       <div className="text-brand-primary transform group-hover:scale-110 transition-transform duration-700 origin-left">
-        {React.cloneElement(icon as React.ReactElement<{size?: number, strokeWidth?: number}>, { size: 40, strokeWidth: 1.25 })}
+        {React.cloneElement(icon as React.ReactElement<{size?: number, strokeWidth?: number}>, { size: 36, strokeWidth: 1.5 })}
       </div>
     </div>
     
-    <div className="space-y-6 flex-grow mb-12">
-      <h3 className="text-2xl font-black text-brand-text tracking-tighter uppercase leading-tight group-hover:translate-x-1 transition-transform">{title}</h3>
-      <p className="text-base text-brand-muted font-medium leading-relaxed max-w-[90%]">{description}</p>
+    <div className="space-y-4 flex-grow mb-10">
+      <h3 className="text-xl font-black text-brand-text tracking-tighter uppercase leading-tight group-hover:translate-x-1 transition-transform">{title}</h3>
+      <p className="text-sm text-brand-muted font-medium leading-relaxed max-w-[95%]">{description}</p>
     </div>
     
     <button 
       onClick={onAction}
       className="flex items-center justify-between w-full group/btn pt-6 border-t border-slate-50"
     >
-      <span className="text-brand-primary font-black text-[11px] uppercase tracking-[0.4em] group-hover:translate-x-2 transition-transform duration-500">Explore {title} Solutions</span>
-      <div className="h-10 w-10 bg-slate-50 border border-slate-100 rounded-full flex items-center justify-center group-hover/btn:bg-brand-primary group-hover/btn:text-white group-hover/btn:border-brand-primary transition-all duration-500 shadow-sm">
-        <ArrowRight size={18} />
+      <span className="text-brand-primary font-black text-[10px] uppercase tracking-[0.4em] group-hover:translate-x-2 transition-transform duration-500">Explore Solutions</span>
+      <div className="h-8 w-8 bg-slate-50 border border-slate-100 rounded-full flex items-center justify-center group-hover/btn:bg-brand-primary group-hover/btn:text-white group-hover/btn:border-brand-primary transition-all duration-500 shadow-sm">
+        <ArrowRight size={14} />
       </div>
     </button>
   </div>
@@ -75,7 +75,7 @@ const Industries: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChang
   return (
     <div className="animate-in fade-in duration-1000 bg-white">
       {/* 1. PAGE HERO */}
-      <section className="bg-slate-50 border-b border-slate-200 py-32 md:py-60 blueprint-grid relative overflow-hidden">
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-40 blueprint-grid relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid-fine opacity-40 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
           <div className="max-w-5xl">
@@ -83,17 +83,17 @@ const Industries: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChang
                <div className="h-px w-12 bg-brand-primary"></div>
                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Sector Intelligence Group</span>
             </div>
-            <h1 className="text-5xl md:text-8xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
+            <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
               Technology Solutions <br /> for Critical and <br /> 
               <span className="text-brand-primary">Regulated Industries.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-brand-muted max-w-3xl font-medium leading-relaxed mb-16 border-l-2 border-brand-primary pl-12 py-2">
+            <p className="text-xl text-brand-muted max-w-3xl font-medium leading-relaxed mb-16 border-l-2 border-brand-primary pl-10">
               CyberSys Technologies partners with organizations operating in high-impact, regulated, and mission-critical environments — where security, uptime, and compliance are non-negotiable.
             </p>
             <div className="flex flex-wrap gap-6 pt-4">
               <button 
                 onClick={() => onPageChange('contact')}
-                className="px-14 py-7 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[12px] uppercase tracking-[0.4em] transition-all shadow-2xl shadow-brand-primary/20 transform hover:-translate-y-1"
+                className="px-10 py-5 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[12px] uppercase tracking-[0.4em] transition-all shadow-xl shadow-brand-primary/20 transform hover:-translate-y-1"
               >
                 Talk to a Solutions Architect
               </button>
@@ -103,7 +103,7 @@ const Industries: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChang
       </section>
 
       {/* 2. INDUSTRIES INTRODUCTION */}
-      <section className="py-40 bg-white">
+      <section className="py-24 bg-white">
         <div className="max-w-[1600px] mx-auto px-8 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
             <div className="lg:col-span-4">
@@ -125,7 +125,7 @@ const Industries: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChang
       </section>
 
       {/* 3. INDUSTRIES GRID */}
-      <section className="py-40 bg-slate-50 relative border-y border-slate-200">
+      <section className="py-24 bg-slate-50 relative border-y border-slate-200">
         <div className="absolute inset-0 blueprint-grid opacity-[0.03] pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -152,7 +152,7 @@ const Industries: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChang
       </section>
 
       {/* 4. INDUSTRY-SPECIFIC CHALLENGES */}
-      <section className="py-40 bg-white">
+      <section className="py-24 bg-white">
         <div className="max-w-[1600px] mx-auto px-8 md:px-16">
           <div className="max-w-4xl space-y-12 mb-24">
             <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">02 / The Challenge</h2>
@@ -181,78 +181,36 @@ const Industries: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChang
         </div>
       </section>
 
-      {/* 5. HOW CYBERSYS SUPPORTS INDUSTRIES */}
+      {/* 5. HOW CYBERSYS SUPPORTS INDUSTRIES (HIDDEN) */}
+      {/*
       <section className="py-40 bg-slate-50 border-y border-slate-200 relative overflow-hidden">
-        <div className="absolute inset-0 blueprint-grid-fine opacity-[0.2] pointer-events-none"></div>
-        <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-32 items-center">
-            <div className="lg:col-span-5 space-y-12">
-              <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">03 / Delivery Framework</h2>
-              <h3 className="text-4xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.95]">A Consistent <br /> Standard Across <br /> All Sectors.</h3>
-              <p className="text-xl text-brand-muted font-medium leading-relaxed">
-                While every industry is unique, CyberSys applies a consistent delivery framework that ensures secure, reliable, and scalable outcomes across all sectors.
-              </p>
-            </div>
-            <div className="lg:col-span-7">
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {[
-                    { label: 'Security', title: 'Security-by-design architecture' },
-                    { label: 'Compliance', title: 'Compliance-aware system design' },
-                    { label: 'Flexibility', title: 'Multicloud and hybrid flexibility' },
-                    { label: 'Optimization', title: 'Continuous monitoring and yield optimization' },
-                    { label: 'Standard', title: 'Local expertise with global standards' }
-                  ].map((item, i) => (
-                    <div key={i} className="p-10 border border-slate-200 rounded-[2.5rem] bg-white group hover:border-brand-primary transition-all shadow-sm">
-                       <div className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-primary mb-4 opacity-50">{item.label}</div>
-                       <div className="text-lg font-black text-brand-text uppercase tracking-tight leading-tight">{item.title}</div>
-                    </div>
-                  ))}
-               </div>
-            </div>
-          </div>
-        </div>
+        ... content hidden for simplicity ...
       </section>
+      */}
 
-      {/* 6. CS5 INDUSTRY ALIGNMENT */}
+      {/* 6. CS5 INDUSTRY ALIGNMENT (HIDDEN) */}
+      {/*
       <section className="py-40 bg-white">
-        <div className="max-w-[1600px] mx-auto px-8 md:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-32 items-center">
-            <div className="lg:col-span-6 space-y-12">
-              <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">04 / Performance Standard</h2>
-              <h3 className="text-4xl md:text-6xl font-black text-brand-text tracking-tighter uppercase leading-[0.95]">Delivered at <br /> World-Class <br /> Standards.</h3>
-              <p className="text-2xl text-brand-muted font-medium leading-relaxed">
-                CyberSys industry solutions are delivered using our CS5 framework — ensuring systems are secure, integrated, resilient, and built for long-term scalability.
-              </p>
-            </div>
-            <div className="lg:col-span-6">
-               <div className="bg-brand-primary p-24 rounded-[5rem] text-white flex flex-col items-center justify-center text-center space-y-12 shadow-[0_80px_120px_-30px_rgba(32,130,166,0.3)] relative overflow-hidden group">
-                  <div className="absolute inset-0 blueprint-grid opacity-20 group-hover:scale-125 transition-transform duration-[20s] ease-linear"></div>
-                  <div className="text-[12px] font-black uppercase tracking-[1em] opacity-40 relative z-10">CS5 Reference</div>
-                  <div className="text-4xl md:text-[5rem] font-black tracking-tighter uppercase italic leading-[0.9] relative z-10 drop-shadow-2xl">
-                    Cyber <br /> Synergy <br /> Security <br /> Systems <br /> Scalability <br /> Solutions
-                  </div>
-               </div>
-            </div>
-          </div>
-        </div>
+        ... content hidden for simplicity ...
       </section>
+      */}
 
       {/* 7. PRIMARY CALL TO ACTION */}
-      <section className="py-40 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
+      <section className="py-24 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-8 md:px-16">
-          <div className="max-w-6xl mx-auto bg-brand-text rounded-[6rem] p-24 md:p-40 text-center relative overflow-hidden shadow-2xl">
+          <div className="max-w-7xl mx-auto bg-brand-text rounded-[4rem] p-16 md:p-24 text-center relative overflow-hidden shadow-2xl">
             <div className="absolute inset-0 blueprint-grid opacity-10"></div>
-            <div className="relative z-10 space-y-16">
-              <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-[0.85] mb-12">
+            <div className="relative z-10 space-y-12">
+              <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase leading-[0.85] mb-8">
                 Let’s Build <br /> Industry-Ready <br /> <span className="text-brand-primary italic">Infrastructure.</span>
               </h2>
-              <p className="text-2xl text-slate-400 max-w-4xl mx-auto font-medium leading-relaxed border-t border-white/10 pt-16">
+              <p className="text-xl text-slate-400 max-w-4xl mx-auto font-medium leading-relaxed border-t border-white/10 pt-16">
                 Engage CyberSys to design secure, compliant, and resilient systems tailored to your industry’s unique requirements.
               </p>
               <div className="pt-10">
                 <button 
                   onClick={() => onPageChange('contact')}
-                  className="px-20 py-8 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[14px] uppercase tracking-[0.5em] transition-all shadow-2xl shadow-brand-primary/20 transform hover:-translate-y-2"
+                  className="px-10 py-5 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[12px] uppercase tracking-[0.4em] transition-all shadow-xl shadow-brand-primary/20 transform hover:-translate-y-1"
                 >
                   Request a Consultation
                 </button>

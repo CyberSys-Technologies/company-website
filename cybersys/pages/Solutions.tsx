@@ -703,25 +703,25 @@ const CybersecurityDetail: React.FC<{ onPageChange: (p: Page) => void }> = ({ on
 const GenericSolutionDetail: React.FC<{ data: any, onPageChange: (p: Page) => void }> = ({ data, onPageChange }) => {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-5 duration-1000">
-      <section className="bg-slate-50 border-b border-slate-200 py-32 md:py-60 blueprint-grid relative">
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-40 blueprint-grid relative">
         <div className="max-w-7xl mx-auto px-8 md:px-16 relative z-10">
           <button 
             onClick={() => onPageChange('solutions')}
-            className="flex items-center gap-3 text-brand-primary hover:text-brand-text transition-all mb-16 text-[12px] font-black uppercase tracking-[0.4em] group"
+            className="flex items-center gap-3 text-brand-primary hover:text-brand-text transition-all mb-12 text-[12px] font-black uppercase tracking-[0.4em] group"
           >
             <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> Back to Catalog
           </button>
           <div className="max-w-5xl">
-            <h1 className="text-6xl md:text-9xl font-black text-brand-text tracking-tighter uppercase leading-[0.8] mb-12">
+            <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.9] mb-8">
               {data.title}
             </h1>
-            <p className="text-2xl text-brand-muted max-w-3xl font-medium leading-relaxed border-l-2 border-brand-primary pl-12 py-4">
+            <p className="text-xl text-brand-muted max-w-3xl font-medium leading-relaxed border-l-2 border-brand-primary pl-8 py-2">
               {data.summary}
             </p>
-            <div className="pt-16">
+            <div className="pt-10">
               <button 
                 onClick={() => onPageChange('contact')}
-                className="px-14 py-7 bg-brand-primary text-white rounded font-black text-[12px] uppercase tracking-[0.4em] shadow-2xl shadow-brand-primary/20 hover:bg-brand-accent transition-all transform hover:-translate-y-1"
+                className="px-10 py-5 bg-brand-primary text-white rounded font-black text-[12px] uppercase tracking-[0.4em] shadow-xl hover:bg-brand-accent transition-all transform hover:-translate-y-1"
               >
                 Talk to a Solutions Architect
               </button>
@@ -730,40 +730,40 @@ const GenericSolutionDetail: React.FC<{ data: any, onPageChange: (p: Page) => vo
         </div>
       </section>
       
-      <section className="py-40 bg-white">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-8 md:px-16">
-           <div className="grid grid-cols-1 lg:grid-cols-12 gap-32 items-start">
-             <div className="lg:col-span-7 space-y-16">
-                <h2 className="text-4xl font-black text-brand-text uppercase tracking-tight border-b border-slate-100 pb-10">Core Capabilities</h2>
-                <ul className="space-y-12">
+           <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
+             <div className="lg:col-span-8 space-y-12">
+                <h2 className="text-3xl font-black text-brand-text uppercase tracking-tight border-b border-slate-100 pb-6">Core Capabilities</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {data.capabilities.map((cap: string, i: number) => (
-                    <li key={i} className="flex items-start gap-10 text-brand-muted font-medium text-2xl leading-relaxed group">
-                      <div className="flex-shrink-0 mt-2">
-                        <CheckCircle2 size={36} className="text-brand-primary" strokeWidth={1.5} />
+                    <div key={i} className="p-8 bg-slate-50 rounded-[1.5rem] border border-slate-100 group hover:border-brand-primary hover:shadow-lg transition-all duration-500 hover:-translate-y-1">
+                      <div className="mb-6 p-4 bg-white inline-block rounded-xl group-hover:bg-brand-primary/10 transition-colors shadow-sm">
+                        <CheckCircle2 size={24} className="text-brand-primary" strokeWidth={2} />
                       </div>
-                      <span className="group-hover:text-brand-text transition-colors">{cap}</span>
-                    </li>
-                  ))}
-                </ul>
-             </div>
-             <div className="lg:col-span-5">
-                <div className="bg-slate-50 p-16 rounded-[4rem] border border-slate-200 space-y-12 h-fit sticky top-32">
-                  <h3 className="text-3xl font-black text-brand-text uppercase tracking-tight">Technical Standards</h3>
-                  <p className="text-xl text-brand-muted leading-relaxed font-medium">
-                    Our architectures comply with the highest global standards (ISO/IEC 27001, SOC 2) and regional African data directives. Every deployment is hardened and optimized for yield.
-                  </p>
-                  <div className="grid grid-cols-1 gap-8 pt-8 border-t border-slate-200">
-                    <div className="flex items-center gap-8 group">
-                       <div className="p-5 bg-white border border-slate-200 text-brand-primary rounded-2xl group-hover:bg-brand-primary group-hover:text-white group-hover:border-brand-primary transition-all shadow-sm">
-                        <Shield size={32} strokeWidth={1.5} />
-                       </div>
-                       <div className="text-[12px] font-black uppercase tracking-[0.3em] text-brand-text">Security-by-Design</div>
+                      <h3 className="text-lg font-black text-brand-text group-hover:text-brand-primary transition-colors uppercase tracking-tight leading-snug">{cap}</h3>
                     </div>
-                    <div className="flex items-center gap-8 group">
-                       <div className="p-5 bg-white border border-slate-200 text-brand-primary rounded-2xl group-hover:bg-brand-primary group-hover:text-white group-hover:border-brand-primary transition-all shadow-sm">
-                        <Zap size={32} strokeWidth={1.5} />
+                  ))}
+                </div>
+             </div>
+             <div className="lg:col-span-4">
+                <div className="bg-slate-50 p-10 rounded-[2rem] border border-slate-200 space-y-8 h-fit sticky top-32">
+                  <h3 className="text-2xl font-black text-brand-text uppercase tracking-tight">Technical Standards</h3>
+                  <p className="text-base text-brand-muted leading-relaxed font-medium">
+                    Our architectures comply with global standards (ISO/IEC 27001, SOC 2) and regional data directives.
+                  </p>
+                  <div className="grid grid-cols-1 gap-6 pt-6 border-t border-slate-200">
+                    <div className="flex items-center gap-6 group">
+                       <div className="p-4 bg-white border border-slate-200 text-brand-primary rounded-xl group-hover:bg-brand-primary group-hover:text-white transition-all">
+                        <Shield size={24} strokeWidth={1.5} />
                        </div>
-                       <div className="text-[12px] font-black uppercase tracking-[0.3em] text-brand-text">Ultra Reliability</div>
+                       <div className="text-[10px] font-black uppercase tracking-[0.3em] text-brand-text">Security-by-Design</div>
+                    </div>
+                    <div className="flex items-center gap-6 group">
+                       <div className="p-4 bg-white border border-slate-200 text-brand-primary rounded-xl group-hover:bg-brand-primary group-hover:text-white transition-all">
+                        <Zap size={24} strokeWidth={1.5} />
+                       </div>
+                       <div className="text-[10px] font-black uppercase tracking-[0.3em] text-brand-text">Ultra Reliability</div>
                     </div>
                   </div>
                 </div>
@@ -779,7 +779,7 @@ const Overview: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange 
   return (
     <div className="animate-in fade-in duration-1000 bg-white">
       {/* 1. PAGE HERO */}
-      <section className="bg-slate-50 border-b border-slate-200 py-32 md:py-52 blueprint-grid relative overflow-hidden">
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-40 blueprint-grid relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid-fine opacity-40 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
           <div className="max-w-5xl">
@@ -787,7 +787,7 @@ const Overview: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange 
                <div className="h-px w-12 bg-brand-primary"></div>
                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Solutions Catalog</span>
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
+            <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
               Enterprise <br /> Technology <br /> 
               <span className="text-brand-primary">Continuity.</span>
             </h1>
@@ -808,7 +808,7 @@ const Overview: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange 
       </section>
 
       {/* 2. SOLUTIONS OVERVIEW INTRO */}
-      <section className="py-40 bg-white border-b border-slate-50">
+      <section className="py-24 bg-white border-b border-slate-50">
         <div className="max-w-[1600px] mx-auto px-8 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
             <div className="lg:col-span-5">
@@ -838,7 +838,7 @@ const Overview: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange 
       </section>
 
       {/* 3. SOLUTION CATEGORIES (PRIMARY GRID) */}
-      <section className="py-40 bg-slate-50 relative">
+      <section className="py-24 bg-slate-50 relative">
         <div className="absolute inset-0 blueprint-grid opacity-[0.03] pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -894,7 +894,7 @@ const Overview: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange 
       </section>
 
       {/* 4. HOW CYBERSYS DELIVERS */}
-      <section className="py-40 bg-white border-y border-slate-200">
+      <section className="py-24 bg-white border-y border-slate-200">
         <div className="max-w-[1600px] mx-auto px-8 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
              <div className="lg:col-span-4 space-y-8">
@@ -925,13 +925,13 @@ const Overview: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange 
       </section>
 
       {/* 5. BUSINESS OUTCOMES (YIELD-FOCUSED) */}
-      <section className="py-40 bg-brand-text text-white relative overflow-hidden">
+      <section className="py-24 bg-brand-text text-white relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid opacity-10"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-end mb-24">
              <div className="lg:col-span-8 space-y-6">
                 <h2 className="text-[11px] font-black text-brand-primary uppercase tracking-[0.6em]">Yield Metrics</h2>
-                <h3 className="text-4xl md:text-7xl font-black tracking-tighter uppercase leading-none">Measurable Outcomes.</h3>
+                <h3 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">Measurable Outcomes.</h3>
              </div>
              <div className="lg:col-span-4 lg:text-right">
                 <p className="text-slate-400 font-medium text-lg italic">Engineering value into every infrastructure layer.</p>
@@ -959,7 +959,7 @@ const Overview: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange 
       </section>
 
       {/* 6. CS5 ALIGNMENT SECTION */}
-      <section className="py-40 bg-white">
+      <section className="py-24 bg-white">
         <div className="max-w-[1600px] mx-auto px-8 md:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-32 items-center">
             <div className="lg:col-span-6 space-y-12">
@@ -992,12 +992,12 @@ const Overview: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange 
       </section>
 
       {/* 7. PRIMARY CTA */}
-      <section className="py-40 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
+      <section className="py-24 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-8 md:px-16">
-          <div className="max-w-7xl mx-auto bg-brand-text rounded-[6rem] p-24 md:p-40 text-center relative overflow-hidden shadow-2xl">
+          <div className="max-w-7xl mx-auto bg-brand-text rounded-[4rem] p-16 md:p-24 text-center relative overflow-hidden shadow-2xl">
             <div className="absolute inset-0 blueprint-grid opacity-10"></div>
-            <div className="relative z-10 space-y-16">
-              <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase leading-[0.85] mb-12">
+            <div className="relative z-10 space-y-12">
+              <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase leading-[0.85] mb-8">
                 Let’s Design the <br /> <span className="text-brand-primary italic">Right Solution.</span>
               </h2>
               <p className="text-2xl text-slate-400 max-w-4xl mx-auto font-medium leading-relaxed border-t border-white/10 pt-16">
@@ -1020,6 +1020,7 @@ const Overview: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange 
 };
 
 const Solutions: React.FC<SolutionsProps> = ({ onPageChange, detailView }) => {
+  /* Commented out to use the simplified generic detail view
   if (detailView === 'cybersecurity') {
     return <CybersecurityDetail onPageChange={onPageChange} />;
   }
@@ -1027,6 +1028,7 @@ const Solutions: React.FC<SolutionsProps> = ({ onPageChange, detailView }) => {
   if (detailView === 'cloud') {
     return <CloudInfrastructureDetail onPageChange={onPageChange} />;
   }
+  */
 
   if (detailView) {
     const detailData = SOLUTION_CATEGORIES.find(s => s.path.includes(detailView));
