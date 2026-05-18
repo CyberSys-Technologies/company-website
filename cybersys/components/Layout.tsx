@@ -45,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
           
           {/* BRAND IDENTITY - Single image logo */}
           <div 
-            className="flex items-center cursor-pointer group flex-shrink-0" 
+            className="flex items-center cursor-pointer group flex-shrink-0 lg:mr-12" 
             onClick={() => { onPageChange('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
           >
             <img 
@@ -56,7 +56,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
           </div>
 
           {/* NAVIGATION LINKS */}
-          <div className="hidden lg:flex items-center gap-12 lg:ml-auto lg:mr-16">
+          <div className="hidden lg:flex items-center gap-8 xl:gap-12 lg:ml-auto lg:mr-8 xl:mr-16">
             {NAV_LINKS.map((link) => (
               <div 
                 key={link.label} 
