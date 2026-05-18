@@ -2,23 +2,22 @@
 export type Page = 
   | 'home' 
   | 'solutions' 
-  | 'solutions-cloud' 
-  | 'solutions-cybersecurity' 
-  | 'solutions-multicloud' 
-  | 'solutions-data' 
+  | 'solutions-software' 
   | 'solutions-digital' 
-  | 'solutions-managed' 
+  | 'solutions-bi' 
+  | 'solutions-cybersecurity' 
+  | 'services'
+  | 'services-cloud'
+  | 'services-multicloud'
+  | 'services-managed'
+  | 'services-training'
   | 'industries' 
   | 'multicloud' 
   | 'why-cybersys' 
   | 'insights' 
   | 'company' 
-  | 'services'
-  | 'services-software'
-  | 'services-digital'
-  | 'services-bi'
-  | 'services-training'
   | 'contact';
+
 
 export interface NavLink {
   label: string;

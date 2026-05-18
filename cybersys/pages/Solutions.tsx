@@ -27,7 +27,9 @@ import {
   GanttChart,
   Landmark,
   Cpu,
-  Network
+  Network,
+  Code2,
+  BarChart4
 } from 'lucide-react';
 import { Page } from '../types';
 import { CS5_FRAMEWORK } from '../constants';
@@ -39,12 +41,28 @@ interface SolutionsProps {
 
 const SOLUTION_CATEGORIES = [
   {
-    title: 'Cloud & Infrastructure',
-    icon: <Cloud />,
-    path: 'solutions-cloud' as Page,
-    summary: 'Architect, modernize, and manage resilient cloud and hybrid infrastructure that delivers high availability, performance, and scalability.',
-    capabilities: ['Cloud architecture & design', 'Hybrid cloud & on-prem integration', 'Infrastructure modernization', 'Cloud migration & optimization'],
-    cta: 'Explore Cloud & Infrastructure'
+    title: 'Custom Software Development',
+    icon: <Code2 />,
+    path: 'solutions-software' as Page,
+    summary: 'We engineer high-performance, secure, and scalable enterprise applications designed to solve complex operational challenges and deliver measurable business yield.',
+    capabilities: ['Enterprise application architecture', 'Scalable backend engineering', 'Modern frontend experiences', 'Cloud-native microservices', 'API design & integration'],
+    cta: 'Explore Custom Software'
+  },
+  {
+    title: 'Digital Transformation',
+    icon: <Cpu />,
+    path: 'solutions-digital' as Page,
+    summary: 'Modernizing core operations and systems integration with connected intelligence to drive organizational agility and operational efficiency.',
+    capabilities: ['Operational Technology (OT) modernization', 'Connected systems orchestration', 'Legacy system integration', 'Real-time data streams'],
+    cta: 'Explore Digital Transformation'
+  },
+  {
+    title: 'Business Intelligence & Analytics',
+    icon: <BarChart4 />,
+    path: 'solutions-bi' as Page,
+    summary: 'Transforming vast volumes of raw enterprise data into actionable strategic insights that power decision-making and optimize operational ROI.',
+    capabilities: ['Advanced data visualization', 'Predictive analytics models', 'Data warehousing & ETL', 'Executive KPI frameworks', 'Operational yield reporting'],
+    cta: 'Explore Analytics & BI'
   },
   {
     title: 'Cybersecurity',
@@ -53,38 +71,6 @@ const SOLUTION_CATEGORIES = [
     summary: 'Protect systems, data, and identities with enterprise-grade security architectures designed for evolving threats and regulatory environments.',
     capabilities: ['Security architecture & Zero Trust', 'Threat detection & response', 'Identity & access management (IAM)', 'Risk, compliance & governance', 'Security operations & monitoring'],
     cta: 'Explore Cybersecurity'
-  },
-  {
-    title: 'Multicloud Management',
-    icon: <Layers />,
-    path: 'multicloud' as Page,
-    summary: 'Design and manage workloads across multiple cloud platforms with unified governance, visibility, and cost control.',
-    capabilities: ['Multicloud strategy & architecture', 'Unified monitoring & management', 'Vendor lock-in avoidance', 'Cost optimization & FinOps', 'Secure connectivity across clouds'],
-    cta: 'Explore Multicloud Management'
-  },
-  {
-    title: 'Data, AI & Analytics',
-    icon: <BrainCircuit />,
-    path: 'solutions-data' as Page,
-    summary: 'Enable intelligent decision-making with secure data platforms, analytics, and AI-ready infrastructure.',
-    capabilities: ['Data platforms & engineering', 'Business intelligence & analytics', 'AI & machine learning enablement', 'Data governance & security'],
-    cta: 'Explore Data & AI Solutions'
-  },
-  {
-    title: 'Digital Transformation & Applications',
-    icon: <Settings />,
-    path: 'solutions-digital' as Page,
-    summary: 'Modernize and integrate enterprise applications to help improve agility, efficiency, and system interoperability.',
-    capabilities: ['Enterprise application development', 'Application modernization', 'Cloud-native & API-driven systems', 'Systems integration'],
-    cta: 'Explore Digital Transformation'
-  },
-  {
-    title: 'Managed Services & Support',
-    icon: <RefreshCw />,
-    path: 'solutions-managed' as Page,
-    summary: 'Ensure continuous performance, security, and availability with 24/7 managed services and operational support.',
-    capabilities: ['Managed cloud services', 'Managed security services', '24/7 monitoring & operations', 'Service level agreements (SLA)'],
-    cta: 'Explore Managed Services'
   }
 ];
 

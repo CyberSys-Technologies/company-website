@@ -16,11 +16,11 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<Page>('home');
 
   const validPages: Page[] = [
-    'home', 'solutions', 'solutions-cloud', 'solutions-cybersecurity', 
-    'solutions-multicloud', 'solutions-data', 'solutions-digital', 
-    'solutions-managed', 'industries', 'multicloud', 'why-cybersys', 
-    'insights', 'company', 'contact', 'services',
-    'services-software', 'services-digital', 'services-bi', 'services-training'
+    'home', 'solutions', 'solutions-software', 'solutions-digital', 
+    'solutions-bi', 'solutions-cybersecurity', 'services',
+    'services-cloud', 'services-multicloud', 'services-managed', 
+    'services-training', 'industries', 'multicloud', 'why-cybersys', 
+    'insights', 'company', 'contact'
   ];
 
   // Simple hash-based navigation listener

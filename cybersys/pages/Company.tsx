@@ -41,12 +41,17 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Corporate Authority</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
-              Building Africa’s <br /> 
-              <span className="text-brand-primary">Digital Backbone.</span>
+              Secure Digital <br /> 
+              <span className="text-brand-primary">Infrastructure.</span>
             </h1>
-            <p className="text-xl text-brand-muted max-w-3xl font-medium leading-relaxed mb-16 border-l-2 border-brand-primary pl-10">
-              CyberSys Technologies exists to give global organizations the absolute confidence to operate, scale, and compete — powered by resilient, world-class infrastructure.
-            </p>
+            <div className="space-y-8 border-l-2 border-brand-primary pl-10 mb-16">
+              <p className="text-xl text-brand-text font-black uppercase tracking-tight max-w-3xl leading-snug">
+                Delivering secure, resilient, and scalable cloud, cybersecurity, and data-driven platforms for enterprises and public sector institutions across Africa.
+              </p>
+              <p className="text-base text-brand-muted max-w-3xl font-medium leading-relaxed">
+                Established to address the growing complexity of digital transformation in emerging markets, CyberSys bridges the gap between global technology standards and local operational realities by designing and managing intelligent digital environments tailored to African business and institutional needs.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -61,9 +66,9 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
                 <div className="mb-12">
                   <Target className="text-brand-primary group-hover:scale-110 transition-transform duration-700" size={48} strokeWidth={1.25} />
                 </div>
-                <h3 className="text-3xl font-black text-brand-text uppercase tracking-tighter mb-8 italic">Our Purpose</h3>
+                <h3 className="text-3xl font-black text-brand-text uppercase tracking-tighter mb-8 italic">Our Mission</h3>
                 <p className="text-xl text-brand-muted font-medium leading-relaxed">
-                  To design, secure, and manage intelligent environments that ensure security, compliance, and absolute uptime for enterprises and governments operating in complex jurisdictions.
+                  To enable digital transformation through secure cloud adoption, regulatory-compliant cybersecurity and analytics business intelligent decision making.
                 </p>
               </div>
             </div>
@@ -75,7 +80,7 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
                 </div>
                 <h3 className="text-3xl font-black text-white uppercase tracking-tighter mb-8 italic">Our Vision</h3>
                 <p className="text-xl text-slate-400 font-medium leading-relaxed">
-                  To be the primary authority for enterprise technology across the continent, bridging the gap between local operational realities and global engineering standards.
+                  To be West Africa's most trusted technology partner, delivering secure cloud services, advanced cybersecurity, and AI data-driven transformation for enterprises and government customers.
                 </p>
               </div>
             </div>

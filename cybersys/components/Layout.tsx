@@ -56,7 +56,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
           </div>
 
           {/* NAVIGATION LINKS */}
-          <div className="hidden lg:flex items-center gap-12">
+          <div className="hidden lg:flex items-center gap-12 lg:ml-auto lg:mr-16">
             {NAV_LINKS.map((link) => (
               <div 
                 key={link.label} 
@@ -204,9 +204,9 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
       <footer className="bg-[#0F172A] pt-32 pb-16 relative overflow-hidden text-white border-t border-white/5">
         <div className="absolute inset-0 blueprint-grid opacity-[0.02] pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 mb-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-32">
             
-            <div className="lg:col-span-5 space-y-12">
+            <div className="lg:col-span-4 space-y-12">
               <div className="flex items-center">
                 <img 
                   src="https://i.ibb.co/tw47GgY9/Cybersys-Logo-p.png" 
@@ -214,13 +214,13 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
                   className="h-10 md:h-12 w-auto object-contain" 
                 />
               </div>
-              <p className="text-slate-400 text-lg leading-relaxed font-medium max-w-md">
+              <p className="text-slate-400 text-base leading-relaxed font-medium max-w-md">
                 Primary authority for resilient enterprise infrastructure and security architecture across the African continent.
               </p>
-              <div className="flex gap-8">
+              <div className="flex gap-6">
                 {[Linkedin, Twitter, Mail].map((Icon, idx) => (
-                  <button key={idx} className="p-4 bg-white/5 rounded-full hover:bg-brand-primary transition-all text-slate-500 group">
-                    <Icon size={20} className="group-hover:scale-110 duration-300" />
+                  <button key={idx} className="p-3 bg-white/5 rounded-full hover:bg-brand-primary transition-all text-slate-500 group">
+                    <Icon size={18} className="group-hover:scale-110 duration-300" />
                   </button>
                 ))}
               </div>
@@ -229,32 +229,41 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
             <div className="lg:col-span-2">
               <h4 className="text-white font-black text-[11px] uppercase tracking-[0.4em] mb-10 border-l-2 border-brand-primary pl-5">Solutions</h4>
               <ul className="space-y-6 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                <li className="hover:text-brand-primary cursor-pointer transition-colors" onClick={() => onPageChange('solutions-cloud')}>Cloud Infra</li>
+                <li className="hover:text-brand-primary cursor-pointer transition-colors" onClick={() => onPageChange('solutions-software')}>Software</li>
+                <li className="hover:text-brand-primary cursor-pointer transition-colors" onClick={() => onPageChange('solutions-digital')}>Digital</li>
+                <li className="hover:text-brand-primary cursor-pointer transition-colors" onClick={() => onPageChange('solutions-bi')}>Analytics</li>
                 <li className="hover:text-brand-primary cursor-pointer transition-colors" onClick={() => onPageChange('solutions-cybersecurity')}>Security</li>
-                <li className="hover:text-brand-primary cursor-pointer transition-colors" onClick={() => onPageChange('multicloud')}>Multicloud</li>
-                <li className="hover:text-brand-primary cursor-pointer transition-colors" onClick={() => onPageChange('solutions-managed')}>Managed</li>
+              </ul>
+            </div>
+
+            <div className="lg:col-span-2">
+              <h4 className="text-white font-black text-[11px] uppercase tracking-[0.4em] mb-10 border-l-2 border-brand-primary pl-5">Services</h4>
+              <ul className="space-y-6 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+                <li className="hover:text-brand-primary cursor-pointer transition-colors" onClick={() => onPageChange('services-cloud')}>Cloud Infra</li>
+                <li className="hover:text-brand-primary cursor-pointer transition-colors" onClick={() => onPageChange('services-multicloud')}>Multicloud</li>
+                <li className="hover:text-brand-primary cursor-pointer transition-colors" onClick={() => onPageChange('services-managed')}>Managed</li>
+                <li className="hover:text-brand-primary cursor-pointer transition-colors" onClick={() => onPageChange('services-training')}>Training</li>
               </ul>
             </div>
 
             <div className="lg:col-span-2">
               <h4 className="text-white font-black text-[11px] uppercase tracking-[0.4em] mb-10 border-l-2 border-brand-primary pl-5">Corporate</h4>
               <ul className="space-y-6 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                <li className="cursor-pointer hover:text-brand-primary transition-colors" onClick={() => onPageChange('solutions')}>Services</li>
                 <li className="cursor-pointer hover:text-brand-primary transition-colors" onClick={() => onPageChange('company')}>Company</li>
                 <li className="cursor-pointer hover:text-brand-primary transition-colors" onClick={() => onPageChange('contact')}>RFP Portal</li>
                 <li className="cursor-pointer hover:text-brand-primary transition-colors">Ethics</li>
               </ul>
             </div>
 
-            <div className="lg:col-span-3 space-y-12">
+            <div className="lg:col-span-2 space-y-12">
               <h4 className="text-white font-black text-[11px] uppercase tracking-[0.4em] mb-10 border-l-2 border-brand-primary pl-5">Operations</h4>
               <div className="space-y-8">
                 <div>
                   <p className="text-[10px] text-brand-primary font-black uppercase tracking-[0.4em] mb-2">Africa Hub</p>
-                  <p className="text-base text-slate-300 font-bold uppercase tracking-tight">Lagos, Nigeria</p>
+                  <p className="text-base text-slate-300 font-bold uppercase tracking-tight">Lagos</p>
                 </div>
                 <div>
-                  <p className="text-[10px] text-brand-accent font-black uppercase tracking-[0.4em] mb-2">Global Operations</p>
+                  <p className="text-[10px] text-brand-accent font-black uppercase tracking-[0.4em] mb-2">Global</p>
                   <p className="text-base text-slate-300 font-bold uppercase tracking-tight">London, UK</p>
                 </div>
               </div>

@@ -17,7 +17,9 @@ import {
   Users,
   Layers,
   Activity,
-  Shield
+  Shield,
+  Cloud,
+  RefreshCw
 } from 'lucide-react';
 import { Page } from '../types';
 
@@ -33,64 +35,64 @@ interface ServiceData {
 }
 
 const SERVICES_CONTENT: Record<string, ServiceData> = {
-  software: {
-    id: 'software',
-    title: 'Custom Software Development',
-    subtitle: 'Bespoke Enterprise Systems',
-    path: 'services-software',
-    summary: 'We engineer high-performance, secure, and scalable enterprise applications designed to solve complex operational challenges and deliver measurable business yield.',
-    icon: <Code2 />,
+  cloud: {
+    id: 'cloud',
+    title: 'Cloud & Infrastructure',
+    subtitle: 'Resilient Hybrid Platforms',
+    path: 'services-cloud',
+    summary: 'We architect, deploy, and manage secure, high-performance hybrid and private cloud environments designed to support mission-critical workloads and scale with absolute operational continuity.',
+    icon: <Cloud />,
     capabilities: [
-      'Enterprise Application Architecture',
-      'Scalable Backend Engineering',
-      'Modern Frontend Experiences',
-      'Cloud-Native Microservices',
-      'API Design & Ecosystems'
+      'Hybrid & Private Cloud Architecture',
+      'Infrastructure Modernization',
+      'Safe Workload Migration',
+      'Resilience & High Availability',
+      'Capacity Planning & FinOps'
     ],
     process: [
-      { step: 'Logic Discovery', desc: 'Mapping complex business rules and operational workflows.' },
-      { step: 'Architecture', desc: 'Designing for high concurrency and absolute reliability.' },
-      { step: 'Execution', desc: 'Sprint-based engineering following world-class QA standards.' }
+      { step: 'Infra Audit', desc: 'Evaluating existing systems, dependency maps, and capacity needs.' },
+      { step: 'Architecture', desc: 'Designing secure, high-performance hybrid cloud environments.' },
+      { step: 'Migration', desc: 'Executing zero-downtime workload transitions under world-class QA.' }
     ]
   },
-  digital: {
-    id: 'digital',
-    title: 'Digital Transformation & IOT',
-    subtitle: 'Connected Operational Intelligence',
-    path: 'services-digital',
-    summary: 'Bridging the physical and digital worlds through intelligent sensors and modernized core systems to drive real-time operational efficiency.',
-    icon: <Cpu />,
+  multicloud: {
+    id: 'multicloud',
+    title: 'Multicloud Mastery',
+    subtitle: 'Unified Platform Orchestration',
+    path: 'services-multicloud',
+    summary: 'Unified orchestration across AWS, Azure, and OCI to eliminate vendor lock-in, optimize infrastructure spend, and enforce compliance policies across heterogeneous environments.',
+    icon: <Layers />,
     capabilities: [
-      'Operational Technology (OT) Modernization',
-      'IOT Sensor Networks & Orchestration',
-      'Legacy System Integration',
-      'Real-time Data Streams',
-      'Connected Asset Management'
+      'Multicloud Strategy & Design',
+      'Unified Platform Orchestration',
+      'Cross-Cloud Secure Connectivity',
+      'Cost Optimization & FinOps',
+      'Compliance-Aware Guardrails'
     ],
     process: [
-      { step: 'Asset Audit', desc: 'Analyzing physical assets and current digital touchpoints.' },
-      { step: 'Sensor Design', desc: 'Architecting the connectivity mesh for robust data flow.' },
-      { step: 'Transformation', desc: 'Rolling out the intelligence layer across operations.' }
+      { step: 'Cloud Maturity', desc: 'Assessing workload requirements and platform compatibility.' },
+      { step: 'Orchestration', desc: 'Designing unified management, visibility, and control layers.' },
+      { step: 'Governance', desc: 'Enforcing consistent security and compliance guardrails.' }
     ]
   },
-  bi: {
-    id: 'bi',
-    title: 'Business Intelligence',
-    subtitle: 'Strategic Data Sovereignty',
-    path: 'services-bi',
-    summary: 'Transforming vast volumes of raw enterprise data into actionable strategic insights that power decision-making and optimize ROI.',
-    icon: <BarChart4 />,
+  managed: {
+    id: 'managed',
+    title: 'Managed Services',
+    subtitle: '24/7 Operational Continuity',
+    path: 'services-managed',
+    summary: 'Ensuring continuous performance, availability, and enterprise-grade threat protection through proactive 24/7 operations, SLA guarantees, and regular audits.',
+    icon: <RefreshCw />,
     capabilities: [
-      'Advanced Data Visualization',
-      'Predictive Analytics Models',
-      'Data Warehousing & ETL',
-      'Executive KPI Frameworks',
-      'Operational Yield Reporting'
+      '24/7 Operational Monitoring',
+      'Proactive Patching & Upgrades',
+      'Managed Security Operations',
+      'SLA-Backed Support Plans',
+      'Continuous Audits & Compliance'
     ],
     process: [
-      { step: 'Data Ingestion', desc: 'Aggregating fragmented data sources into a unified lake.' },
-      { step: 'Refining', desc: 'Cleansing and structuring data for maximum accuracy.' },
-      { step: 'Insights', desc: 'Deploying intelligence dashboards for strategic oversight.' }
+      { step: 'SLA Definition', desc: 'Establishing performance thresholds and response protocols.' },
+      { step: 'Monitoring Setup', desc: 'Deploying deep observability systems and automated alerts.' },
+      { step: 'Operations', desc: 'Providing continuous proactive management, scaling, and support.' }
     ]
   },
   training: {

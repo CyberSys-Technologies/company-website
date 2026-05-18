@@ -3,24 +3,25 @@ import React from 'react';
 import { NavLink, IndustryItem } from './types';
 
 export const NAV_LINKS: NavLink[] = [
+  { label: 'Company', path: 'company' },
   { 
     label: 'Solutions', 
     path: 'solutions',
     subLinks: [
-      { label: 'Cloud & Infrastructure', path: 'solutions-cloud', description: 'Resilient hybrid and private cloud architectures.' },
+      { label: 'Custom Software Development', path: 'solutions-software', description: 'Bespoke enterprise applications engineered for scale.' },
+      { label: 'Digital Transformation', path: 'solutions-digital', description: 'Modernizing core operations with connected intelligence.' },
+      { label: 'Business Intelligence & Analytics', path: 'solutions-bi', description: 'Turning complex data into actionable strategic yield.' },
       { label: 'Cybersecurity', path: 'solutions-cybersecurity', description: 'Enterprise-grade threat protection and governance.' },
-      { label: 'Multicloud Mastery', path: 'multicloud', description: 'Unified orchestration across AWS, Azure, and OCI.' },
-      { label: 'Managed Services', path: 'solutions', description: '24/7 operational continuity and optimization.' },
     ]
   },
   {
     label: 'Services',
     path: 'services',
     subLinks: [
-      { label: 'Custom software development', path: 'services-software', description: 'Bespoke enterprise applications engineered for scale.' },
-      { label: 'Digital transformation & IOT', path: 'services-digital', description: 'Modernizing core operations with connected intelligence.' },
-      { label: 'Business intelligence', path: 'services-bi', description: 'Turning complex data into actionable strategic yield.' },
-      { label: 'Training & consultancy', path: 'services-training', description: 'Expert knowledge transfer and architecture guidance.' },
+      { label: 'Cloud & Infrastructure', path: 'services-cloud', description: 'Resilient hybrid and private cloud architectures.' },
+      { label: 'Multicloud Mastery', path: 'services-multicloud', description: 'Unified orchestration across AWS, Azure, and OCI.' },
+      { label: 'Managed Services', path: 'services-managed', description: '24/7 operational continuity and optimization.' },
+      { label: 'Training & Consultancy', path: 'services-training', description: 'Expert knowledge transfer and architecture guidance.' },
     ]
   },
   { 
@@ -34,7 +35,6 @@ export const NAV_LINKS: NavLink[] = [
     ]
   },
   { label: 'Multicloud', path: 'multicloud' },
-  { label: 'Company', path: 'company' },
   { label: 'Contact', path: 'contact' },
 ];
 
