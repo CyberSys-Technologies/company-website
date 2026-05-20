@@ -121,21 +121,35 @@ const ServicesOverview: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPag
   return (
     <div className="animate-in fade-in duration-1000 bg-white">
       {/* Hero Section */}
-      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-40 blueprint-grid relative overflow-hidden">
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-36 blueprint-grid relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid-fine opacity-40 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
-          <div className="max-w-5xl">
-            <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-10">
-               <div className="h-px w-12 bg-brand-primary"></div>
-               <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Services Architecture</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-4">
+                 <div className="h-px w-12 bg-brand-primary"></div>
+                 <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Services Architecture</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-6">
+                Engineering <br /> The Enterprise <br /> 
+                <span className="text-brand-primary">Technical Layer.</span>
+              </h1>
+              <p className="text-xl text-brand-muted max-w-2xl font-medium leading-relaxed border-l-2 border-brand-primary pl-8 py-1">
+                CyberSys delivers outcome-driven technical services designed to modernize core operations, secure data flows, and build resilient software infrastructure for global organizations.
+              </p>
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
-              Engineering <br /> The Enterprise <br /> 
-              <span className="text-brand-primary">Technical Layer.</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-brand-muted max-w-3xl font-medium leading-relaxed mb-16 border-l-2 border-brand-primary pl-10">
-              CyberSys delivers outcome-driven technical services designed to modernize core operations, secure data flows, and build resilient software infrastructure for global organizations.
-            </p>
+            <div className="lg:col-span-5 reveal-on-scroll active relative">
+              <div className="absolute -inset-4 blueprint-grid opacity-30 pointer-events-none rounded-[2.5rem]"></div>
+              <div className="relative rounded-[2rem] overflow-hidden border border-slate-200 p-2 bg-white/50 backdrop-blur-md shadow-2xl shadow-slate-200/30 group">
+                <img 
+                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=70" 
+                  alt="Services Architecture" 
+                  className="w-full h-[250px] sm:h-[320px] object-cover rounded-[1.5rem] grayscale hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none rounded-[1.5rem]"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -230,7 +244,7 @@ const ServiceDetail: React.FC<{ content: ServiceData; onPageChange: (p: Page) =>
   return (
     <div className="animate-in fade-in duration-1000 bg-white">
       {/* Hero Section */}
-      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-40 blueprint-grid relative overflow-hidden">
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-36 blueprint-grid relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid-fine opacity-40 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
           <button 
@@ -239,30 +253,53 @@ const ServiceDetail: React.FC<{ content: ServiceData; onPageChange: (p: Page) =>
           >
             <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Services
           </button>
-          <div className="max-w-5xl">
-            <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-10">
-               <div className="h-px w-12 bg-brand-primary"></div>
-               <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">{content.subtitle}</span>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-4">
+                 <div className="h-px w-12 bg-brand-primary"></div>
+                 <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">{content.subtitle}</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-6">
+                {content.title.split(' & ').map((part, i) => (
+                  <React.Fragment key={i}>
+                    {i > 0 && <br />}
+                    {part}
+                    {i === 0 && content.title.includes('&') && <span className="text-brand-primary"> & </span>}
+                  </React.Fragment>
+                ))}
+              </h1>
+              <p className="text-xl text-brand-muted max-w-2xl font-medium leading-relaxed mb-8 border-l-2 border-brand-primary pl-8 py-1">
+                {content.summary}
+              </p>
+              <div className="flex flex-wrap gap-6 pt-2">
+                <button 
+                  onClick={() => onPageChange('contact')}
+                  className="px-10 py-5 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[11px] uppercase tracking-[0.4em] transition-all shadow-xl shadow-brand-primary/20 transform hover:-translate-y-1"
+                >
+                  Start Technical Dialogue
+                </button>
+              </div>
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
-              {content.title.split(' & ').map((part, i) => (
-                <React.Fragment key={i}>
-                  {i > 0 && <br />}
-                  {part}
-                  {i === 0 && content.title.includes('&') && <span className="text-brand-primary"> & </span>}
-                </React.Fragment>
-              ))}
-            </h1>
-            <p className="text-xl md:text-2xl text-brand-muted max-w-3xl font-medium leading-relaxed mb-16 border-l-2 border-brand-primary pl-10">
-              {content.summary}
-            </p>
-            <div className="flex flex-wrap gap-6 pt-4">
-              <button 
-                onClick={() => onPageChange('contact')}
-                className="px-10 py-5 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[11px] uppercase tracking-[0.4em] transition-all shadow-xl shadow-brand-primary/20 transform hover:-translate-y-1"
-              >
-                Start Technical Dialogue
-              </button>
+            <div className="lg:col-span-5 reveal-on-scroll active relative">
+              <div className="absolute -inset-4 blueprint-grid opacity-30 pointer-events-none rounded-[2.5rem]"></div>
+              <div className="relative rounded-[2rem] overflow-hidden border border-slate-200 p-2 bg-white/50 backdrop-blur-md shadow-2xl shadow-slate-200/30 group">
+                <img 
+                  src={
+                    content.id === 'cloud' 
+                      ? 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=600&q=70'
+                      : content.id === 'multicloud'
+                      ? 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=600&q=70'
+                      : content.id === 'managed'
+                      ? 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=70'
+                      : 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=70'
+                  } 
+                  alt={content.title}
+                  className="w-full h-[250px] sm:h-[320px] object-cover rounded-[1.5rem] grayscale hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none rounded-[1.5rem]"></div>
+              </div>
             </div>
           </div>
         </div>

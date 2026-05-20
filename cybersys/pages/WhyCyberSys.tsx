@@ -7,39 +7,54 @@ const WhyCyberSys: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChan
   return (
     <div className="animate-in fade-in duration-1000 bg-white">
       {/* 1. PAGE HERO */}
-      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-40 blueprint-grid relative overflow-hidden">
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-36 blueprint-grid relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid-fine opacity-40 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
-          <div className="max-w-5xl">
-            <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-10">
-               <div className="h-px w-12 bg-brand-primary"></div>
-               <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Brand Promise</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-4">
+                 <div className="h-px w-12 bg-brand-primary"></div>
+                 <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Brand Promise</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-6">
+                The Standard for <br /> <span className="text-brand-primary">Enterprise Trust.</span>
+              </h1>
+              <p className="text-xl text-brand-muted max-w-2xl font-medium leading-relaxed mb-8 border-l-2 border-brand-primary pl-8 py-1">
+                In an era of rapid digital shift, organizations need more than a technology vendor—they need a long-term partner with a deep understanding of infrastructure resilience and regulatory landscapes.
+              </p>
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
-              The Standard for <br /> <span className="text-brand-primary">Enterprise Trust.</span>
-            </h1>
-            <p className="text-xl text-brand-muted max-w-3xl font-medium leading-relaxed mb-16 border-l-2 border-brand-primary pl-10">
-              In an era of rapid digital shift, organizations need more than a technology vendor—they need a long-term partner with a deep understanding of infrastructure resilience and regulatory landscapes.
-            </p>
+            <div className="lg:col-span-5 reveal-on-scroll active relative">
+              <div className="absolute -inset-4 blueprint-grid opacity-30 pointer-events-none rounded-[2.5rem]"></div>
+              <div className="relative rounded-[2rem] overflow-hidden border border-slate-200 p-2 bg-white/50 backdrop-blur-md shadow-2xl shadow-slate-200/30 group">
+                <img 
+                  src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=70" 
+                  alt="Enterprise Trust" 
+                  className="w-full h-[250px] sm:h-[320px] object-cover rounded-[1.5rem] grayscale hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none rounded-[1.5rem]"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* 2. VALUES SECTION */}
-      <section className="py-24 bg-white">
-        <div className="max-w-[1600px] mx-auto px-8 md:px-16">
+      <section className="py-24 bg-[#0B1120] relative border-y border-white/5">
+        <div className="absolute inset-0 blueprint-grid opacity-[0.05] pointer-events-none"></div>
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <h2 className="text-[10px] font-black text-brand-primary uppercase tracking-[0.6em] mb-4">Our DNA</h2>
-            <h3 className="text-4xl font-black text-brand-text uppercase tracking-tighter italic">The CYBER Brand Values</h3>
+            <h3 className="text-4xl font-black text-white uppercase tracking-tighter italic">The CYBER Brand Values</h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             {CYBER_VALUES.map((val) => (
-              <div key={val.letter} className="p-10 bg-slate-50 rounded-[2rem] border border-slate-100 flex flex-col items-center text-center group hover:border-brand-primary transition-all duration-500 hover:-translate-y-2">
-                <div className="w-16 h-16 bg-white border border-slate-200 flex items-center justify-center rounded-2xl text-brand-primary font-black text-3xl mb-8 shadow-sm group-hover:bg-brand-primary group-hover:text-white transition-all">
+              <div key={val.letter} className="p-10 bg-white/5 rounded-[2rem] border border-white/10 flex flex-col items-center text-center group hover:border-brand-primary transition-all duration-500 hover:-translate-y-2">
+                <div className="w-16 h-16 bg-white/10 border border-white/10 flex items-center justify-center rounded-2xl text-brand-primary font-black text-3xl mb-8 shadow-sm group-hover:bg-brand-primary group-hover:text-white transition-all">
                   {val.letter}
                 </div>
-                <h4 className="font-black text-brand-text uppercase tracking-tight mb-4 group-hover:text-brand-primary transition-colors">{val.value}</h4>
-                <p className="text-brand-muted text-sm font-medium leading-relaxed">{val.desc}</p>
+                <h4 className="font-black text-white uppercase tracking-tight mb-4 group-hover:text-brand-primary transition-colors">{val.value}</h4>
+                <p className="text-slate-400 text-sm font-medium leading-relaxed">{val.desc}</p>
               </div>
             ))}
           </div>

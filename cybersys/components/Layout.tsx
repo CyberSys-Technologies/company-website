@@ -34,7 +34,10 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-white selection:bg-brand-primary selection:text-white">
+    <div className="min-h-screen flex flex-col font-sans bg-white selection:bg-brand-primary selection:text-white relative">
+      
+
+
       {/* Header */}
       <nav 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -250,6 +253,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
               <h4 className="text-white font-black text-[11px] uppercase tracking-[0.4em] mb-10 border-l-2 border-brand-primary pl-5">Corporate</h4>
               <ul className="space-y-6 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
                 <li className="cursor-pointer hover:text-brand-primary transition-colors" onClick={() => onPageChange('company')}>Company</li>
+                <li className="cursor-pointer hover:text-brand-primary transition-colors" onClick={() => onPageChange('why-cybersys')}>Why CyberSys</li>
                 <li className="cursor-pointer hover:text-brand-primary transition-colors" onClick={() => onPageChange('contact')}>RFP Portal</li>
                 <li className="cursor-pointer hover:text-brand-primary transition-colors">Ethics</li>
               </ul>

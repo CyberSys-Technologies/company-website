@@ -32,25 +32,39 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
   return (
     <div className="animate-in fade-in duration-1000 bg-white">
       {/* 1. PAGE HERO */}
-      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-40 blueprint-grid relative overflow-hidden">
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-36 blueprint-grid relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid-fine opacity-40 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
-          <div className="max-w-5xl">
-            <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-10">
-               <div className="h-px w-12 bg-brand-primary"></div>
-               <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Corporate Authority</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-4">
+                 <div className="h-px w-12 bg-brand-primary"></div>
+                 <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Corporate Authority</span>
+              </div>
+              <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-6">
+                Secure Digital <br /> 
+                <span className="text-brand-primary">Infrastructure.</span>
+              </h1>
+              <div className="space-y-4 border-l-2 border-brand-primary pl-6 py-1">
+                <p className="text-lg text-brand-text font-black uppercase tracking-tight max-w-2xl leading-snug">
+                  Delivering secure, resilient, and scalable cloud, cybersecurity, and data-driven platforms for enterprises and public sector institutions across Africa.
+                </p>
+                <p className="text-base text-brand-muted max-w-2xl font-medium leading-relaxed">
+                  Established to address the growing complexity of digital transformation in emerging markets, CyberSys bridges the gap between global technology standards and local operational realities by designing and managing intelligent digital environments tailored to African business and institutional needs.
+                </p>
+              </div>
             </div>
-            <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
-              Secure Digital <br /> 
-              <span className="text-brand-primary">Infrastructure.</span>
-            </h1>
-            <div className="space-y-8 border-l-2 border-brand-primary pl-6 md:pl-10 mb-16">
-              <p className="text-lg sm:text-xl text-brand-text font-black uppercase tracking-tight max-w-3xl leading-snug">
-                Delivering secure, resilient, and scalable cloud, cybersecurity, and data-driven platforms for enterprises and public sector institutions across Africa.
-              </p>
-              <p className="text-base text-brand-muted max-w-3xl font-medium leading-relaxed">
-                Established to address the growing complexity of digital transformation in emerging markets, CyberSys bridges the gap between global technology standards and local operational realities by designing and managing intelligent digital environments tailored to African business and institutional needs.
-              </p>
+            <div className="lg:col-span-5 reveal-on-scroll active relative">
+              <div className="absolute -inset-4 blueprint-grid opacity-30 pointer-events-none rounded-[2.5rem]"></div>
+              <div className="relative rounded-[2rem] overflow-hidden border border-slate-200 p-2 bg-white/50 backdrop-blur-md shadow-2xl shadow-slate-200/30 group">
+                <img 
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=70" 
+                  alt="Corporate Authority" 
+                  className="w-full h-[250px] sm:h-[320px] object-cover rounded-[1.5rem] grayscale hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none rounded-[1.5rem]"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -162,13 +176,20 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
                 </div>
              </div>
              <div className="lg:col-span-7">
-                <div className="aspect-square bg-white/5 rounded-[2.5rem] md:rounded-[5rem] border border-white/10 flex items-center justify-center p-6 sm:p-12 md:p-20 group relative overflow-hidden">
-                   <div className="absolute inset-0 blueprint-grid-fine opacity-20"></div>
-                   <div className="text-[8rem] sm:text-[12rem] md:text-[20rem] font-black text-brand-primary opacity-20 italic select-none group-hover:scale-110 transition-transform duration-[10s] tracking-tighter">CS</div>
+                <div className="aspect-square rounded-[2.5rem] md:rounded-[4rem] border border-white/10 flex items-center justify-center p-2 group relative overflow-hidden bg-white/5 shadow-2xl">
+                   <img 
+                     src="/lagos-node.png" 
+                     alt="Lagos Skyline Node" 
+                     className="w-full h-full object-cover rounded-[2.1rem] md:rounded-[3.6rem] opacity-30 group-hover:scale-105 group-hover:opacity-40 transition-all duration-700"
+                     loading="lazy"
+                   />
+                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent pointer-events-none rounded-[2.1rem] md:rounded-[3.6rem]"></div>
+                   <div className="absolute inset-0 blueprint-grid-fine opacity-20 pointer-events-none rounded-[2.1rem] md:rounded-[3.6rem]"></div>
+                   
                    <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-center space-y-2 md:space-y-4">
                         <p className="text-[10px] font-black uppercase tracking-[1em] text-brand-primary">Lagos Node</p>
-                        <p className="text-2xl sm:text-3xl md:text-4xl font-black uppercase italic tracking-tighter">Continental Hub</p>
+                        <p className="text-2xl sm:text-3xl md:text-4xl font-black uppercase italic tracking-tighter text-white">Continental Hub</p>
                       </div>
                    </div>
                 </div>

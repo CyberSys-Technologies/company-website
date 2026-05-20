@@ -19,20 +19,34 @@ const Contact: React.FC = () => {
   return (
     <div className="animate-in fade-in duration-1000 bg-white min-h-screen">
       {/* 1. PAGE HERO */}
-      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-40 blueprint-grid relative overflow-hidden">
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-36 blueprint-grid relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid-fine opacity-40 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
-          <div className="max-w-5xl">
-            <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-10">
-               <div className="h-px w-12 bg-brand-primary"></div>
-               <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Direct Access</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-4">
+                 <div className="h-px w-12 bg-brand-primary"></div>
+                 <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Direct Access</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-6">
+                Start the <br /> <span className="text-brand-primary italic">Dialogue.</span>
+              </h1>
+              <p className="text-xl text-brand-muted max-w-2xl font-medium leading-relaxed border-l-2 border-brand-primary pl-8 py-1">
+                Establish a direct line with our lead technical specialists to discuss modernization roadmaps, infrastructure security, and operational yield.
+              </p>
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
-              Start the <br /> <span className="text-brand-primary italic">Dialogue.</span>
-            </h1>
-            <p className="text-xl text-brand-muted max-w-3xl font-medium leading-relaxed border-l-2 border-brand-primary pl-10">
-              Establish a direct line with our lead technical specialists to discuss modernization roadmaps, infrastructure security, and operational yield.
-            </p>
+            <div className="lg:col-span-5 reveal-on-scroll active relative">
+              <div className="absolute -inset-4 blueprint-grid opacity-30 pointer-events-none rounded-[2.5rem]"></div>
+              <div className="relative rounded-[2rem] overflow-hidden border border-slate-200 p-2 bg-white/50 backdrop-blur-md shadow-2xl shadow-slate-200/30 group">
+                <img 
+                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=70" 
+                  alt="Direct Access" 
+                  className="w-full h-[250px] sm:h-[320px] object-cover rounded-[1.5rem] grayscale hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none rounded-[1.5rem]"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

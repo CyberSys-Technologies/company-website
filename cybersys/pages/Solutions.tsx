@@ -78,34 +78,49 @@ const CloudInfrastructureDetail: React.FC<{ onPageChange: (p: Page) => void }> =
   return (
     <div className="animate-in fade-in duration-1000 bg-white">
       {/* 1. PAGE HERO */}
-      <section className="bg-slate-50 border-b border-slate-200 py-32 md:py-60 blueprint-grid relative overflow-hidden">
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-36 blueprint-grid relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid-fine opacity-40 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
           <button 
             onClick={() => onPageChange('solutions')}
-            className="flex items-center gap-3 text-brand-primary hover:text-brand-text transition-all mb-16 text-[12px] font-black uppercase tracking-[0.4em] group"
+            className="flex items-center gap-3 text-brand-primary hover:text-brand-text transition-all mb-12 text-[12px] font-black uppercase tracking-[0.4em] group"
           >
             <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> Back to Catalog
           </button>
-          <div className="max-w-5xl">
-            <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-10">
-               <div className="h-px w-12 bg-brand-primary"></div>
-               <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Cloud Infrastructure Group</span>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-4">
+                 <div className="h-px w-12 bg-brand-primary"></div>
+                 <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Cloud Infrastructure Group</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-6">
+                Cloud & Infrastructure <br /> Solutions Built <br /> 
+                <span className="text-brand-primary">for Resilience and Scale.</span>
+              </h1>
+              <p className="text-xl text-brand-muted max-w-2xl font-medium leading-relaxed mb-8 border-l-2 border-brand-primary pl-8 py-1">
+                CyberSys Technologies designs, deploys, and manages secure, high-performance cloud and hybrid infrastructure that enables enterprises and governments to operate with confidence and efficiency.
+              </p>
+              <div className="flex flex-wrap gap-6 pt-2">
+                <button 
+                  onClick={() => onPageChange('contact')}
+                  className="px-10 py-5 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[11px] uppercase tracking-[0.4em] transition-all shadow-xl shadow-brand-primary/20 transform hover:-translate-y-1"
+                >
+                  Talk to a Solutions Architect
+                </button>
+              </div>
             </div>
-            <h1 className="text-5xl md:text-8xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
-              Cloud & Infrastructure <br /> Solutions Built <br /> 
-              <span className="text-brand-primary">for Resilience and Scale.</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-brand-muted max-w-3xl font-medium leading-relaxed mb-16 border-l-2 border-brand-primary pl-12 py-2">
-              CyberSys Technologies designs, deploys, and manages secure, high-performance cloud and hybrid infrastructure that enables enterprises and governments to operate with confidence and efficiency.
-            </p>
-            <div className="flex flex-wrap gap-6 pt-4">
-              <button 
-                onClick={() => onPageChange('contact')}
-                className="px-14 py-7 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[12px] uppercase tracking-[0.4em] transition-all shadow-2xl shadow-brand-primary/20 transform hover:-translate-y-1"
-              >
-                Talk to a Solutions Architect
-              </button>
+            <div className="lg:col-span-5 reveal-on-scroll active relative">
+              <div className="absolute -inset-4 blueprint-grid opacity-30 pointer-events-none rounded-[2.5rem]"></div>
+              <div className="relative rounded-[2rem] overflow-hidden border border-slate-200 p-2 bg-white/50 backdrop-blur-md shadow-2xl shadow-slate-200/30 group">
+                <img 
+                  src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=70" 
+                  alt="Cloud Infrastructure" 
+                  className="w-full h-[250px] sm:h-[320px] object-cover rounded-[1.5rem] grayscale hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none rounded-[1.5rem]"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -382,34 +397,49 @@ const CybersecurityDetail: React.FC<{ onPageChange: (p: Page) => void }> = ({ on
   return (
     <div className="animate-in fade-in duration-1000 bg-white">
       {/* 1. PAGE HERO */}
-      <section className="bg-slate-50 border-b border-slate-200 py-32 md:py-60 blueprint-grid relative overflow-hidden">
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-36 blueprint-grid relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid-fine opacity-40 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
           <button 
             onClick={() => onPageChange('solutions')}
-            className="flex items-center gap-3 text-brand-primary hover:text-brand-text transition-all mb-16 text-[12px] font-black uppercase tracking-[0.4em] group"
+            className="flex items-center gap-3 text-brand-primary hover:text-brand-text transition-all mb-12 text-[12px] font-black uppercase tracking-[0.4em] group"
           >
             <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> Back to Catalog
           </button>
-          <div className="max-w-5xl">
-            <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-10">
-               <div className="h-px w-12 bg-brand-primary"></div>
-               <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Security Architecture Group</span>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-4">
+                 <div className="h-px w-12 bg-brand-primary"></div>
+                 <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Security Architecture Group</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-6">
+                Enterprise Cybersecurity Built <br /> 
+                <span className="text-brand-primary">for Critical Systems.</span>
+              </h1>
+              <p className="text-xl text-brand-muted max-w-2xl font-medium leading-relaxed mb-8 border-l-2 border-brand-primary pl-8 py-1">
+                CyberSys Technologies delivers security-by-design architectures that protect systems, data, and identities across cloud, multicloud, and on-premise environments — ensuring resilience, compliance, and operational continuity.
+              </p>
+              <div className="flex flex-wrap gap-6 pt-2">
+                <button 
+                  onClick={() => onPageChange('contact')}
+                  className="px-10 py-5 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[11px] uppercase tracking-[0.4em] transition-all shadow-xl shadow-brand-primary/20 transform hover:-translate-y-1"
+                >
+                  Talk to a Solutions Architect
+                </button>
+              </div>
             </div>
-            <h1 className="text-5xl md:text-8xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
-              Enterprise Cybersecurity Built <br /> 
-              <span className="text-brand-primary">for Critical Systems.</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-brand-muted max-w-3xl font-medium leading-relaxed mb-16 border-l-2 border-brand-primary pl-12 py-2">
-              CyberSys Technologies delivers security-by-design architectures that protect systems, data, and identities across cloud, multicloud, and on-premise environments — ensuring resilience, compliance, and operational continuity.
-            </p>
-            <div className="flex flex-wrap gap-6 pt-4">
-              <button 
-                onClick={() => onPageChange('contact')}
-                className="px-14 py-7 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[12px] uppercase tracking-[0.4em] transition-all shadow-2xl shadow-brand-primary/20 transform hover:-translate-y-1"
-              >
-                Talk to a Solutions Architect
-              </button>
+            <div className="lg:col-span-5 reveal-on-scroll active relative">
+              <div className="absolute -inset-4 blueprint-grid opacity-30 pointer-events-none rounded-[2.5rem]"></div>
+              <div className="relative rounded-[2rem] overflow-hidden border border-slate-200 p-2 bg-white/50 backdrop-blur-md shadow-2xl shadow-slate-200/30 group">
+                <img 
+                  src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=70" 
+                  alt="Cybersecurity" 
+                  className="w-full h-[250px] sm:h-[320px] object-cover rounded-[1.5rem] grayscale hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none rounded-[1.5rem]"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -689,7 +719,7 @@ const CybersecurityDetail: React.FC<{ onPageChange: (p: Page) => void }> = ({ on
 const GenericSolutionDetail: React.FC<{ data: any, onPageChange: (p: Page) => void }> = ({ data, onPageChange }) => {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-5 duration-1000">
-      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-40 blueprint-grid relative">
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-36 blueprint-grid relative">
         <div className="max-w-7xl mx-auto px-8 md:px-16 relative z-10">
           <button 
             onClick={() => onPageChange('solutions')}
@@ -697,20 +727,43 @@ const GenericSolutionDetail: React.FC<{ data: any, onPageChange: (p: Page) => vo
           >
             <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> Back to Catalog
           </button>
-          <div className="max-w-5xl">
-            <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.9] mb-8">
-              {data.title}
-            </h1>
-            <p className="text-xl text-brand-muted max-w-3xl font-medium leading-relaxed border-l-2 border-brand-primary pl-8 py-2">
-              {data.summary}
-            </p>
-            <div className="pt-10">
-              <button 
-                onClick={() => onPageChange('contact')}
-                className="px-10 py-5 bg-brand-primary text-white rounded font-black text-[12px] uppercase tracking-[0.4em] shadow-xl hover:bg-brand-accent transition-all transform hover:-translate-y-1"
-              >
-                Talk to a Solutions Architect
-              </button>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.9] mb-4">
+                {data.title}
+              </h1>
+              <p className="text-xl text-brand-muted max-w-2xl font-medium leading-relaxed border-l-2 border-brand-primary pl-8 py-1">
+                {data.summary}
+              </p>
+              <div className="pt-4">
+                <button 
+                  onClick={() => onPageChange('contact')}
+                  className="px-10 py-5 bg-brand-primary text-white rounded font-black text-[12px] uppercase tracking-[0.4em] shadow-xl hover:bg-brand-accent transition-all transform hover:-translate-y-1"
+                >
+                  Talk to a Solutions Architect
+                </button>
+              </div>
+            </div>
+            <div className="lg:col-span-5 reveal-on-scroll active relative">
+              <div className="absolute -inset-4 blueprint-grid opacity-30 pointer-events-none rounded-[2.5rem]"></div>
+              <div className="relative rounded-[2rem] overflow-hidden border border-slate-200 p-2 bg-white/50 backdrop-blur-md shadow-2xl shadow-slate-200/30 group">
+                <img 
+                  src={
+                    data.path === 'solutions-software' 
+                      ? 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=600&q=70'
+                      : data.path === 'solutions-digital'
+                      ? 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=70'
+                      : data.path === 'solutions-bi'
+                      ? 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=70'
+                      : 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=70'
+                  } 
+                  alt={data.title}
+                  className="w-full h-[250px] sm:h-[320px] object-cover rounded-[1.5rem] grayscale hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none rounded-[1.5rem]"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -765,28 +818,42 @@ const Overview: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange 
   return (
     <div className="animate-in fade-in duration-1000 bg-white">
       {/* 1. PAGE HERO */}
-      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-40 blueprint-grid relative overflow-hidden">
+      <section className="bg-slate-50 border-b border-slate-200 py-24 md:py-36 blueprint-grid relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid-fine opacity-40 pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
-          <div className="max-w-5xl">
-            <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-10">
-               <div className="h-px w-12 bg-brand-primary"></div>
-               <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Solutions Catalog</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="reveal-on-scroll active inline-flex items-center gap-4 mb-4">
+                 <div className="h-px w-12 bg-brand-primary"></div>
+                 <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-primary">Solutions Catalog</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-6">
+                Enterprise <br /> Technology <br /> 
+                <span className="text-brand-primary">Continuity.</span>
+              </h1>
+              <p className="text-xl text-brand-muted max-w-2xl font-medium leading-relaxed mb-8 border-l-2 border-brand-primary pl-8 py-1">
+                CyberSys Technologies delivers integrated cloud, cybersecurity, multicloud, and digital infrastructure solutions designed to protect critical systems and enable global scale.
+              </p>
+              <div className="flex flex-wrap gap-6">
+                <button 
+                  onClick={() => onPageChange('contact')}
+                  className="px-10 py-5 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[12px] uppercase tracking-[0.3em] transition-all shadow-xl shadow-brand-primary/20 transform hover:-translate-y-1"
+                >
+                  Talk to a Solutions Architect
+                </button>
+              </div>
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-brand-text tracking-tighter uppercase leading-[0.85] mb-12">
-              Enterprise <br /> Technology <br /> 
-              <span className="text-brand-primary">Continuity.</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-brand-muted max-w-2xl font-medium leading-relaxed mb-16 border-l-2 border-brand-primary pl-10">
-              CyberSys Technologies delivers integrated cloud, cybersecurity, multicloud, and digital infrastructure solutions designed to protect critical systems and enable global scale.
-            </p>
-            <div className="flex flex-wrap gap-6">
-              <button 
-                onClick={() => onPageChange('contact')}
-                className="px-12 py-6 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[12px] uppercase tracking-[0.3em] transition-all shadow-2xl shadow-brand-primary/20 transform hover:-translate-y-1"
-              >
-                Talk to a Solutions Architect
-              </button>
+            <div className="lg:col-span-5 reveal-on-scroll active relative">
+              <div className="absolute -inset-4 blueprint-grid opacity-30 pointer-events-none rounded-[2.5rem]"></div>
+              <div className="relative rounded-[2rem] overflow-hidden border border-slate-200 p-2 bg-white/50 backdrop-blur-md shadow-2xl shadow-slate-200/30 group">
+                <img 
+                  src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=70" 
+                  alt="Enterprise Solutions" 
+                  className="w-full h-[250px] sm:h-[320px] object-cover rounded-[1.5rem] grayscale hover:grayscale-0 transition-all duration-700 transform group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none rounded-[1.5rem]"></div>
+              </div>
             </div>
           </div>
         </div>
