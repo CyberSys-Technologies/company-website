@@ -60,7 +60,7 @@ const SERVICES_CONTENT: Record<string, ServiceData> = {
     title: 'Multicloud Mastery',
     subtitle: 'Unified Platform Orchestration',
     path: 'services-multicloud',
-    summary: 'Unified orchestration across AWS, Azure, and OCI to eliminate vendor lock-in, optimize infrastructure spend, and enforce compliance policies across heterogeneous environments.',
+    summary: 'Unified orchestration of cloud services across the four hyperscalers (Microsoft Azure, Oracle Cloud, Amazon Web Services, and Google Cloud) to eliminate vendor lock-in, optimize infrastructure spend, and enforce compliance policies.',
     icon: <Layers />,
     capabilities: [
       'Multicloud Strategy & Design',

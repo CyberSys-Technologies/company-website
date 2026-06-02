@@ -94,7 +94,7 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
                 </div>
                 <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter mb-6 md:mb-8 italic">Our Vision</h3>
                 <p className="text-lg md:text-xl text-slate-400 font-medium leading-relaxed">
-                  To be West Africa's most trusted technology partner, delivering secure cloud services, advanced cybersecurity, and AI data-driven transformation for enterprises and government customers.
+                  To be West Africa's most trusted technology partner, delivering secure cloud services across the four hyperscalers (Microsoft Azure, Oracle Cloud, Amazon Web Services, and Google Cloud), advanced cybersecurity, and AI data-driven transformation for enterprises and government customers.
                 </p>
               </div>
             </div>

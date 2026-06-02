@@ -4,16 +4,6 @@ import { NavLink, IndustryItem } from './types';
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'Company', path: 'company' },
-  { 
-    label: 'Solutions', 
-    path: 'solutions',
-    subLinks: [
-      { label: 'Custom Software Development', path: 'solutions-software', description: 'Bespoke enterprise applications engineered for scale.' },
-      { label: 'Digital Transformation', path: 'solutions-digital', description: 'Modernizing core operations with connected intelligence.' },
-      { label: 'Business Intelligence & Analytics', path: 'solutions-bi', description: 'Turning complex data into actionable strategic yield.' },
-      { label: 'Cybersecurity', path: 'solutions-cybersecurity', description: 'Enterprise-grade threat protection and governance.' },
-    ]
-  },
   {
     label: 'Services',
     path: 'services',
@@ -22,6 +12,16 @@ export const NAV_LINKS: NavLink[] = [
       { label: 'Multicloud Mastery', path: 'services-multicloud', description: 'Unified orchestration across AWS, Azure, and OCI.' },
       { label: 'Managed Services', path: 'services-managed', description: '24/7 operational continuity and optimization.' },
       { label: 'Training & Consultancy', path: 'services-training', description: 'Expert knowledge transfer and architecture guidance.' },
+    ]
+  },
+  { 
+    label: 'Solutions', 
+    path: 'solutions',
+    subLinks: [
+      { label: 'Custom Software Development', path: 'solutions-software', description: 'Bespoke enterprise applications engineered for scale.' },
+      { label: 'Digital Transformation', path: 'solutions-digital', description: 'Modernizing core operations with connected intelligence.' },
+      { label: 'Business Intelligence & Analytics', path: 'solutions-bi', description: 'Turning complex data into actionable strategic yield.' },
+      { label: 'Cybersecurity', path: 'solutions-cybersecurity', description: 'Enterprise-grade threat protection and governance.' },
     ]
   },
   { 

@@ -94,7 +94,7 @@ const Multicloud: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChang
                 Organizations increasingly adopt multiple cloud providers to leverage specialized services, optimize costs, and reduce dependency on a single vendor. However, managing complex multicloud environments introduces operational, security, and compliance challenges.
               </p>
               <p className="text-lg text-brand-muted leading-relaxed font-medium">
-                CyberSys Multicloud Management solutions simplify this complexity by providing unified governance, seamless integration, and strategic orchestration across AWS, Azure, Oracle OCI, and Google Cloud Platform. We help organizations achieve the flexibility, performance, and resilience required for modern enterprise workloads.
+                CyberSys Multicloud Management solutions simplify this complexity by providing unified governance, seamless integration, and strategic orchestration of cloud services across the four hyperscalers: Microsoft Azure, Oracle Cloud, Amazon Web Services, and Google Cloud. We help organizations achieve the flexibility, performance, and resilience required for modern enterprise workloads.
               </p>
             </div>
           </div>
