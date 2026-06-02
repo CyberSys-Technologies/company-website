@@ -22,7 +22,8 @@ import {
   Cloud,
   /* Added missing icon imports */
   GanttChart,
-  Eye
+  Eye,
+  Laptop
 } from 'lucide-react';
 import { Page } from '../types';
 import { CS5_FRAMEWORK } from '../constants';
@@ -94,8 +95,48 @@ const Multicloud: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChang
                 Organizations increasingly adopt multiple cloud providers to leverage specialized services, optimize costs, and reduce dependency on a single vendor. However, managing complex multicloud environments introduces operational, security, and compliance challenges.
               </p>
               <p className="text-lg text-brand-muted leading-relaxed font-medium">
-                CyberSys Multicloud Management solutions simplify this complexity by providing unified governance, seamless integration, and strategic orchestration of cloud services across the four hyperscalers: Microsoft Azure, Oracle Cloud, Amazon Web Services, and Google Cloud. We help organizations achieve the flexibility, performance, and resilience required for modern enterprise workloads.
+                CyberSys Multicloud Management solutions simplify this complexity by providing unified governance, seamless integration, and strategic orchestration of cloud services across the four hyperscalers: Microsoft, Oracle, Amazon, and Google. We help organizations achieve the flexibility, performance, and resilience required for modern enterprise workloads.
               </p>
+
+              {/* Multicloud Architecture Diagram */}
+              <div className="mt-16 w-full relative bg-slate-50 rounded-[2rem] border border-slate-200 p-8 overflow-hidden flex items-center justify-center min-h-[450px]">
+                {/* Background Details */}
+                <div className="absolute inset-0 blueprint-grid-fine opacity-10 pointer-events-none"></div>
+
+                {/* SVG Connections */}
+                <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50%" cy="50%" r="32%" fill="none" stroke="#2082A6" strokeWidth="1.5" strokeDasharray="6 6" className="opacity-30 animate-[spin_60s_linear_infinite]" />
+                  <line x1="50%" y1="50%" x2="50%" y2="18%" stroke="#94A3B8" strokeWidth="1.5" strokeDasharray="4 4" className="opacity-50" />
+                  <line x1="50%" y1="50%" x2="50%" y2="82%" stroke="#94A3B8" strokeWidth="1.5" strokeDasharray="4 4" className="opacity-50" />
+                  <line x1="50%" y1="50%" x2="18%" y2="50%" stroke="#94A3B8" strokeWidth="1.5" strokeDasharray="4 4" className="opacity-50" />
+                  <line x1="50%" y1="50%" x2="82%" y2="50%" stroke="#94A3B8" strokeWidth="1.5" strokeDasharray="4 4" className="opacity-50" />
+                </svg>
+
+                {/* Central Hub */}
+                <div className="relative z-20 w-24 h-24 bg-white rounded-2xl shadow-xl border border-slate-200 flex items-center justify-center">
+                  <Laptop className="w-10 h-10 text-brand-primary" />
+                </div>
+
+                {/* AWS Node (Top) */}
+                <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-20 h-20 bg-white rounded-xl shadow-lg border border-slate-200 flex items-center justify-center z-10 p-4 hover:scale-110 hover:border-brand-primary/50 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" className="w-full h-full object-contain" />
+                </div>
+
+                {/* Google Cloud Node (Bottom) */}
+                <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-20 h-20 bg-white rounded-xl shadow-lg border border-slate-200 flex items-center justify-center z-10 p-4 hover:scale-110 hover:border-brand-primary/50 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" className="w-full h-full object-contain" />
+                </div>
+
+                {/* Oracle Node (Left) */}
+                <div className="absolute left-[10%] md:left-[15%] top-1/2 -translate-y-1/2 w-20 h-20 bg-white rounded-xl shadow-lg border border-slate-200 flex items-center justify-center z-10 p-4 hover:scale-110 hover:border-brand-primary/50 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg" alt="Oracle" className="w-full h-full object-contain" />
+                </div>
+
+                {/* Azure Node (Right) */}
+                <div className="absolute right-[10%] md:right-[15%] top-1/2 -translate-y-1/2 w-20 h-20 bg-white rounded-xl shadow-lg border border-slate-200 flex items-center justify-center z-10 p-4 hover:scale-110 hover:border-brand-primary/50 transition-all duration-300">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg" alt="Azure" className="w-full h-full object-contain" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -132,23 +173,31 @@ const Multicloud: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChang
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                title: 'Microsoft Azure',
-                logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg',
+                company: 'Microsoft',
+                product: 'Microsoft Azure',
+                companyLogo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoft.svg',
+                productLogo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg',
                 desc: 'Enterprise-grade platform featuring Virtual Machines, Azure SQL, AKS, and Azure Functions for seamless hybrid integration and robust compliance.'
               },
               {
-                title: 'Amazon Web Services',
-                logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
+                company: 'Amazon',
+                product: 'Amazon Web Services',
+                companyLogo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazon.svg',
+                productLogo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
                 desc: 'The most comprehensive global scale, leveraging EC2, S3, Lambda, and RDS for unmatched service depth and operational resilience.'
               },
               {
-                title: 'Google Cloud',
-                logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg',
+                company: 'Google',
+                product: 'Google Cloud',
+                companyLogo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg',
+                productLogo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg',
                 desc: 'Leading-edge infrastructure powered by Compute Engine, BigQuery, GKE, and Vertex AI for advanced machine learning and data analytics.'
               },
               {
-                title: 'Oracle Cloud',
-                logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg',
+                company: 'Oracle',
+                product: 'Oracle Cloud',
+                companyLogo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/oracle.svg',
+                productLogo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg',
                 desc: 'Next-generation architecture featuring OCI Compute, Autonomous Database, OKE, and Exadata built for mission-critical enterprise applications.'
               }
             ].map((platform, i) => (
@@ -156,11 +205,19 @@ const Multicloud: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChang
                 {/* Glow effect on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 
-                <div className="relative z-10">
-                  <div className="h-16 w-16 mb-8 flex items-center justify-center bg-white rounded-2xl shadow-sm border border-slate-200 group-hover:scale-110 group-hover:shadow-lg transition-all duration-500 p-3">
-                    <img src={platform.logo} alt={platform.title} className="w-full h-full object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="h-12 w-12 flex items-center justify-center bg-white rounded-xl shadow-sm border border-slate-200 p-2.5">
+                      <img src={platform.companyLogo} alt={platform.company} className="w-full h-full object-contain filter" />
+                    </div>
+                    <h4 className="text-xl font-black text-white uppercase tracking-tight group-hover:text-brand-primary transition-colors">{platform.company}</h4>
                   </div>
-                  <h4 className="text-xl font-black text-white uppercase tracking-tight mb-4 group-hover:text-brand-primary transition-colors">{platform.title}</h4>
+                  
+                  <div className="flex items-center gap-3 mb-4 bg-white/5 p-3 rounded-xl border border-white/10">
+                    <img src={platform.productLogo} alt={platform.product} className="w-6 h-6 object-contain" />
+                    <span className="text-sm font-bold text-slate-300 group-hover:text-white transition-colors">{platform.product}</span>
+                  </div>
+                  
                   <p className="text-sm text-slate-400 font-medium leading-relaxed group-hover:text-slate-300 transition-colors">{platform.desc}</p>
                 </div>
               </div>
