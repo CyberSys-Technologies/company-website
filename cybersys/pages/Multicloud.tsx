@@ -115,13 +115,67 @@ const Multicloud: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChang
       </section>
       */}
 
-      {/* 5. KEY CAPABILITIES */}
+      {/* 5. SUPPORTED PLATFORMS */}
+      <section className="py-24 bg-[#0F172A] text-white relative overflow-hidden border-b border-white/10">
+        <div className="absolute inset-0 blueprint-grid opacity-10 pointer-events-none"></div>
+        <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-16">
+            <div className="space-y-4">
+              <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">02 / Supported Platforms</h2>
+              <h3 className="text-4xl md:text-5xl font-black tracking-tighter uppercase leading-none italic">Hyperscaler <br /> Partners.</h3>
+            </div>
+            <p className="text-base text-slate-400 font-medium max-w-xl leading-relaxed">
+              We leverage the world's most powerful cloud platforms, engineering solutions that harness their unique strengths to deliver unmatched resilience and scale.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                title: 'Microsoft Azure',
+                logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg',
+                desc: 'Enterprise-grade platform featuring Virtual Machines, Azure SQL, AKS, and Azure Functions for seamless hybrid integration and robust compliance.'
+              },
+              {
+                title: 'Amazon Web Services',
+                logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
+                desc: 'The most comprehensive global scale, leveraging EC2, S3, Lambda, and RDS for unmatched service depth and operational resilience.'
+              },
+              {
+                title: 'Google Cloud',
+                logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg',
+                desc: 'Leading-edge infrastructure powered by Compute Engine, BigQuery, GKE, and Vertex AI for advanced machine learning and data analytics.'
+              },
+              {
+                title: 'Oracle Cloud',
+                logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg',
+                desc: 'Next-generation architecture featuring OCI Compute, Autonomous Database, OKE, and Exadata built for mission-critical enterprise applications.'
+              }
+            ].map((platform, i) => (
+              <div key={i} className="bg-white/5 border border-white/10 rounded-[2rem] p-8 group hover:bg-white/10 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] hover:border-brand-primary/50 transition-all duration-500 hover:-translate-y-2 cursor-default flex flex-col h-full relative overflow-hidden backdrop-blur-sm">
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                
+                <div className="relative z-10">
+                  <div className="h-16 w-16 mb-8 flex items-center justify-center bg-white rounded-2xl shadow-sm border border-slate-200 group-hover:scale-110 group-hover:shadow-lg transition-all duration-500 p-3">
+                    <img src={platform.logo} alt={platform.title} className="w-full h-full object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" />
+                  </div>
+                  <h4 className="text-xl font-black text-white uppercase tracking-tight mb-4 group-hover:text-brand-primary transition-colors">{platform.title}</h4>
+                  <p className="text-sm text-slate-400 font-medium leading-relaxed group-hover:text-slate-300 transition-colors">{platform.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. KEY CAPABILITIES */}
       <section className="py-24 bg-slate-50 border-y border-slate-200 relative">
         <div className="absolute inset-0 blueprint-grid-fine opacity-[0.2] pointer-events-none"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-16">
             <div className="space-y-4">
-              <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">02 / Key Capabilities</h2>
+              <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">03 / Key Capabilities</h2>
               <h3 className="text-4xl md:text-5xl font-black text-brand-text tracking-tighter uppercase leading-none italic">Unified <br /> Performance.</h3>
             </div>
           </div>
@@ -140,59 +194,6 @@ const Multicloud: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChang
                 </div>
                 <h4 className="text-xl font-black text-brand-text uppercase tracking-tight mb-4 group-hover:text-brand-primary transition-colors">{cap.title}</h4>
                 <p className="text-base text-brand-muted font-medium leading-relaxed">{cap.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5b. SUPPORTED PLATFORMS */}
-      <section className="py-24 bg-white relative overflow-hidden border-b border-slate-200">
-        <div className="max-w-[1600px] mx-auto px-8 md:px-16">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-16">
-            <div className="space-y-4">
-              <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">03 / Supported Platforms</h2>
-              <h3 className="text-4xl md:text-5xl font-black text-brand-text tracking-tighter uppercase leading-none italic">Hyperscaler <br /> Partners.</h3>
-            </div>
-            <p className="text-base text-brand-muted font-medium max-w-xl leading-relaxed">
-              We leverage the world's most powerful cloud platforms, engineering solutions that harness their unique strengths to deliver unmatched resilience and scale.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: 'Microsoft Azure',
-                logo: 'https://cdn.simpleicons.org/microsoftazure/0089D6',
-                desc: 'Enterprise-grade cloud computing platform tailored for seamless hybrid integration and robust compliance.'
-              },
-              {
-                title: 'Amazon Web Services',
-                logo: 'https://cdn.simpleicons.org/amazonwebservices/232F3E',
-                desc: 'The most comprehensive global scale, unmatched service depth, and operational resilience.'
-              },
-              {
-                title: 'Google Cloud',
-                logo: 'https://cdn.simpleicons.org/googlecloud/4285F4',
-                desc: 'Leading-edge infrastructure powered by advanced AI, machine learning, and data analytics.'
-              },
-              {
-                title: 'Oracle Cloud',
-                logo: 'https://cdn.simpleicons.org/oracle/F80000',
-                desc: 'Next-generation architecture built for mission-critical enterprise applications and databases.'
-              }
-            ].map((platform, i) => (
-              <div key={i} className="bg-slate-50 border border-slate-100 rounded-[2rem] p-8 group hover:bg-white hover:shadow-[0_20px_40px_-15px_rgba(32,130,166,0.15)] hover:border-brand-primary/30 transition-all duration-500 hover:-translate-y-2 cursor-default flex flex-col h-full relative overflow-hidden">
-                {/* Glow effect on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                
-                <div className="relative z-10">
-                  <div className="h-16 w-16 mb-8 flex items-center justify-center bg-white rounded-2xl shadow-sm border border-slate-100 group-hover:scale-110 group-hover:shadow-md transition-all duration-500 p-3">
-                    <img src={platform.logo} alt={platform.title} className="w-full h-full object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" />
-                  </div>
-                  <h4 className="text-xl font-black text-brand-text uppercase tracking-tight mb-4 group-hover:text-brand-primary transition-colors">{platform.title}</h4>
-                  <p className="text-sm text-brand-muted font-medium leading-relaxed">{platform.desc}</p>
-                </div>
               </div>
             ))}
           </div>
