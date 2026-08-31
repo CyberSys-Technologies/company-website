@@ -3,6 +3,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronDown, ArrowRight, Linkedin, Twitter, Mail } from 'lucide-react';
 import { Page, NavLink } from '../types';
 import { NAV_LINKS } from '../constants';
+import CyberSysAIBubble from './CyberSysAIBubble';
+
+
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -34,7 +37,8 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-white selection:bg-brand-primary selection:text-white relative">
+    <div className="min-h-screen flex flex-col font-sans bg-white selection:bg-brand-primary selection:text-white relative max-w-full overflow-x-hidden">
+
       
 
 
@@ -285,8 +289,13 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
           </div>
         </div>
       </footer>
+
+      {/* FLOATING CYBERSYS AI SOLUTION NAVIGATOR */}
+      <CyberSysAIBubble onPageChange={onPageChange} />
     </div>
   );
 };
 
+
 export default Layout;
+

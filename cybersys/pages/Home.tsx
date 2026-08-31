@@ -69,7 +69,7 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
         
         <div className="absolute inset-0 blueprint-grid-fine pointer-events-none opacity-20 z-10"></div>
         
-        <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-20 w-full pt-20 pb-20 text-center lg:text-left flex flex-col items-center lg:items-start">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 relative z-20 w-full pt-20 pb-20 text-center lg:text-left flex flex-col items-center lg:items-start">
           <div className="space-y-8 max-w-3xl">
             {/* 
             <div className="reveal-on-scroll inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-brand-secondary text-[10px] font-black uppercase tracking-[0.3em]">
@@ -108,7 +108,7 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
       {/* METHODOLOGY: CS5 Framework (Tighter) */}
       <section className="py-24 bg-slate-50 relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none"></div>
-        <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-10">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 relative z-10">
           <div className="text-center mb-20 reveal-on-scroll">
              <h2 className="text-[10px] font-black text-brand-primary uppercase tracking-[0.5em] mb-4">Architecture Framework</h2>
              <h3 className="text-4xl lg:text-5xl font-black text-brand-text tracking-tighter uppercase leading-none">The CS5 Standard</h3>
@@ -152,7 +152,7 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
         <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-brand-secondary/5 blur-[100px] rounded-full mix-blend-screen pointer-events-none transform -translate-x-1/2"></div>
         <div className="absolute inset-0 blueprint-grid opacity-[0.02] pointer-events-none"></div>
         
-        <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-10">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 relative z-10">
           <div className="text-center mb-20 reveal-on-scroll">
              <h2 className="text-[10px] font-black text-brand-secondary uppercase tracking-[0.5em] mb-4">Value Proposition</h2>
              <h3 className="text-4xl lg:text-5xl font-black text-white tracking-tighter uppercase leading-none flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
@@ -226,7 +226,7 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
 
       {/* CAPABILITIES: Full width grid */}
       <section className="py-24 bg-white relative">
-        <div className="max-w-[1440px] mx-auto px-16">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
           <div className="flex flex-col gap-16 items-start">
             {/* 
             <div className="reveal-on-scroll lg:w-2/5 lg:sticky lg:top-28 space-y-8">
@@ -272,7 +272,7 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
       {/* STRATEGIC ALLIANCES: Partner Section */}
       <section className="py-24 bg-white border-y border-slate-50 relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid-fine opacity-[0.1] pointer-events-none"></div>
-        <div className="max-w-[1440px] mx-auto px-16 relative z-10">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 relative z-10">
           <div className="text-center mb-20 reveal-on-scroll">
              <h2 className="text-[9px] font-black text-brand-primary uppercase tracking-[0.6em] mb-4">Strategic Alliances</h2>
              <h3 className="text-3xl font-black text-brand-text tracking-tighter uppercase leading-none italic">Powering Resilience Through Global Partnerships.</h3>
@@ -292,7 +292,8 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
                       alt={partner.name} 
                       className={`max-h-12 w-auto object-contain ${partner.name === 'AWS' ? 'max-h-10' : ''}`}
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = `https://via.placeholder.com/150x50?text=${partner.name}`;
+                        // Hide broken image gracefully without causing network retry loops
+                        (e.target as HTMLImageElement).style.display = 'none';
                       }}
                     />
                    ) : (
