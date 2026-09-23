@@ -48,11 +48,11 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
           scrolled ? 'bg-white/98 backdrop-blur-2xl py-3 shadow-[0_1px_0_0_rgba(15,23,42,0.04)]' : 'bg-transparent py-6'
         }`}
       >
-        <div className="max-w-[1600px] mx-auto px-8 md:px-16 flex items-center justify-between">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between w-full">
           
           {/* BRAND IDENTITY - Single image logo */}
           <div 
-            className="flex items-center cursor-pointer group flex-shrink-0 lg:mr-12" 
+            className="flex items-center cursor-pointer group flex-shrink-0 mr-4 lg:mr-6 xl:mr-10" 
             onClick={() => { onPageChange('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
           >
             <img 
@@ -63,11 +63,11 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
           </div>
 
           {/* NAVIGATION LINKS */}
-          <div className="hidden lg:flex items-center gap-8 xl:gap-12 lg:ml-auto lg:mr-8 xl:mr-16">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6 2xl:gap-8 lg:ml-auto lg:mr-4 xl:mr-8">
             {NAV_LINKS.map((link) => (
               <div 
                 key={link.label} 
-                className="relative py-1"
+                className="relative py-1 flex-shrink-0"
                 onMouseEnter={() => link.subLinks && handleMouseEnter(link.label)}
                 onMouseLeave={() => link.subLinks && handleMouseLeave()}
               >
@@ -76,7 +76,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
                     onPageChange(link.path);
                     setActiveDropdown(null);
                   }}
-                  className={`text-[11px] font-black uppercase tracking-[0.25em] transition-all flex items-center gap-1.5 ${
+                  className={`text-[10.5px] xl:text-[11px] font-black uppercase tracking-[0.14em] xl:tracking-[0.22em] transition-all flex items-center gap-1 xl:gap-1.5 whitespace-nowrap ${
                     currentPage === link.path || activeDropdown === link.label 
                       ? 'text-brand-primary' 
                       : 'text-brand-muted hover:text-brand-text'
@@ -84,13 +84,13 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
                 >
                   {link.label}
                   {link.subLinks && (
-                    <ChevronDown size={12} className={`transition-transform duration-500 ${activeDropdown === link.label ? 'rotate-180' : ''} opacity-30`} />
+                    <ChevronDown size={11} className={`transition-transform duration-500 ${activeDropdown === link.label ? 'rotate-180' : ''} opacity-30`} />
                   )}
                 </button>
 
                 {/* DROPDOWN MENU */}
                 {link.subLinks && activeDropdown === link.label && (
-                  <div className="absolute top-full -left-20 w-[600px] pt-6 animate-in fade-in slide-in-from-top-2 duration-300">
+                  <div className={`absolute top-full ${link.label === 'Industries' ? '-right-10' : '-left-12'} w-[560px] xl:w-[600px] pt-6 animate-in fade-in slide-in-from-top-2 duration-300 z-50`}>
                     <div className="bg-white border border-slate-100 rounded-[1.5rem] shadow-[0_40px_80px_-20px_rgba(15,23,42,0.15)] overflow-hidden">
                       <div className="grid grid-cols-12">
                         {/* Interactive Content */}
@@ -144,10 +144,10 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
           </div>
 
           {/* CALL TO ACTION */}
-          <div className="hidden lg:flex items-center pl-12 border-l border-slate-100">
+          <div className="hidden lg:flex items-center pl-4 xl:pl-8 border-l border-slate-100 flex-shrink-0">
             <button 
               onClick={() => onPageChange('contact')}
-              className="px-8 py-4 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[11px] uppercase tracking-[0.25em] transition-all duration-500 shadow-xl shadow-brand-primary/20 transform hover:-translate-y-0.5"
+              className="px-5 py-2.5 xl:px-7 xl:py-3.5 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[10px] xl:text-[11px] uppercase tracking-[0.14em] xl:tracking-[0.22em] transition-all duration-500 shadow-xl shadow-brand-primary/20 transform hover:-translate-y-0.5 whitespace-nowrap flex-shrink-0"
             >
               Consult Architect
             </button>

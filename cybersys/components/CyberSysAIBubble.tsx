@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Page } from '../types';
 import { 
-  Sparkles, 
   X, 
   Cloud, 
   ShieldCheck, 
@@ -180,13 +179,12 @@ const CyberSysAIBubble: React.FC<CyberSysAIBubbleProps> = ({ onPageChange }) => 
     <>
       {/* FLOATING BUTTON (BOTTOM RIGHT) */}
       <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 group">
-        {/* Tooltip Label - Classy Smooth Hover Slide */}
+        {/* Tooltip Label */}
         {!isOpen && (
           <div 
             onClick={() => setIsOpen(true)}
-            className="opacity-0 group-hover:opacity-100 translate-x-3 group-hover:translate-x-0 pointer-events-none group-hover:pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center gap-2 px-3 py-1.5 bg-brand-text/95 backdrop-blur-md text-white rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl border border-slate-700/50 cursor-pointer whitespace-nowrap"
+            className="opacity-0 group-hover:opacity-100 translate-x-3 group-hover:translate-x-0 pointer-events-none group-hover:pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center px-3.5 py-1.5 bg-brand-text/95 backdrop-blur-md text-white rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl border border-slate-700/50 cursor-pointer whitespace-nowrap font-sans"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse"></span>
             <span>Solution Navigator</span>
           </div>
         )}
@@ -194,14 +192,22 @@ const CyberSysAIBubble: React.FC<CyberSysAIBubbleProps> = ({ onPageChange }) => 
         {/* Compact Trigger Circle Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`w-11 h-11 rounded-full shadow-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-center border ${
+          className={`w-12 h-12 rounded-full shadow-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-center border ${
             isOpen 
               ? 'bg-white text-brand-text border-slate-200 hover:bg-slate-50 rotate-90 scale-95' 
-              : 'bg-brand-primary text-white border-brand-primary/20 hover:bg-brand-accent shadow-brand-primary/30 transform hover:scale-110'
+              : 'bg-[#0F172A] text-white border-slate-800 hover:bg-brand-primary shadow-brand-primary/20 transform hover:scale-105 p-2.5'
           }`}
           aria-label="Toggle Solution Navigator"
         >
-          {isOpen ? <X size={18} /> : <Sparkles size={18} />}
+          {isOpen ? (
+            <X size={18} />
+          ) : (
+            <img 
+              src="/cybersys-icon.png" 
+              alt="CyberSys" 
+              className="w-6 h-6 object-contain"
+            />
+          )}
         </button>
       </div>
 
@@ -225,9 +231,10 @@ const CyberSysAIBubble: React.FC<CyberSysAIBubbleProps> = ({ onPageChange }) => 
         />
       )}
 
-      {/* POPUP CONTAINER — inline-style transition for reliability */}
+      {/* POPUP CONTAINER */}
       {isRendered && (
         <div 
+          className="font-sans"
           style={{
             position: 'fixed',
             bottom: '5rem',
@@ -244,7 +251,6 @@ const CyberSysAIBubble: React.FC<CyberSysAIBubbleProps> = ({ onPageChange }) => 
             display: 'flex',
             flexDirection: 'column',
             maxHeight: '82vh',
-            fontFamily: 'inherit',
             opacity: isOpen ? 1 : 0,
             transform: isOpen ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.97)',
             pointerEvents: isOpen ? 'auto' : 'none',
@@ -254,28 +260,28 @@ const CyberSysAIBubble: React.FC<CyberSysAIBubbleProps> = ({ onPageChange }) => 
         >
           
           {/* HEADER */}
-          <div className="bg-brand-text p-4 sm:p-6 text-white relative flex-shrink-0">
+          <div className="bg-brand-text p-5 sm:p-6 text-white relative flex-shrink-0">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="p-1.5 bg-brand-primary/20 rounded-lg text-brand-primary border border-brand-primary/30">
-                  <Sparkles size={15} />
-                </div>
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-brand-primary">
-                  CyberSys Navigator
-                </span>
+              <div className="flex items-center gap-2.5">
+                <img 
+                  src="/cybersys-icon.png" 
+                  alt="CyberSys" 
+                  className="w-6 h-6 object-contain" 
+                />
               </div>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="text-slate-400 hover:text-white transition-colors duration-300 p-1 rounded-lg hover:bg-white/10"
+                className="text-slate-400 hover:text-white transition-colors duration-300 p-1.5 rounded-lg hover:bg-white/10"
+                aria-label="Close Navigator"
               >
                 <X size={18} />
               </button>
             </div>
 
-            <h3 className="text-lg sm:text-xl font-black uppercase tracking-tight mt-3">
+            <h3 className="text-base sm:text-lg font-black uppercase tracking-tight text-white mt-3 font-sans">
               What are you looking to achieve?
             </h3>
-            <p className="text-xs text-slate-300 font-medium mt-1 leading-relaxed">
+            <p className="text-xs text-slate-300 font-normal mt-1 leading-relaxed font-sans">
               Select your priority to be directed to the right solution.
             </p>
           </div>
@@ -365,32 +371,32 @@ const CyberSysAIBubble: React.FC<CyberSysAIBubbleProps> = ({ onPageChange }) => 
                 /* STEP 3: RECOMMENDATION & DIRECT NAVIGATION */
                 <div className="space-y-5">
                   <div className="flex items-center justify-between pb-3 border-b border-slate-200">
-                    <span className="text-[10px] font-black text-emerald-600 uppercase tracking-widest flex items-center gap-1.5">
-                      <CheckCircle2 size={14} /> Solution Found
+                    <span className="text-[10px] font-black text-brand-primary uppercase tracking-widest flex items-center gap-1.5 font-sans">
+                      <CheckCircle2 size={14} /> Recommended Architecture
                     </span>
                     <button
                       onClick={handleReset}
-                      className="text-[11px] font-bold text-slate-500 hover:text-brand-primary flex items-center gap-1 transition-colors duration-300"
+                      className="text-[11px] font-bold text-slate-500 hover:text-brand-primary flex items-center gap-1 transition-colors duration-300 font-sans"
                     >
                       <RotateCcw size={12} /> Start Over
                     </button>
                   </div>
 
                   <div className="bg-white border border-slate-200 rounded-xl p-4 space-y-3 shadow-sm">
-                    <div className="text-[10px] font-black uppercase text-brand-primary tracking-wider">
+                    <div className="text-[10px] font-black uppercase text-brand-primary tracking-wider font-sans">
                       Recommended Direction
                     </div>
-                    <h4 className="text-sm font-black text-brand-text uppercase">
+                    <h4 className="text-sm font-black text-brand-text uppercase font-sans">
                       {selectedChoice.label}
                     </h4>
-                    <p className="text-xs text-slate-600 font-medium leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-100">
+                    <p className="text-xs text-slate-600 font-normal leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-100 font-sans">
                       {selectedChoice.tip}
                     </p>
                   </div>
 
                   <button
                     onClick={() => handleNavigate(selectedChoice.targetPage)}
-                    className="w-full py-3.5 bg-brand-primary hover:bg-brand-accent text-white font-black text-xs uppercase tracking-[0.2em] rounded-xl transition-all duration-500 shadow-lg shadow-brand-primary/20 flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
+                    className="w-full py-3.5 bg-brand-primary hover:bg-brand-accent text-white font-black text-xs uppercase tracking-[0.2em] rounded-xl transition-all duration-500 shadow-lg shadow-brand-primary/20 flex items-center justify-center gap-2 transform hover:-translate-y-0.5 font-sans"
                   >
                     Take Me To Solution Page <ArrowRight size={14} />
                   </button>
@@ -402,8 +408,8 @@ const CyberSysAIBubble: React.FC<CyberSysAIBubbleProps> = ({ onPageChange }) => 
           </div>
 
           {/* FOOTER */}
-          <div className="bg-white px-6 py-3 border-t border-slate-100 flex justify-between items-center text-[10px] text-slate-400 font-medium flex-shrink-0">
-            <span>CyberSys Guided Navigator</span>
+          <div className="bg-white px-6 py-3 border-t border-slate-100 flex justify-between items-center text-[10px] text-slate-400 font-medium flex-shrink-0 font-sans">
+            <span className="uppercase tracking-widest font-bold">CyberSys Guided Navigator</span>
             <button 
               onClick={() => handleNavigate('contact')}
               className="text-brand-primary hover:underline font-bold uppercase tracking-wider transition-colors duration-300"
