@@ -291,8 +291,8 @@ We integrate these with custom BI analytics dashboards for real-time strategic y
 6. Solutions: Quantifiable business yield.`
   },
   {
-    keywords: ['contact', 'office', 'lagos', 'london', 'location', 'consult'],
-    response: `CyberSys operates from our primary Africa Hub in Lagos, Nigeria, with global operational capabilities out of London, UK. You can request an architect consultation directly via our portal or contact us at contact@cybersys.com.`
+    keywords: ['contact', 'office', 'lagos', 'location', 'address', 'phone', 'email', 'consult'],
+    response: `CyberSys is headquartered at Plot 23, Providence Street, Lekki Phase 1, Lagos, Nigeria. You can reach our team directly via email at info@cybersystechnologies.com or call +234 802 595 5618 / +234 810 907 6541. You can also request an architect consultation directly through our portal.`
   }
 ];
 

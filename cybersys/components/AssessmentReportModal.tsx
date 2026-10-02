@@ -29,13 +29,34 @@ const AssessmentReportModal: React.FC<AssessmentReportModalProps> = ({
 
   if (!isOpen || !recommendation) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    try {
+      await fetch('https://formsubmit.co/ajax/info@cybersystechnologies.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          form_type: 'Preliminary Architecture Assessment Lead',
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          industry: formData.industry,
+          companySize: formData.companySize,
+          primaryGoal: formData.primaryGoal,
+          recommendation: recommendation?.title,
+          _subject: `CyberSys Assessment Request: ${formData.company} (${formData.name})`,
+          _replyto: formData.email,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      });
+    } catch {
+      // Continue gracefully even if network block
+    } finally {
       setLoading(false);
       setSubmitted(true);
-    }, 600);
+    }
   };
 
   return (

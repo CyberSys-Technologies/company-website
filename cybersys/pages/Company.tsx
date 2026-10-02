@@ -13,7 +13,9 @@ import {
   Cpu,
   Landmark,
   Compass,
-  MapPin
+  MapPin,
+  Phone,
+  Mail
 } from 'lucide-react';
 import { Page } from '../types';
 
@@ -142,16 +144,16 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
         </div>
       </section>
 
-      {/* 4. GLOBAL OPERATIONS */}
+      {/* 4. HEADQUARTERS & OPERATIONS */}
       <section className="py-24 bg-[#0F172A] text-white relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid opacity-10"></div>
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-32 items-center">
              <div className="lg:col-span-5 space-y-8 md:space-y-12">
                 <h2 className="text-[12px] font-black text-brand-primary uppercase tracking-[0.6em]">03 / Footprint</h2>
-                <h3 className="text-3xl md:text-6xl font-black tracking-tighter uppercase leading-none italic">Global Hubs, <br /> Local Access.</h3>
+                <h3 className="text-3xl md:text-6xl font-black tracking-tighter uppercase leading-none italic">Headquarters & <br /> Operations.</h3>
                 <p className="text-lg md:text-xl text-slate-400 font-medium leading-relaxed">
-                  Headquartered in the heart of Africa’s technology ecosystem, with global operational nodes to support international enterprise requirements.
+                  Headquartered in the heart of Africa’s technology ecosystem, engineering enterprise-grade multicloud architectures and infrastructure resilience.
                 </p>
                 
                 <div className="space-y-6 md:space-y-8 pt-6 md:pt-8 border-t border-white/10">
@@ -160,17 +162,22 @@ const Company: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }
                         <MapPin size={28} />
                       </div>
                       <div>
-                        <div className="text-[10px] font-black text-brand-primary uppercase tracking-[0.4em] mb-2">Regional Authority</div>
+                        <div className="text-[10px] font-black text-brand-primary uppercase tracking-[0.4em] mb-2">Continental Hub & Headquarters</div>
                         <div className="text-xl md:text-2xl font-black uppercase tracking-tight">Lagos, Nigeria</div>
+                        <p className="text-sm text-slate-300 font-medium mt-1">Plot 23, Providence Street, Lekki Phase 1, Lagos, Nigeria</p>
                       </div>
                    </div>
                    <div className="flex items-start gap-4 sm:gap-8 group">
-                      <div className="p-4 bg-white/5 text-brand-accent rounded-2xl group-hover:bg-brand-accent group-hover:text-white transition-all flex-shrink-0">
-                        <MapPin size={28} />
+                      <div className="p-4 bg-white/5 text-brand-secondary rounded-2xl group-hover:bg-brand-secondary group-hover:text-slate-900 transition-all flex-shrink-0">
+                        <Phone size={28} />
                       </div>
                       <div>
-                        <div className="text-[10px] font-black text-brand-accent uppercase tracking-[0.4em] mb-2">Global Operations</div>
-                        <div className="text-xl md:text-2xl font-black uppercase tracking-tight">London, UK</div>
+                        <div className="text-[10px] font-black text-brand-secondary uppercase tracking-[0.4em] mb-2">Direct Communications</div>
+                        <div className="space-y-1 text-sm md:text-base font-bold text-slate-200">
+                          <div><a href="tel:+2348025955618" className="hover:text-brand-secondary transition-colors">+234 802 595 5618</a></div>
+                          <div><a href="tel:+2348109076541" className="hover:text-brand-secondary transition-colors">+234 810 907 6541</a></div>
+                          <div><a href="mailto:info@cybersystechnologies.com" className="text-brand-secondary hover:underline font-semibold text-xs md:text-sm">info@cybersystechnologies.com</a></div>
+                        </div>
                       </div>
                    </div>
                 </div>

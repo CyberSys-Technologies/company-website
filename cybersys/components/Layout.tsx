@@ -213,7 +213,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
         <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-32">
             
-            <div className="lg:col-span-4 space-y-12">
+            <div className="lg:col-span-3 space-y-8">
               <div className="flex items-center">
                 <img 
                   src="https://i.ibb.co/tw47GgY9/Cybersys-Logo-p.png" 
@@ -221,15 +221,35 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
                   className="h-10 md:h-12 w-auto object-contain" 
                 />
               </div>
-              <p className="text-slate-400 text-base leading-relaxed font-medium max-w-md">
+              <p className="text-slate-400 text-sm leading-relaxed font-medium">
                 Primary authority for resilient enterprise infrastructure and security architecture across the African continent.
               </p>
-              <div className="flex gap-6">
-                {[Linkedin, Twitter, Mail].map((Icon, idx) => (
-                  <button key={idx} className="p-3 bg-white/5 rounded-full hover:bg-brand-primary transition-all text-slate-500 group">
-                    <Icon size={18} className="group-hover:scale-110 duration-300" />
-                  </button>
-                ))}
+              <div className="flex gap-4">
+                <a 
+                  href="https://linkedin.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="LinkedIn"
+                  className="p-3 bg-white/5 rounded-full hover:bg-brand-primary transition-all text-slate-400 hover:text-white group"
+                >
+                  <Linkedin size={18} className="group-hover:scale-110 duration-300" />
+                </a>
+                <a 
+                  href="https://x.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Twitter / X"
+                  className="p-3 bg-white/5 rounded-full hover:bg-brand-primary transition-all text-slate-400 hover:text-white group"
+                >
+                  <Twitter size={18} className="group-hover:scale-110 duration-300" />
+                </a>
+                <a 
+                  href="mailto:info@cybersystechnologies.com" 
+                  aria-label="Email CyberSys" 
+                  className="p-3 bg-white/5 rounded-full hover:bg-brand-primary transition-all text-slate-400 hover:text-white group"
+                >
+                  <Mail size={18} className="group-hover:scale-110 duration-300" />
+                </a>
               </div>
             </div>
             
@@ -263,16 +283,31 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
               </ul>
             </div>
 
-            <div className="lg:col-span-2 space-y-12">
-              <h4 className="text-white font-black text-[11px] uppercase tracking-[0.4em] mb-10 border-l-2 border-brand-primary pl-5">Operations</h4>
-              <div className="space-y-8">
+            <div className="lg:col-span-3 space-y-6">
+              <h4 className="text-white font-black text-[11px] uppercase tracking-[0.4em] mb-10 border-l-2 border-brand-primary pl-5">Contact</h4>
+              <div className="space-y-5 text-slate-400">
                 <div>
-                  <p className="text-[10px] text-brand-primary font-black uppercase tracking-[0.4em] mb-2">Africa Hub</p>
-                  <p className="text-base text-slate-300 font-bold uppercase tracking-tight">Lagos</p>
+                  <p className="text-[10px] text-brand-primary font-black uppercase tracking-[0.4em] mb-1">Headquarters</p>
+                  <p className="text-xs text-slate-300 font-semibold leading-relaxed">
+                    Plot 23, Providence Street, Lekki Phase 1, Lagos, Nigeria
+                  </p>
                 </div>
                 <div>
-                  <p className="text-[10px] text-brand-accent font-black uppercase tracking-[0.4em] mb-2">Global</p>
-                  <p className="text-base text-slate-300 font-bold uppercase tracking-tight">London, UK</p>
+                  <p className="text-[10px] text-brand-primary font-black uppercase tracking-[0.4em] mb-1">Direct Lines</p>
+                  <div className="space-y-1">
+                    <a href="tel:+2348025955618" className="block text-xs text-slate-300 hover:text-brand-secondary transition-colors font-medium">
+                      +234 802 595 5618
+                    </a>
+                    <a href="tel:+2348109076541" className="block text-xs text-slate-300 hover:text-brand-secondary transition-colors font-medium">
+                      +234 810 907 6541
+                    </a>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-[10px] text-brand-primary font-black uppercase tracking-[0.4em] mb-1">Official Email</p>
+                  <a href="mailto:info@cybersystechnologies.com" className="text-xs text-slate-300 hover:text-brand-secondary transition-colors font-medium break-all block">
+                    info@cybersystechnologies.com
+                  </a>
                 </div>
               </div>
             </div>

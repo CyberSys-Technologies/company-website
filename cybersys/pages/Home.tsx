@@ -9,7 +9,6 @@ import {
   Smartphone, 
   Zap, 
   Server,
-  Sparkles,
   Settings,
   Users,
   RefreshCcw,
@@ -44,13 +43,46 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
   }, []);
 
   const partners = [
-    { name: 'AWS', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1024px-Amazon_Web_Services_Logo.svg.png' },
-    { name: 'Microsoft Azure', logo: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg' },
-    { name: 'Google Cloud', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/1024px-Google_Cloud_logo.svg.png' },
-    { name: 'DPAnalytics', logo: 'https://i.ibb.co/DDWj1y2F/black-logo.png' },
-    { name: 'Oracle', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Oracle_logo.svg/1024px-Oracle_logo.svg.png' },
-    { name: 'AI Systems', icon: <Sparkles size={44} strokeWidth={1.5} /> }
+    {
+      name: 'Microsoft',
+      icon: (
+        <div className="flex items-center gap-2.5">
+          <div className="grid grid-cols-2 gap-0.5 w-7 h-7 flex-shrink-0">
+            <span className="bg-[#f25022] w-full h-full rounded-[1px]"></span>
+            <span className="bg-[#7fba00] w-full h-full rounded-[1px]"></span>
+            <span className="bg-[#00a4ef] w-full h-full rounded-[1px]"></span>
+            <span className="bg-[#ffb900] w-full h-full rounded-[1px]"></span>
+          </div>
+          <span className="font-bold text-slate-800 tracking-tight text-base font-sans">Microsoft</span>
+        </div>
+      )
+    },
+    { 
+      name: 'Microsoft Azure', 
+      logo: '/partners/azure.svg'
+    },
+    { 
+      name: 'AWS',
+      logo: '/partners/aws.png'
+    },
+    { 
+      name: 'Google Cloud',
+      logo: '/partners/google-cloud.png'
+    },
+    { 
+      name: 'Oracle',
+      logo: '/partners/oracle.png'
+    },
+    {
+      name: 'Sophos',
+      logo: '/partners/sophos.svg'
+    },
+    { 
+      name: 'DPAnalytics', 
+      logo: '/partners/dpanalytics.png' 
+    }
   ];
+
 
   return (
     <div className="bg-white overflow-hidden" ref={containerRef}>
@@ -278,7 +310,7 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
              <h3 className="text-3xl font-black text-brand-text tracking-tighter uppercase leading-none italic">Powering Resilience Through Global Partnerships.</h3>
           </div>
           
-          <div className="reveal-on-scroll grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center">
+          <div className="reveal-on-scroll grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 lg:gap-10 items-center">
             {partners.map((partner, i) => (
               <div 
                 key={i} 
@@ -297,7 +329,7 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
                       }}
                     />
                    ) : (
-                     <div className="text-brand-primary">
+                     <div className="flex items-center justify-center">
                        {partner.icon}
                      </div>
                    )}
