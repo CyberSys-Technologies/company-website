@@ -1,13 +1,9 @@
-
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { 
   ArrowRight, 
   Shield, 
   Database, 
   Cloud, 
-  Landmark, 
-  Smartphone, 
-  Zap, 
   Server,
   Settings,
   Users,
@@ -17,15 +13,41 @@ import {
 } from 'lucide-react';
 import { CS5_FRAMEWORK } from '../constants';
 import { Page } from '../types';
+import PartnerEcosystem from '../components/PartnerEcosystem';
+// import SolutionsMarketplace from '../components/SolutionsMarketplace'; // Temporarily commented out for future refinement
 
-const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) => {
+interface HomeProps {
+  onPageChange: (p: Page) => void;
+}
+
+const Home: React.FC<HomeProps> = ({ onPageChange }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Typewriter effect state for hero text
+  const fullHeroText = "Engineering technical architecture and operational certainty for global enterprises to scale without compromise.";
+  const [typedHeroText, setTypedHeroText] = useState<string>('');
+  const [isTypingComplete, setIsTypingComplete] = useState<boolean>(false);
+
+  useEffect(() => {
+    let index = 0;
+    const typingSpeed = 28; // classy typing rhythm
+    const timer = setInterval(() => {
+      index++;
+      setTypedHeroText(fullHeroText.slice(0, index));
+      if (index >= fullHeroText.length) {
+        clearInterval(timer);
+        setIsTypingComplete(true);
+      }
+    }, typingSpeed);
+
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const observerOptions = {
       root: null,
       threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
+      rootMargin: '0px 0px -80px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -36,58 +58,27 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
       });
     }, observerOptions);
 
-    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    const revealElements = document.querySelectorAll(
+      '.reveal-on-scroll, .reveal-from-left, .reveal-from-right, .reveal-zoom, .reveal-cascade, .reveal-expand'
+    );
     revealElements.forEach(el => observer.observe(el));
 
     return () => observer.disconnect();
   }, []);
 
-  const partners = [
-    {
-      name: 'Microsoft',
-      icon: (
-        <div className="flex items-center gap-2.5">
-          <div className="grid grid-cols-2 gap-0.5 w-7 h-7 flex-shrink-0">
-            <span className="bg-[#f25022] w-full h-full rounded-[1px]"></span>
-            <span className="bg-[#7fba00] w-full h-full rounded-[1px]"></span>
-            <span className="bg-[#00a4ef] w-full h-full rounded-[1px]"></span>
-            <span className="bg-[#ffb900] w-full h-full rounded-[1px]"></span>
-          </div>
-          <span className="font-bold text-slate-800 tracking-tight text-base font-sans">Microsoft</span>
-        </div>
-      )
-    },
-    { 
-      name: 'Microsoft Azure', 
-      logo: '/partners/azure.svg'
-    },
-    { 
-      name: 'AWS',
-      logo: '/partners/aws.png'
-    },
-    { 
-      name: 'Google Cloud',
-      logo: '/partners/google-cloud.png'
-    },
-    { 
-      name: 'Oracle',
-      logo: '/partners/oracle.png'
-    },
-    {
-      name: 'Sophos',
-      logo: '/partners/sophos.svg'
-    },
-    { 
-      name: 'DPAnalytics', 
-      logo: '/partners/dpanalytics.png' 
-    }
+  // Diverse animations for C.O.R.E. pillars: converging left/zoom/zoom/right
+  const coreAnimations = [
+    'reveal-from-left',
+    'reveal-zoom',
+    'reveal-zoom',
+    'reveal-from-right'
   ];
-
 
   return (
     <div className="bg-white overflow-hidden" ref={containerRef}>
-      {/* HERO: Full width banner */}
-      <section className="relative min-h-[85vh] flex items-center border-b border-slate-50 overflow-hidden">
+      
+      {/* 1. HERO WITH VISIBLE BACKGROUND IMAGE & TYPEWRITER ANIMATION (OPTIMIZED FOR LARGE MONITORS) */}
+      <section className="relative min-h-[85vh] 2xl:min-h-[88vh] flex items-center border-b border-slate-50 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -101,34 +92,31 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
         
         <div className="absolute inset-0 blueprint-grid-fine pointer-events-none opacity-20 z-10"></div>
         
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 relative z-20 w-full pt-20 pb-20 text-center lg:text-left flex flex-col items-center lg:items-start">
-          <div className="space-y-8 max-w-3xl">
-            {/* 
-            <div className="reveal-on-scroll inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-brand-secondary text-[10px] font-black uppercase tracking-[0.3em]">
-              <span className="flex h-1.5 w-1.5 rounded-full bg-brand-secondary animate-pulse"></span>
-              Enterprise Resilience Standard
-            </div>
-            */}
+        {/* Container expands for large monitors / ultrawides */}
+        <div className="max-w-[1760px] 2xl:max-w-[1920px] mx-auto px-6 sm:px-12 md:px-16 2xl:px-24 relative z-20 w-full pt-28 pb-24 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <div className="space-y-8 max-w-4xl 2xl:max-w-5xl">
             
-            <h1 className="reveal-on-scroll text-5xl sm:text-6xl lg:text-[6rem] xl:text-[7rem] font-black tracking-tighter text-white leading-[0.95] uppercase">
+            <h1 className="reveal-on-scroll text-5xl sm:text-6xl lg:text-[6rem] xl:text-[7rem] 2xl:text-[8rem] font-black tracking-tighter text-white leading-[0.95] uppercase">
               Secure <br />
               The C.O.R.E<span className="text-brand-primary">.</span>
             </h1>
             
-            <p className="reveal-on-scroll text-lg sm:text-xl text-slate-300 leading-relaxed font-medium border-l-4 border-brand-primary pl-6 py-1 max-w-2xl text-left">
-              Engineering technical architecture and operational certainty for global enterprises to scale without compromise.
+            {/* Typewriter text with blinking cursor */}
+            <p className="text-lg sm:text-xl 2xl:text-2xl text-slate-300 leading-relaxed font-medium border-l-4 border-brand-primary pl-6 py-1 max-w-3xl text-left min-h-[4.5rem] flex items-center flex-wrap">
+              <span>{typedHeroText}</span>
+              <span className={`inline-block w-2.5 h-6 ml-1.5 bg-brand-primary align-middle ${isTypingComplete ? 'animate-pulse' : 'animate-cursor'}`}></span>
             </p>
             
             <div className="reveal-on-scroll flex flex-col sm:flex-row gap-4 pt-6 justify-center lg:justify-start">
               <button 
                 onClick={() => onPageChange('contact')}
-                className="px-10 py-5 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[12px] uppercase tracking-[0.25em] flex items-center justify-center gap-3 transition-all shadow-xl shadow-brand-primary/30 transform hover:-translate-y-1"
+                className="px-10 2xl:px-12 py-5 2xl:py-6 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[12px] 2xl:text-[13px] uppercase tracking-[0.25em] flex items-center justify-center gap-3 transition-all shadow-xl shadow-brand-primary/30 transform hover:-translate-y-1 cursor-pointer"
               >
                 Request Consultation <ArrowRight size={16} />
               </button>
               <button 
                 onClick={() => onPageChange('solutions')}
-                className="px-10 py-5 bg-white/10 backdrop-blur-md text-white border-2 border-white/20 rounded font-black text-[12px] uppercase tracking-[0.25em] hover:bg-white/20 transition-all"
+                className="px-10 2xl:px-12 py-5 2xl:py-6 bg-white/10 backdrop-blur-md text-white border-2 border-white/20 rounded font-black text-[12px] 2xl:text-[13px] uppercase tracking-[0.25em] hover:bg-white/20 transition-all cursor-pointer"
               >
                 Explore Solutions
               </button>
@@ -137,19 +125,29 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
         </div>
       </section>
 
-      {/* METHODOLOGY: CS5 Framework (Tighter) */}
-      <section className="py-24 bg-slate-50 relative overflow-hidden">
+      {/* 2. DEDICATED PARTNER ECOSYSTEM: VISIBLE IMMEDIATELY BENEATH HERO */}
+      <PartnerEcosystem onPageChange={onPageChange} />
+
+      {/* 3. MINI SOLUTIONS MARKETPLACE (COMMENTED OUT AS REQUESTED) */}
+      {/* <SolutionsMarketplace onPageChange={onPageChange} /> */}
+
+      {/* 4. METHODOLOGY: CS5 Framework (Sequential Float-Up) */}
+      <section className="py-24 2xl:py-32 bg-slate-50 relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none"></div>
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 relative z-10">
+        <div className="max-w-[1760px] 2xl:max-w-[1920px] mx-auto px-6 sm:px-12 md:px-16 2xl:px-24 relative z-10">
           <div className="text-center mb-20 reveal-on-scroll">
-             <h2 className="text-[10px] font-black text-brand-primary uppercase tracking-[0.5em] mb-4">Architecture Framework</h2>
-             <h3 className="text-4xl lg:text-5xl font-black text-brand-text tracking-tighter uppercase leading-none">The CS5 Standard</h3>
+             <h2 className="text-[10px] 2xl:text-[11px] font-black text-brand-primary uppercase tracking-[0.5em] mb-4">Architecture Framework</h2>
+             <h3 className="text-4xl lg:text-5xl 2xl:text-6xl font-black text-brand-text tracking-tighter uppercase leading-none">The CS5 Standard</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal-on-scroll">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 2xl:gap-10">
             {CS5_FRAMEWORK.map((item, i) => (
-              <div key={i} className="relative group" style={{ transitionDelay: `${i * 80}ms` }}>
-                 <div className="h-full p-8 bg-white border border-slate-100 rounded-[1.5rem] transition-all duration-500 hover:shadow-[0_15px_40px_-15px_rgba(32,130,166,0.15)] hover:border-brand-primary/20 hover:-translate-y-1 relative">
+              <div 
+                key={i} 
+                className="relative group reveal-on-scroll" 
+                style={{ transitionDelay: `${i * 90}ms` }}
+              >
+                 <div className="h-full p-8 2xl:p-10 bg-white border border-slate-100 rounded-[1.5rem] transition-all duration-500 hover:shadow-[0_15px_40px_-15px_rgba(32,130,166,0.15)] hover:border-brand-primary/20 hover:-translate-y-1 relative">
                     <div className="flex justify-between items-start mb-6">
                       <div className="p-4 bg-slate-50 text-slate-400 inline-flex items-center justify-center rounded-xl group-hover:bg-brand-primary/5 group-hover:text-brand-primary transition-all duration-500 font-black text-4xl min-w-[4.5rem] min-h-[4.5rem]">
                         0{i + 1}
@@ -167,8 +165,8 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
                         }
                       </div>
                     </div>
-                    <h4 className="text-xl font-black text-brand-text mb-3 uppercase tracking-tighter group-hover:text-brand-primary transition-colors duration-500">{item.term}</h4>
-                    <p className="text-sm text-brand-muted font-medium leading-relaxed">
+                    <h4 className="text-xl 2xl:text-2xl font-black text-brand-text mb-3 uppercase tracking-tighter group-hover:text-brand-primary transition-colors duration-500">{item.term}</h4>
+                    <p className="text-sm 2xl:text-base text-brand-muted font-medium leading-relaxed">
                       {item.description}
                     </p>
                  </div>
@@ -178,26 +176,26 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
         </div>
       </section>
 
-      {/* VALUE PROPOSITION: C.O.R.E */}
-      <section className="py-32 bg-[#0A0F1C] relative overflow-hidden text-white border-b border-white/5">
+      {/* 5. VALUE PROPOSITION: C.O.R.E (Converging Left / Zoom / Right Entrances) */}
+      <section className="py-32 2xl:py-36 bg-[#0A0F1C] relative overflow-hidden text-white border-b border-white/5">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-primary/10 blur-[120px] rounded-full mix-blend-screen pointer-events-none transform translate-x-1/3"></div>
         <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-brand-secondary/5 blur-[100px] rounded-full mix-blend-screen pointer-events-none transform -translate-x-1/2"></div>
         <div className="absolute inset-0 blueprint-grid opacity-[0.02] pointer-events-none"></div>
         
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 relative z-10">
-          <div className="text-center mb-20 reveal-on-scroll">
-             <h2 className="text-[10px] font-black text-brand-secondary uppercase tracking-[0.5em] mb-4">Value Proposition</h2>
-             <h3 className="text-4xl lg:text-5xl font-black text-white tracking-tighter uppercase leading-none flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+        <div className="max-w-[1760px] 2xl:max-w-[1920px] mx-auto px-6 sm:px-12 md:px-16 2xl:px-24 relative z-10">
+          <div className="text-center mb-20 reveal-zoom">
+             <h2 className="text-[10px] 2xl:text-[11px] font-black text-brand-secondary uppercase tracking-[0.5em] mb-4">Value Proposition</h2>
+             <h3 className="text-4xl lg:text-5xl 2xl:text-6xl font-black text-white tracking-tighter uppercase leading-none flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
                The C.O.R.E. Engine
                <div className="relative inline-flex items-center justify-center opacity-90 mt-4 md:mt-0">
                  <Settings className="text-brand-primary animate-[spin_8s_linear_infinite]" size={56} strokeWidth={1.5} />
                  <Settings className="text-brand-secondary absolute -bottom-2 -right-4 animate-[spin_8s_linear_infinite_reverse]" size={32} strokeWidth={2} />
                </div>
              </h3>
-             <p className="mt-6 text-slate-400 font-medium max-w-2xl mx-auto">Our Enterprise Value Proposition built on four foundational pillars designed to accelerate your digital transformation.</p>
+             <p className="mt-6 text-slate-400 font-medium max-w-2xl 2xl:max-w-3xl mx-auto text-base 2xl:text-lg">Our Enterprise Value Proposition built on four foundational pillars designed to accelerate your digital transformation.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal-on-scroll">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 2xl:gap-8">
             {[
               { 
                 letter: 'C', 
@@ -220,16 +218,19 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
                 desc: 'Real-time dashboards, predictive ML embedded in ERP and cloud workloads.' 
               }
             ].map((item, i) => (
-              <div key={i} className="relative group" style={{ transitionDelay: `${i * 100}ms` }}>
-                <div className="h-full bg-white/[0.02] backdrop-blur-xl border border-white/10 p-10 rounded-[2rem] hover:bg-white/[0.06] hover:border-brand-primary/30 transition-all duration-500 transform group-hover:-translate-y-2 shadow-2xl relative overflow-hidden">
-                   {/* Abstract hover glow */}
+              <div 
+                key={i} 
+                className={`relative group ${coreAnimations[i]}`} 
+                style={{ transitionDelay: `${i * 120}ms` }}
+              >
+                <div className="h-full bg-white/[0.02] backdrop-blur-xl border border-white/10 p-10 2xl:p-12 rounded-[2rem] hover:bg-white/[0.06] hover:border-brand-primary/30 transition-all duration-500 transform group-hover:-translate-y-2 shadow-2xl relative overflow-hidden">
                    <div className="absolute -inset-20 bg-gradient-to-r from-brand-primary/0 via-brand-primary/10 to-brand-secondary/0 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none transform -translate-x-full group-hover:translate-x-full"></div>
                    
-                   <div className="text-[5rem] leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-brand-primary to-brand-primary/20 mb-6 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 transform origin-left">
+                   <div className="text-[5rem] 2xl:text-[6rem] leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-brand-primary to-brand-primary/20 mb-6 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 transform origin-left">
                      {item.letter}
                    </div>
-                   <h4 className="text-xl font-black text-white mb-3 uppercase tracking-tighter">{item.title}</h4>
-                   <p className="text-sm text-slate-400 font-medium leading-relaxed group-hover:text-slate-300 transition-colors">
+                   <h4 className="text-xl 2xl:text-2xl font-black text-white mb-3 uppercase tracking-tighter">{item.title}</h4>
+                   <p className="text-sm 2xl:text-base text-slate-400 font-medium leading-relaxed group-hover:text-slate-300 transition-colors">
                      {item.desc}
                    </p>
                 </div>
@@ -239,128 +240,53 @@ const Home: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) =
         </div>
       </section>
 
-      {/* CORPORATE STRIP: Marquee */}
-      <section className="py-10 md:py-14 bg-white border-b border-slate-50 overflow-hidden flex items-center">
-        <div className="relative flex w-full grayscale opacity-20">
-          <div className="flex w-max animate-marquee whitespace-nowrap">
-            {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex space-x-12 md:space-x-24 px-6 md:px-12 items-center">
-                 <span className="text-2xl md:text-3xl font-black tracking-tighter uppercase italic">Financials</span>
-                 <span className="text-2xl md:text-3xl font-black tracking-tighter uppercase italic">Government</span>
-                 <span className="text-2xl md:text-3xl font-black tracking-tighter uppercase italic">Telecoms</span>
-                 <span className="text-2xl md:text-3xl font-black tracking-tighter uppercase italic">Energy</span>
-                 <span className="text-2xl md:text-3xl font-black tracking-tighter uppercase italic">Public Sector</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CAPABILITIES: Full width grid */}
-      <section className="py-24 bg-white relative">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
-          <div className="flex flex-col gap-16 items-start">
-            {/* 
-            <div className="reveal-on-scroll lg:w-2/5 lg:sticky lg:top-28 space-y-8">
-              <h2 className="text-4xl lg:text-5xl font-black text-brand-text tracking-tighter uppercase leading-[0.95] mb-6">
-                The New <br /> Standard.
-              </h2>
-              <p className="text-base text-brand-muted font-medium leading-relaxed max-w-md">
-                Bridging global cloud standards and regional infrastructure realities, delivering outcome-driven technology.
-              </p>
-              <div className="pt-4">
-                <div className="border-l-4 border-brand-primary pl-8 py-4 bg-slate-50/50 rounded-r-xl pr-6 inline-block">
-                   <div className="text-5xl font-black text-brand-text tracking-tighter">100+</div>
-                   <div className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mt-2">Deployments</div>
-                </div>
-              </div>
-            </div>
-            */}
-
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { icon: <Cloud />, title: 'Multicloud', desc: 'Unified orchestration across AWS, Azure, and Google Cloud, optimized for yield.' },
-                { icon: <Shield />, title: 'Cyber Governance', desc: 'Advanced perimeter protection aligned with strict regulatory frameworks.' },
-                { icon: <Database />, title: 'Data Sovereignty', desc: 'Secure local data environments complying with residency laws and global access.' },
-                { icon: <Server />, title: 'Resilient Infra', desc: 'Zero-downtime private and hybrid architectures for mission-critical continuity.' }
-              ].map((item, i) => (
-                <div 
-                  key={i} 
-                  className="reveal-on-scroll p-8 corporate-card rounded-[1.5rem] group"
-                  style={{ transitionDelay: `${i * 80}ms` }}
-                >
-                  <div className="mb-6 p-4 bg-brand-primary/5 text-brand-primary inline-block rounded-xl group-hover:bg-brand-primary group-hover:text-white transition-all duration-500">
-                    {React.cloneElement(item.icon as React.ReactElement<{size?: number}>, { size: 24 })}
-                  </div>
-                  <h3 className="text-xl font-black text-brand-text tracking-tighter mb-4 uppercase">{item.title}</h3>
-                  <p className="text-sm text-brand-muted font-medium leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* STRATEGIC ALLIANCES: Partner Section */}
-      <section className="py-24 bg-white border-y border-slate-50 relative overflow-hidden">
-        <div className="absolute inset-0 blueprint-grid-fine opacity-[0.1] pointer-events-none"></div>
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 relative z-10">
-          <div className="text-center mb-20 reveal-on-scroll">
-             <h2 className="text-[9px] font-black text-brand-primary uppercase tracking-[0.6em] mb-4">Strategic Alliances</h2>
-             <h3 className="text-3xl font-black text-brand-text tracking-tighter uppercase leading-none italic">Powering Resilience Through Global Partnerships.</h3>
-          </div>
-          
-          <div className="reveal-on-scroll grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 lg:gap-10 items-center">
-            {partners.map((partner, i) => (
+      {/* 6. CAPABILITIES: Full width grid (Cascading Depth Entrance) */}
+      <section className="py-24 2xl:py-32 bg-white relative">
+        <div className="max-w-[1760px] 2xl:max-w-[1920px] mx-auto px-6 sm:px-12 md:px-16 2xl:px-24">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 2xl:gap-8">
+            {[
+              { icon: <Cloud />, title: 'Multicloud', desc: 'Unified orchestration across AWS, Azure, and Google Cloud, optimized for yield.' },
+              { icon: <Shield />, title: 'Cyber Governance', desc: 'Advanced perimeter protection aligned with strict regulatory frameworks.' },
+              { icon: <Database />, title: 'Data Sovereignty', desc: 'Secure local data environments complying with residency laws and global access.' },
+              { icon: <Server />, title: 'Resilient Infra', desc: 'Zero-downtime private and hybrid architectures for mission-critical continuity.' }
+            ].map((item, i) => (
               <div 
                 key={i} 
-                className="group relative flex flex-col items-center justify-center transition-all duration-700 h-24"
+                className="reveal-cascade p-8 2xl:p-10 corporate-card rounded-[1.5rem] group"
+                style={{ transitionDelay: `${i * 100}ms` }}
               >
-                <div className="absolute inset-0 blueprint-grid-fine opacity-0 group-hover:opacity-10 transition-opacity rounded-xl"></div>
-                <div className="relative grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 transform group-hover:scale-110 flex items-center justify-center">
-                   {partner.logo ? (
-                     <img 
-                      src={partner.logo} 
-                      alt={partner.name} 
-                      className={`max-h-12 w-auto object-contain ${partner.name === 'AWS' ? 'max-h-10' : ''}`}
-                      onError={(e) => {
-                        // Hide broken image gracefully without causing network retry loops
-                        (e.target as HTMLImageElement).style.display = 'none';
-                      }}
-                    />
-                   ) : (
-                     <div className="flex items-center justify-center">
-                       {partner.icon}
-                     </div>
-                   )}
+                <div className="mb-6 p-4 bg-brand-primary/5 text-brand-primary inline-block rounded-xl group-hover:bg-brand-primary group-hover:text-white transition-all duration-500">
+                  {React.cloneElement(item.icon as React.ReactElement<{size?: number}>, { size: 24 })}
                 </div>
-                <span className="mt-4 text-[8px] font-black text-slate-300 group-hover:text-brand-primary uppercase tracking-[0.4em] transition-colors">{partner.name}</span>
+                <h3 className="text-xl 2xl:text-2xl font-black text-brand-text tracking-tighter mb-4 uppercase">{item.title}</h3>
+                <p className="text-sm 2xl:text-base text-brand-muted font-medium leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FINAL CALL TO ACTION: Refined Scale */}
-      <section className="py-32 bg-brand-text relative overflow-hidden">
+      {/* 7. FINAL CALL TO ACTION (Expand & Glow Presence) */}
+      <section className="py-32 2xl:py-36 bg-brand-text relative overflow-hidden">
         <div className="absolute inset-0 blueprint-grid opacity-[0.03]"></div>
-        <div className="max-w-4xl mx-auto px-10 text-center relative z-10 space-y-12">
-          <h2 className="reveal-on-scroll text-4xl md:text-6xl font-black text-white tracking-tighter leading-none uppercase">
+        <div className="max-w-5xl 2xl:max-w-6xl mx-auto px-10 text-center relative z-10 space-y-12 reveal-expand">
+          <h2 className="text-4xl md:text-6xl 2xl:text-7xl font-black text-white tracking-tighter leading-none uppercase">
             Build for <br /> <span className="text-brand-primary">The Future.</span>
           </h2>
-          <p className="reveal-on-scroll text-xl text-slate-400 font-medium max-w-2xl mx-auto border-t border-white/5 pt-12">
+          <p className="text-xl 2xl:text-2xl text-slate-400 font-medium max-w-3xl mx-auto border-t border-white/5 pt-12">
             Initiate your transition to a resilient, multicloud-powered environment with CyberSys.
           </p>
-          <div className="reveal-on-scroll pt-4">
+          <div className="pt-4">
             <button 
               onClick={() => onPageChange('contact')}
-              className="px-12 py-5 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[11px] uppercase tracking-[0.4em] transition-all shadow-xl shadow-brand-primary/20 transform hover:-translate-y-1"
+              className="px-12 2xl:px-14 py-5 2xl:py-6 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[11px] 2xl:text-[13px] uppercase tracking-[0.4em] transition-all shadow-xl shadow-brand-primary/20 transform hover:-translate-y-1 cursor-pointer"
             >
               Start Consultation
             </button>
           </div>
         </div>
       </section>
+
     </div>
   );
 };

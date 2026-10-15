@@ -39,16 +39,13 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-white selection:bg-brand-primary selection:text-white relative max-w-full overflow-x-hidden">
 
-      
-
-
       {/* Header */}
       <nav 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled ? 'bg-white/98 backdrop-blur-2xl py-3 shadow-[0_1px_0_0_rgba(15,23,42,0.04)]' : 'bg-transparent py-6'
         }`}
       >
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between w-full">
+        <div className="max-w-[1760px] 2xl:max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 flex items-center justify-between w-full">
           
           {/* BRAND IDENTITY - Single image logo */}
           <div 
@@ -210,7 +207,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
       {/* FOOTER */}
       <footer className="bg-[#0F172A] pt-32 pb-16 relative overflow-hidden text-white border-t border-white/5">
         <div className="absolute inset-0 blueprint-grid opacity-[0.02] pointer-events-none"></div>
-        <div className="max-w-[1600px] mx-auto px-8 md:px-16 relative z-10">
+        <div className="max-w-[1760px] 2xl:max-w-[1920px] mx-auto px-8 md:px-16 2xl:px-20 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-32">
             
             <div className="lg:col-span-3 space-y-8">

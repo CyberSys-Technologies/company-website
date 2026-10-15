@@ -29,6 +29,8 @@
               'float': 'float 6s ease-in-out infinite',
               'pulse-soft': 'pulseSoft 4s ease-in-out infinite',
               'marquee': 'marquee 30s linear infinite',
+              'marquee-slow': 'marquee 45s linear infinite',
+              'marquee-reverse': 'marqueeReverse 45s linear infinite',
             },
             keyframes: {
               revealUp: {
@@ -50,6 +52,10 @@
               marquee: {
                 '0%': { transform: 'translateX(0%)' },
                 '100%': { transform: 'translateX(-50%)' }
+              },
+              marqueeReverse: {
+                '0%': { transform: 'translateX(-50%)' },
+                '100%': { transform: 'translateX(0%)' }
               }
             }
           }
@@ -57,6 +63,14 @@
       }
     </script>
     <style>
+      .pause-on-hover:hover {
+        animation-play-state: paused !important;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .animate-marquee, .animate-marquee-slow, .animate-marquee-reverse {
+          animation: none !important;
+        }
+      }
       body {
         font-family: 'Inter', sans-serif;
         background-color: #FFFFFF;
@@ -90,6 +104,63 @@
       .reveal-on-scroll.active {
         opacity: 1;
         transform: translateY(0);
+      }
+      .reveal-from-left {
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+      .reveal-from-left.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-from-right {
+        opacity: 0;
+        transform: translateX(40px);
+        transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+      .reveal-from-right.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-zoom {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px);
+        transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+      .reveal-zoom.active {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+      .reveal-cascade {
+        opacity: 0;
+        transform: translateY(35px) scale(0.98);
+        transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+      .reveal-cascade.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      .reveal-expand {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+        transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+      .reveal-expand.active {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+      @keyframes blinkCursor {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      .animate-cursor {
+        animation: blinkCursor 0.85s infinite;
       }
       .corporate-card {
         background: #FFFFFF;
