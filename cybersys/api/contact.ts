@@ -86,7 +86,7 @@ const verifyTurnstile = async (token: string, ip: string) => {
 
 export function GET(): Response {
   return new Response(JSON.stringify({ siteKey: process.env.TURNSTILE_SITE_KEY || '' }), {
-    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=300' }
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
   });
 }
 
