@@ -100,8 +100,8 @@ export const INDUSTRIES: Industry[] = [
     icon: <Landmark />,
     summary: 'Security-first platforms for digital banking.',
     intro: 'Banks and fintechs run on trust. CyberSys Technologies puts cybersecurity at the centre, alongside resilient cloud platforms and data, so financial institutions can innovate safely and stay compliant.',
-    image: '/industries/banking-atm-woman.webp',
-    imagePosition: 'object-[45%_center]',
+    image: '/industries/banking-atm-keypad-close.webp',
+    imagePosition: 'object-[40%_center]',
     challenges: [
       { title: 'Fraud & Cyber Threats', description: 'Phishing, account takeover and ransomware target customers, staff and core systems.' },
       { title: 'Regulatory Pressure', description: 'CBN guidelines, the Nigeria Data Protection Act and PCI-DSS demand demonstrable controls.' },
