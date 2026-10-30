@@ -146,7 +146,7 @@ const Contact: React.FC<{ from?: Page | null }> = ({ from = null }) => {
                     <span className="w-11 h-11 flex-shrink-0 rounded-xl bg-white text-brand-primary flex items-center justify-center">{icon(<Mail />, 20)}</span>
                     <span className="min-w-0">
                       <span className="block text-sm text-brand-muted">Email</span>
-                      <a href="mailto:info@cybersystechnologies.com" className="block mt-1 text-[15px] font-bold text-brand-text hover:text-brand-primary transition-colors [overflow-wrap:anywhere]">info@cybersystechnologies.com</a>
+                      <a href="mailto:info@cybersystechnologies.com" className="block mt-1 text-[15px] font-bold text-brand-text hover:text-brand-primary transition-colors ">info@<wbr />cybersystechnologies.com</a>
                     </span>
                   </li>
                   <li className="flex items-start gap-4">
