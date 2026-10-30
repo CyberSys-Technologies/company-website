@@ -1,406 +1,412 @@
-import React, { useState } from 'react';
-import { 
-  CheckCircle2, 
-  ArrowRight,
-  ExternalLink
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  ArrowRight, BrainCircuit, BrickWall, Building2, ChartColumn, ChartGantt, ChevronDown, Cloud, CloudCog, CodeXml,
+  Database, Infinity as InfinityIcon, KeyRound, LayoutDashboard, MailCheck, MonitorSmartphone, Network, Radar, ShieldCheck, X
 } from 'lucide-react';
 import { Page } from '../types';
+import NetworkBackdrop from './NetworkBackdrop';
+
+export interface PartnerSolution {
+  name: string;
+  detail: string;
+  /** Product logo in /public/partners/products */
+  icon?: string;
+  /** Used where the vendor publishes no per-product logos (Oracle, Sophos, Check Point, DPAnalytics) */
+  lucideIcon?: React.ReactNode;
+}
 
 export interface PartnerData {
   id: string;
   name: string;
+  /** One-line summary shown on the card */
+  summary: string;
+  /** Subheading shown when the card is opened */
   tagline: string;
-  category: string;
-  role: string;
-  description: string;
-  capabilities: string[];
+  solutions: PartnerSolution[];
   businessValue: string;
-  targetPage: Page;
-  logoUrl?: string;
-  customIcon?: React.ReactNode;
+  logoUrl: string;
+  /** 'mark' logos are symbols only, so the partner name is set beside them */
+  logoType: 'wordmark' | 'mark';
+  /** Height override for wordmarks whose artwork reads small at the default height */
+  logoHeight?: string;
+  /** Brand colour for outline solution icons */
+  accent?: string;
 }
 
-// Company-level alliances for the infinite scrolling track (Azure excluded as it is a product)
-export const MARQUEE_ALLIANCES: { name: string; logoUrl: string }[] = [
-  { name: 'Microsoft', logoUrl: '/partners/microsoft.svg' },
-  { name: 'Amazon Web Services (AWS)', logoUrl: '/partners/aws.png' },
-  { name: 'Google Cloud', logoUrl: '/partners/google-cloud.png' },
-  { name: 'Oracle', logoUrl: '/partners/oracle.png' },
-  { name: 'Sophos', logoUrl: '/partners/sophos.svg' },
-  { name: 'DPAnalytics', logoUrl: '/partners/dpanalytics.png' }
-];
+const ICONS = '/partners/products';
 
-// Interactive Spotlight list including both hyperscalers and dedicated platform solutions (Azure & OCI included)
-export const SPOTLIGHT_PARTNERS: PartnerData[] = [
+export const PARTNERS: PartnerData[] = [
   {
     id: 'microsoft',
     name: 'Microsoft',
-    tagline: 'Modern Workplace & Productivity Infrastructure',
-    category: 'Enterprise Productivity',
-    role: 'Workplace collaboration, enterprise licensing, Teams, identity management, and Microsoft 365 governance.',
-    description: 'Empower enterprise teams with business email, unified collaboration, document sharing, meetings, and productivity tools through Microsoft’s cloud-based workplace platform.',
-    capabilities: [
-      'Microsoft 365 Architecture & Migration',
-      'Microsoft Entra ID (Azure AD) Identity',
-      'Enterprise Agreement Licensing',
-      'Endpoint Security & Intune Compliance'
+    summary: 'Azure, Microsoft 365, security and business applications, licensed and implemented.',
+    tagline: 'Modern workplace, cloud and business applications',
+    solutions: [
+      { name: 'Microsoft 365', detail: 'Email, Teams, Office apps and secure collaboration.', icon: `${ICONS}/ms-365.svg` },
+      { name: 'Microsoft Azure', detail: 'Cloud infrastructure, hybrid connectivity, data and AI services.', icon: `${ICONS}/ms-azure.svg` },
+      { name: 'Dynamics 365', detail: 'ERP and CRM for finance, operations, sales and service.', icon: `${ICONS}/ms-dynamics365.svg` },
+      { name: 'Microsoft Entra ID', detail: 'Identity and access management.', icon: `${ICONS}/ms-entra.svg` },
+      { name: 'Microsoft Defender', detail: 'Threat protection for devices, identities and cloud.', icon: `${ICONS}/ms-defender.svg` },
+      { name: 'Power Platform', detail: 'Power BI dashboards, low-code apps and automation.', icon: `${ICONS}/ms-powerplatform.svg` }
     ],
-    businessValue: 'Improve collaboration and everyday workplace productivity.',
-    targetPage: 'solutions',
-    logoUrl: '/partners/microsoft.svg'
-  },
-  {
-    id: 'azure',
-    name: 'Microsoft Azure',
-    tagline: 'Enterprise Hybrid & Multicloud Infrastructure',
-    category: 'Cloud Infrastructure',
-    role: 'Scalable compute, Azure SQL, AKS container orchestration, disaster recovery, and hybrid cloud interconnectivity.',
-    description: 'Build, deploy, and scale applications and infrastructure using Microsoft’s cloud platform, with security and governance aligned to your organisation’s requirements.',
-    capabilities: [
-      'Azure Virtual Machines & AKS Clusters',
-      'Enterprise Azure SQL & Managed DBs',
-      'ExpressRoute Hybrid Interconnect',
-      'AI FinOps Cost Governance (Save 25-50%)'
-    ],
-    businessValue: 'Modernise infrastructure and scale on demand.',
-    targetPage: 'multicloud',
-    logoUrl: '/partners/azure.svg'
-  },
-  {
-    id: 'aws',
-    name: 'Amazon Web Services (AWS)',
-    tagline: 'Resilient Cloud Compute & Global Microservices',
-    category: 'Cloud Infrastructure',
-    role: 'Elastic compute (EC2), scalable object storage (S3), serverless architectures, and multi-region failover.',
-    description: 'Access flexible cloud infrastructure, compute, storage, databases, and cloud-native capabilities to support changing business demands.',
-    capabilities: [
-      'AWS EKS & Containerized Microservices',
-      'High-Durability S3 & Glacier Archival',
-      'Aurora & DynamoDB Database Scaling',
-      'Automated Multi-Region Disaster Recovery'
-    ],
-    businessValue: 'Build resilient, scalable digital services.',
-    targetPage: 'multicloud',
-    logoUrl: '/partners/aws.png'
-  },
-  {
-    id: 'google-cloud',
-    name: 'Google Cloud',
-    tagline: 'High-Throughput Analytics & Enterprise AI',
-    category: 'Cloud Infrastructure & AI',
-    role: 'BigQuery data warehousing, Vertex AI integration, Google Kubernetes Engine (GKE), and secure multicloud mesh.',
-    description: 'Explore cloud infrastructure, data platforms, analytics, and AI capabilities that support modern business applications and data-driven decision-making.',
-    capabilities: [
-      'BigQuery Enterprise Data Warehousing',
-      'Google Kubernetes Engine (GKE)',
-      'Vertex AI & Intelligent Automation',
-      'Anthos Multicloud Orchestration'
-    ],
-    businessValue: 'Turn technology and data into business value.',
-    targetPage: 'multicloud',
-    logoUrl: '/partners/google-cloud.png'
+    businessValue: 'Improve collaboration and productivity on a secure, scalable cloud.',
+    logoUrl: '/partners/microsoft.svg',
+    logoType: 'mark'
   },
   {
     id: 'oracle',
     name: 'Oracle',
-    tagline: 'Mission-Critical ERP, Databases & Primavera',
-    category: 'Enterprise Applications',
-    role: 'Enterprise resource planning, Autonomous Database, Primavera EPPM, and financial process automation.',
-    description: 'Support enterprise finance, procurement, project management, and connected business processes through suitable Oracle enterprise solutions.',
-    capabilities: [
-      'Oracle Cloud ERP & E-Business Suite',
-      'Primavera EPPM Project Governance',
-      'Enterprise Database Architecture',
-      'Mission-Critical Availability'
+    summary: 'Oracle Cloud Infrastructure and enterprise applications.',
+    tagline: 'Enterprise applications, databases and cloud infrastructure',
+    solutions: [
+      { name: 'Oracle Fusion Cloud ERP', detail: 'Finance, procurement and project accounting.', lucideIcon: <Building2 size={22} /> },
+      { name: 'Oracle Cloud Infrastructure', detail: 'High-performance compute, storage and networking.', lucideIcon: <Cloud size={22} /> },
+      { name: 'Oracle Autonomous Database', detail: 'Self-managing database for mission-critical data.', lucideIcon: <Database size={22} /> },
+      { name: 'Primavera', detail: 'Enterprise project and portfolio management.', lucideIcon: <ChartGantt size={22} /> }
     ],
-    businessValue: 'Improve operational visibility and process control.',
-    targetPage: 'solutions',
-    logoUrl: '/partners/oracle.png'
+    businessValue: 'Improve operational visibility, process control and database performance.',
+    logoUrl: '/partners/oracle.png',
+    logoType: 'wordmark',
+    accent: '#C74634'
   },
   {
-    id: 'oci',
-    name: 'Oracle Cloud Infrastructure (OCI)',
-    tagline: 'Autonomous Compute, Exadata & Multicloud Mesh',
-    category: 'Cloud Infrastructure',
-    role: 'OCI bare metal compute, Autonomous Database clusters, high-performance Exadata, and cross-cloud interconnectivity.',
-    description: 'Architect, migrate, and run mission-critical enterprise workloads on OCI with extreme price-performance, automated patching, and native low-latency interconnects to Microsoft Azure.',
-    capabilities: [
-      'OCI Compute & Autonomous Database',
-      'Exadata Cloud Service & Database Migration',
-      'Oracle & Azure Low-Latency Interconnect',
-      'Enterprise Disaster Recovery & Data Guard'
+    id: 'google-cloud',
+    name: 'Google Cloud',
+    summary: 'Cloud platform, data and AI analytics.',
+    tagline: 'Cloud platform, data analytics and AI',
+    solutions: [
+      { name: 'Compute Engine', detail: 'Scalable virtual machines.', icon: `${ICONS}/gcp-compute.svg` },
+      { name: 'Google Kubernetes Engine', detail: 'Managed Kubernetes for containerised apps.', icon: `${ICONS}/gcp-gke.svg` },
+      { name: 'BigQuery', detail: 'Serverless data warehouse for large-scale analytics.', icon: `${ICONS}/gcp-bigquery.svg` },
+      { name: 'Vertex AI', detail: 'Build, deploy and scale AI and machine-learning models.', icon: `${ICONS}/gcp-vertexai.svg` },
+      { name: 'Google Workspace', detail: 'Gmail, Drive, Meet and team collaboration.', icon: `${ICONS}/gcp-workspace.png` }
     ],
-    businessValue: 'Extreme database performance and predictable cloud economics.',
-    targetPage: 'multicloud',
-    logoUrl: '/partners/oracle.png'
+    businessValue: 'Turn data into insight and bring AI into everyday operations.',
+    logoUrl: '/partners/google-cloud.webp',
+    logoType: 'mark'
+  },
+  {
+    id: 'aws',
+    name: 'Amazon Web Services',
+    summary: 'Scalable cloud infrastructure and services.',
+    tagline: 'Cloud infrastructure, databases and AI services',
+    solutions: [
+      { name: 'Amazon EC2', detail: 'Elastic, on-demand compute capacity.', icon: `${ICONS}/aws-ec2.svg` },
+      { name: 'Amazon S3', detail: 'Durable object storage, backup and archiving.', icon: `${ICONS}/aws-s3.svg` },
+      { name: 'Amazon RDS', detail: 'Managed relational databases, including Aurora.', icon: `${ICONS}/aws-rds.svg` },
+      { name: 'Amazon Bedrock', detail: 'Build generative AI applications.', icon: `${ICONS}/aws-bedrock.svg` },
+      { name: 'Amazon SageMaker', detail: 'Build, train and deploy machine-learning models.', icon: `${ICONS}/aws-sagemaker.svg` }
+    ],
+    businessValue: 'Build resilient digital services that scale with demand.',
+    logoUrl: '/partners/aws.webp',
+    logoType: 'wordmark'
   },
   {
     id: 'sophos',
     name: 'Sophos',
-    tagline: 'Synchronized Cybersecurity & 24/7 Threat Protection',
-    category: 'Cybersecurity',
-    role: 'Next-Gen endpoint defense, Xstream firewalls, Managed Threat Response (MTR), and zero-trust network access.',
-    description: 'Strengthen your security posture with appropriate endpoint, network, and threat protection solutions delivered through the Sophos ecosystem.',
-    capabilities: [
-      'Sophos Intercept X with XDR & EDR',
-      'Sophos Firewall & Zero Trust Network Access (ZTNA)',
-      '24/7 Managed Threat Response (MTR)',
-      'Automated Threat Hunting & Incident Remediation'
+    summary: 'Endpoint, network security, XDR, managed detection and response.',
+    tagline: 'Endpoint, network and managed security',
+    solutions: [
+      { name: 'Sophos Endpoint', detail: 'Endpoint protection with EDR and XDR (formerly Intercept X).', lucideIcon: <ShieldCheck size={22} /> },
+      { name: 'Sophos Firewall', detail: 'Next-generation network firewall.', lucideIcon: <BrickWall size={22} /> },
+      { name: 'Sophos MDR', detail: '24/7 managed detection and response.', lucideIcon: <Radar size={22} /> },
+      { name: 'Sophos ZTNA', detail: 'Zero-trust access to business applications.', lucideIcon: <KeyRound size={22} /> },
+      { name: 'Sophos Email', detail: 'Protection against phishing and email threats.', lucideIcon: <MailCheck size={22} /> }
     ],
-    businessValue: 'Help protect users, devices, and business systems.',
-    targetPage: 'solutions-cybersecurity',
-    logoUrl: '/partners/sophos.svg'
+    businessValue: 'Protect users, devices and business systems around the clock.',
+    logoUrl: '/partners/sophos.svg',
+    logoType: 'mark',
+    accent: '#2066AF'
+  },
+  {
+    id: 'checkpoint',
+    name: 'Check Point',
+    summary: 'Firewalls and advanced threat prevention.',
+    tagline: 'Network, cloud and workspace security',
+    solutions: [
+      { name: 'Quantum', detail: 'Network security gateways and firewalls.', lucideIcon: <Network size={22} /> },
+      { name: 'CloudGuard', detail: 'Security for cloud workloads and networks.', lucideIcon: <CloudCog size={22} /> },
+      { name: 'Harmony', detail: 'Protection for endpoints, email, browsers and mobile.', lucideIcon: <MonitorSmartphone size={22} /> },
+      { name: 'Infinity Platform', detail: 'Unified security management with AI threat intelligence.', lucideIcon: <InfinityIcon size={22} /> }
+    ],
+    businessValue: 'Prevent attacks before they reach your network, cloud or users.',
+    logoUrl: '/partners/checkpoint.webp',
+    logoType: 'wordmark',
+    logoHeight: 'h-11 2xl:h-12 min-[1800px]:h-14',
+    accent: '#E5007E'
   },
   {
     id: 'dpanalytics',
     name: 'DPAnalytics',
-    tagline: 'Advanced Enterprise Intelligence & Decision Systems',
-    category: 'Data, Analytics & AI',
-    role: 'Predictive data modeling, executive KPI dashboards, regulatory data pipelines, and analytics automation.',
-    description: 'Bridge heterogeneous enterprise data silos with customized analytics engines engineered to deliver actionable executive clarity.',
-    capabilities: [
-      'Custom Executive KPI Dashboards',
-      'Automated Data Extraction & ETL Pipelines',
-      'Predictive Business Forecasting',
-      'Regulatory Reporting & Data Governance'
+    summary: 'Custom software, AI and data analytics.',
+    tagline: 'Custom software, AI and analytics',
+    solutions: [
+      { name: 'Custom Application Software', detail: 'Applications built around your business processes.', lucideIcon: <CodeXml size={22} /> },
+      { name: 'AI Solutions', detail: 'Automation and predictive models for better decisions.', lucideIcon: <BrainCircuit size={22} /> },
+      { name: 'Data Analytics', detail: 'Data integration, pipelines and reporting.', lucideIcon: <ChartColumn size={22} /> },
+      { name: 'Executive Dashboards', detail: 'Real-time KPIs for leadership teams.', lucideIcon: <LayoutDashboard size={22} /> }
     ],
-    businessValue: 'Convert complex corporate data into actionable strategic yield.',
-    targetPage: 'solutions-bi',
-    logoUrl: '/partners/dpanalytics.png'
+    businessValue: 'Turn complex business data into clear, actionable decisions.',
+    logoUrl: '/partners/dpanalytics.png',
+    logoType: 'wordmark',
+    logoHeight: 'h-12 min-[1800px]:h-14'
   }
 ];
+
+const HERO_TEXT = 'CyberSys Technologies Limited is an Enterprise Technology Company focused on Digital Transformation, Cybersecurity, Artificial Intelligence (AI), Data Analytics, Cloud Solutions, Intelligent Automation, Digitalization and Managed Services. We design, implement and support specialized technology solutions for organizations across the Oil & Gas, Banking and Financial Services, Healthcare, Real Estate and Manufacturing sectors.';
+
+const CARD_GAP_REM = 1.25;
+
+/** Cards per row, matched to the layout breakpoints (lg: 4, sm: 2, mobile: 1) */
+const useColumns = () => {
+  const getColumns = () => (window.innerWidth >= 1024 ? 4 : window.innerWidth >= 640 ? 2 : 1);
+  const [columns, setColumns] = useState(getColumns);
+
+  useEffect(() => {
+    const handleResize = () => setColumns(getColumns());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return columns;
+};
+
+/**
+ * Becomes true once the element scrolls into view. Held in state (rather than a DOM class)
+ * so cards keep their revealed state when the grid re-flows on resize.
+ */
+const useInView = <T extends HTMLElement>() => {
+  const ref = useRef<T>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setInView(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, inView] as const;
+};
+
+const PartnerLogo: React.FC<{ partner: PartnerData }> = ({ partner }) => {
+  if (partner.logoType === 'wordmark') {
+    return <img src={partner.logoUrl} alt={partner.name} className={`${partner.logoHeight || 'h-9 2xl:h-10 min-[1800px]:h-12'} w-auto max-w-[200px] min-[1800px]:max-w-[240px] object-contain`} />;
+  }
+  return (
+    <span className="flex items-center gap-3">
+      <img src={partner.logoUrl} alt="" className="h-9 2xl:h-10 min-[1800px]:h-12 w-auto object-contain" />
+      <span className="text-xl 2xl:text-2xl min-[1800px]:text-[1.7rem] font-semibold text-slate-600 tracking-tight">{partner.name}</span>
+    </span>
+  );
+};
+
+const SolutionIcon: React.FC<{ solution: PartnerSolution; partner: PartnerData }> = ({ solution, partner }) => {
+  const [failed, setFailed] = useState(false);
+  const tile = 'w-12 h-12 flex-shrink-0 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center';
+
+  if (solution.lucideIcon) {
+    // Outline icon in the partner's brand colour (logo blue for our own services)
+    const accent = partner.accent || '#2082A6';
+    return (
+      <div className={tile} style={{ color: accent }}>
+        {solution.lucideIcon}
+      </div>
+    );
+  }
+  // Fall back to the partner's own mark if a product logo is unavailable
+  const src = !solution.icon || failed ? partner.logoUrl : solution.icon;
+  return (
+    <div className={`${tile} p-2`}>
+      <img src={src} alt="" className="max-w-full max-h-full object-contain" onError={() => setFailed(true)} />
+    </div>
+  );
+};
 
 interface PartnerEcosystemProps {
   onPageChange: (p: Page) => void;
 }
 
 const PartnerEcosystem: React.FC<PartnerEcosystemProps> = ({ onPageChange }) => {
-  const [selectedPartnerId, setSelectedPartnerId] = useState<string>('azure');
-  const [isFading, setIsFading] = useState<boolean>(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const columns = useColumns();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const [gridRef, gridInView] = useInView<HTMLDivElement>();
 
-  const handleSelectPartner = (id: string) => {
-    if (id === selectedPartnerId) return;
-    setIsFading(true);
-    setTimeout(() => {
-      setSelectedPartnerId(id);
-      setIsFading(false);
-    }, 150);
-  };
+  const selected = PARTNERS.find(p => p.id === selectedId) || null;
 
-  const selectedPartner = SPOTLIGHT_PARTNERS.find(p => p.id === selectedPartnerId) || SPOTLIGHT_PARTNERS[1];
+  // Keep the opened panel in view, mainly for single-column (mobile) layouts
+  useEffect(() => {
+    if (selectedId && panelRef.current) {
+      panelRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [selectedId]);
+
+  const rows: PartnerData[][] = [];
+  for (let i = 0; i < PARTNERS.length; i += columns) {
+    rows.push(PARTNERS.slice(i, i + columns));
+  }
+
+  const cardBasis = `calc((100% - ${(columns - 1) * CARD_GAP_REM}rem) / ${columns})`;
 
   return (
-    <section id="partner-ecosystem" className="py-24 2xl:py-32 bg-slate-50 border-y border-slate-100 relative overflow-hidden">
-      <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none"></div>
+    <section id="partner-ecosystem" className="relative overflow-hidden pt-12 pb-16 lg:pt-16 lg:pb-20 2xl:pb-24 bg-white">
+      {/* Faint pulsing network behind the headline and partner grid */}
+      <NetworkBackdrop />
+      <div className="relative max-w-[1440px] 2xl:max-w-[1600px] min-[1800px]:max-w-[1880px] mx-auto px-6 sm:px-12 md:px-16 2xl:px-24">
 
-      {/* Screen container optimized for large monitors and ultrawides */}
-      <div className="max-w-[1760px] 2xl:max-w-[1920px] mx-auto px-6 sm:px-12 md:px-16 2xl:px-24 relative z-10">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-4xl mx-auto mb-16 2xl:mb-20 reveal-on-scroll">
-          <h2 className="text-[10px] 2xl:text-[11px] font-black text-brand-primary uppercase tracking-[0.5em] mb-4">
-            Strategic Alliances
-          </h2>
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-black text-brand-text tracking-tighter uppercase leading-none">
+        {/* Hero: headline, company summary and the two main actions, centred */}
+        <div className="text-center mb-20 lg:mb-28 2xl:mb-32 animate-hero-rise">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-bold text-brand-text leading-[1.1] uppercase">
             Global Technology. <br />
             <span className="text-brand-primary">Connected by CyberSys.</span>
-          </h3>
-          <p className="mt-6 text-base sm:text-lg 2xl:text-xl text-brand-muted font-medium leading-relaxed max-w-3xl mx-auto">
-            We bring together leading cloud, cybersecurity, enterprise software, and analytics platforms to help organisations build secure, scalable, and intelligent digital environments.
+          </h1>
+          <p className="mt-6 text-base sm:text-lg 2xl:text-xl text-brand-muted font-medium leading-relaxed">
+            {HERO_TEXT}
           </p>
-        </div>
-
-        {/* COMPONENT A: INFINITE HORIZONTAL LOGO MARQUEE (COMPANY ALLIANCES ONLY, NO HEADER LABEL) */}
-        <div className="mb-20 reveal-on-scroll">
-          <div className="relative py-2 overflow-hidden group">
-            {/* Edge Gradients */}
-            <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-l from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none"></div>
-
-            {/* Continuous Marquee Track */}
-            <div className="flex w-max animate-marquee-slow pause-on-hover items-center">
-              {[...MARQUEE_ALLIANCES, ...MARQUEE_ALLIANCES, ...MARQUEE_ALLIANCES, ...MARQUEE_ALLIANCES].map((partner, index) => {
-                return (
-                  <div
-                    key={`marquee-${index}`}
-                    className="mx-3 sm:mx-6 2xl:mx-8 px-8 py-5 rounded-2xl border bg-white border-slate-200/80 shadow-sm hover:border-brand-primary/40 hover:shadow-md transition-all duration-300 flex items-center gap-4 flex-shrink-0 cursor-default"
-                  >
-                    <div className="w-9 h-9 2xl:w-10 2xl:h-10 flex items-center justify-center flex-shrink-0">
-                      <img 
-                        src={partner.logoUrl} 
-                        alt={partner.name} 
-                        className="max-h-7 2xl:max-h-8 max-w-full object-contain"
-                        loading="lazy"
-                      />
-                    </div>
-                    <span className="text-sm 2xl:text-base font-black text-brand-text tracking-tight uppercase whitespace-nowrap">
-                      {partner.name}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* COMPONENT B: INTERACTIVE PARTNER SPOTLIGHT (OPPOSING SIDES ENTRANCE WITH DARK BLUE CORE CARD) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 2xl:gap-12 items-stretch">
-          
-          {/* Left Column: Interactive Partner Selector List (Reveals from Left) */}
-          <div className="lg:col-span-5 reveal-from-left grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 2xl:gap-4">
-            {SPOTLIGHT_PARTNERS.map((partner) => {
-              const isSelected = selectedPartnerId === partner.id;
-              return (
-                <div
-                  key={partner.id}
-                  onClick={() => handleSelectPartner(partner.id)}
-                  className={`p-5 2xl:p-6 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center justify-between group ${
-                    isSelected
-                      ? 'bg-white border-brand-primary shadow-xl shadow-brand-primary/10 translate-x-2'
-                      : 'bg-white/80 hover:bg-white border-slate-200 hover:border-slate-300 hover:translate-x-1'
-                  }`}
-                >
-                  <div className="flex items-center gap-4 min-w-0">
-                    <div className="w-11 h-11 2xl:w-12 2xl:h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 flex-shrink-0 group-hover:scale-105 transition-transform">
-                      {partner.logoUrl ? (
-                        <img 
-                          src={partner.logoUrl} 
-                          alt={partner.name} 
-                          className="max-h-7 max-w-full object-contain"
-                        />
-                      ) : (
-                        partner.customIcon
-                      )}
-                    </div>
-                    <div className="truncate">
-                      <h4 className="text-sm 2xl:text-base font-black text-brand-text uppercase tracking-tight">
-                        {partner.name}
-                      </h4>
-                      <p className="text-xs 2xl:text-sm text-brand-muted truncate font-medium mt-0.5">
-                        {partner.category}
-                      </p>
-                    </div>
-                  </div>
-
-                  <ArrowRight 
-                    size={16} 
-                    className={`transition-all ${
-                      isSelected 
-                        ? 'text-brand-primary translate-x-0 opacity-100' 
-                        : 'text-slate-300 -translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0'
-                    }`} 
-                  />
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Right Column: Active Spotlight Detailed Card (DARK BLUE CORE STYLING) */}
-          <div className="lg:col-span-7 reveal-from-right flex flex-col">
-            <div 
-              className={`h-full bg-[#0A0F1C] text-white rounded-[2rem] border border-white/10 p-8 sm:p-12 2xl:p-16 shadow-2xl relative overflow-hidden flex flex-col justify-between transition-all duration-300 ${
-                isFading ? 'opacity-40 scale-[0.99]' : 'opacity-100 scale-100'
-              }`}
+          <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
+            <button
+              onClick={() => onPageChange('contact')}
+              className="px-7 py-3.5 bg-brand-action hover:bg-brand-deep text-white rounded font-semibold text-[11px] uppercase tracking-[0.15em] flex items-center justify-center gap-2.5 transition-colors cursor-pointer"
             >
-              {/* Ambient Dark Core Radial Glows */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-brand-primary/10 blur-[120px] rounded-full mix-blend-screen pointer-events-none"></div>
-              <div className="absolute bottom-0 left-0 w-80 h-80 bg-brand-secondary/5 blur-[90px] rounded-full mix-blend-screen pointer-events-none"></div>
-              <div className="absolute inset-0 blueprint-grid opacity-[0.03] pointer-events-none"></div>
-
-              <div className="relative z-10">
-                
-                {/* Header: Logo & Partner Name */}
-                <div className="flex items-center gap-5 pb-8 mb-8 border-b border-white/10">
-                  <div className="w-16 h-16 2xl:w-20 2xl:h-20 rounded-2xl bg-white p-3 flex items-center justify-center flex-shrink-0 shadow-lg">
-                    {selectedPartner.logoUrl ? (
-                      <img 
-                        src={selectedPartner.logoUrl} 
-                        alt={selectedPartner.name} 
-                        className="max-h-11 2xl:max-h-13 max-w-full object-contain" 
-                      />
-                    ) : (
-                      selectedPartner.customIcon
-                    )}
-                  </div>
-                  <div>
-                    <h3 className="text-2xl sm:text-3xl 2xl:text-4xl font-black text-white tracking-tighter uppercase">
-                      {selectedPartner.name}
-                    </h3>
-                    <p className="text-xs 2xl:text-sm font-black uppercase tracking-[0.2em] text-brand-secondary mt-1">
-                      {selectedPartner.category}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Tagline & Description */}
-                <div className="mb-8 2xl:mb-10">
-                  <h4 className="text-lg sm:text-xl 2xl:text-2xl font-black text-white uppercase tracking-tight leading-snug mb-3">
-                    {selectedPartner.tagline}
-                  </h4>
-                  <p className="text-sm sm:text-base 2xl:text-lg text-slate-300 leading-relaxed font-normal">
-                    {selectedPartner.description}
-                  </p>
-                </div>
-
-                {/* Engineering Capabilities */}
-                <div className="mb-8 2xl:mb-10">
-                  <div className="text-[10px] 2xl:text-[11px] font-black uppercase tracking-[0.4em] text-slate-400 mb-4">
-                    Key Capabilities
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 2xl:gap-4">
-                    {selectedPartner.capabilities.map((cap, i) => (
-                      <div 
-                        key={i} 
-                        className="flex items-start gap-3 p-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-xs 2xl:text-sm text-slate-200 font-semibold hover:border-brand-primary/40 transition-colors"
-                      >
-                        <CheckCircle2 size={16} className="text-brand-secondary mt-0.5 flex-shrink-0" />
-                        <span>{cap}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Business Impact Box */}
-                <div className="p-5 2xl:p-6 rounded-2xl bg-gradient-to-r from-brand-primary/20 via-brand-secondary/10 to-transparent border border-brand-primary/30 mb-8 2xl:mb-10">
-                  <div className="text-[10px] 2xl:text-[11px] font-black uppercase tracking-[0.25em] text-brand-secondary mb-1.5">
-                    Real Business Impact
-                  </div>
-                  <p className="text-sm 2xl:text-base text-white font-bold leading-relaxed">
-                    {selectedPartner.businessValue}
-                  </p>
-                </div>
-              </div>
-
-              {/* CTAs */}
-              <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4 pt-6 border-t border-white/10">
-                <button
-                  onClick={() => onPageChange(selectedPartner.targetPage)}
-                  className="w-full sm:w-auto px-8 2xl:px-10 py-4 2xl:py-5 bg-brand-primary hover:bg-brand-accent text-white rounded font-black text-[11px] 2xl:text-[12px] uppercase tracking-[0.25em] transition-all shadow-xl shadow-brand-primary/30 flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  Explore Solutions Architecture <ArrowRight size={14} />
-                </button>
-
-                <button
-                  onClick={() => onPageChange('contact')}
-                  className="w-full sm:w-auto px-8 2xl:px-10 py-4 2xl:py-5 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded font-black text-[11px] 2xl:text-[12px] uppercase tracking-[0.25em] transition-all flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  Request Consultation <ExternalLink size={13} />
-                </button>
-              </div>
-
-            </div>
+              Request Consultation <ArrowRight size={15} />
+            </button>
+            <button
+              onClick={() => onPageChange('solutions')}
+              className="px-7 py-3.5 bg-white text-brand-text border-2 border-slate-200 hover:border-brand-primary hover:text-brand-primary rounded font-semibold text-[11px] uppercase tracking-[0.15em] transition-colors cursor-pointer"
+            >
+              Explore Solutions
+            </button>
           </div>
-
         </div>
 
-        {/* "Explore More Options" CTA button */}
-        <div className="mt-16 2xl:mt-20 text-center reveal-on-scroll">
-          <button
-            onClick={() => onPageChange('solutions')}
-            className="px-10 2xl:px-12 py-5 2xl:py-6 border-2 border-slate-300 hover:border-brand-primary text-brand-text hover:text-brand-primary rounded font-black text-[11px] 2xl:text-[13px] uppercase tracking-[0.25em] transition-all bg-white shadow-sm hover:shadow-md inline-flex items-center gap-3 cursor-pointer"
-          >
-            Explore More Options & Solutions <ArrowRight size={16} />
-          </button>
+        {/* Partner grid: the detail panel opens directly beneath the row of the selected card */}
+        <div ref={gridRef} className="space-y-5">
+          {rows.map((row, rowIndex) => {
+            const rowHasSelection = !!selected && row.some(p => p.id === selected.id);
+            return (
+              <React.Fragment key={rowIndex}>
+                <div className="flex justify-center" style={{ gap: `${CARD_GAP_REM}rem` }}>
+                  {row.map(partner => {
+                    const isSelected = partner.id === selectedId;
+                    const order = PARTNERS.indexOf(partner);
+                    return (
+                      <div
+                        key={partner.id}
+                        style={{ flex: `0 0 ${cardBasis}`, transitionDelay: gridInView ? `${order * 80}ms` : '0ms' }}
+                        className={`reveal-cascade ${gridInView ? 'active' : ''}`}
+                      >
+                      <button
+                        type="button"
+                        onClick={() => setSelectedId(isSelected ? null : partner.id)}
+                        aria-expanded={isSelected}
+                        aria-controls="partner-detail"
+                        className={`w-full h-full text-left bg-white rounded-xl border p-7 2xl:p-8 min-[1800px]:p-10 flex flex-col justify-between min-h-[200px] min-[1800px]:min-h-[250px] cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_50px_-30px_rgba(32,130,166,0.45)] ${
+                          isSelected
+                            ? 'border-brand-primary -translate-y-1 shadow-[0_24px_50px_-30px_rgba(32,130,166,0.45)]'
+                            : 'border-slate-200 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_14px_32px_-22px_rgba(15,23,42,0.28)] hover:border-brand-primary/50'
+                        }`}
+                      >
+                        <div>
+                          <div className="h-12 min-[1800px]:h-14 flex items-center mb-6">
+                            <PartnerLogo partner={partner} />
+                          </div>
+                          <p className="text-base 2xl:text-lg min-[1800px]:text-xl text-brand-muted leading-relaxed">
+                            {partner.summary}
+                          </p>
+                        </div>
+                        <span className={`mt-6 inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.2em] transition-colors ${
+                          isSelected ? 'text-brand-primary' : 'text-slate-400'
+                        }`}>
+                          {isSelected ? 'Close' : 'View solutions'}
+                          <ChevronDown size={14} className={`transition-transform duration-300 ${isSelected ? 'rotate-180' : ''}`} />
+                        </span>
+                      </button>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {rowHasSelection && selected && (
+                  <div
+                    id="partner-detail"
+                    ref={panelRef}
+                    key={selected.id}
+                    className="animate-panel-in relative bg-white rounded-xl border-2 border-brand-secondary scroll-mt-28 overflow-hidden shadow-[0_24px_50px_-30px_rgba(1,203,174,0.45)]"
+                  >
+                    <div className="relative">
+                    {/* Heading */}
+                    <div className="flex items-start justify-between gap-6 px-8 sm:px-10 2xl:px-12 pt-8 sm:pt-10 pb-8 border-b border-slate-100">
+                      <div className="flex items-center gap-5">
+                        <span className="w-14 h-14 2xl:w-16 2xl:h-16 flex-shrink-0 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2.5">
+                          <img src={selected.logoUrl} alt="" className="max-w-full max-h-full object-contain" />
+                        </span>
+                        <div>
+                        <h3 className="text-2xl 2xl:text-3xl font-bold text-brand-text leading-tight">
+                          {selected.name}
+                        </h3>
+                        <p className="mt-1 text-base 2xl:text-lg text-brand-primary font-semibold leading-relaxed">
+                          {selected.tagline}
+                        </p>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedId(null)}
+                        aria-label="Close partner details"
+                        className="p-2 -mr-2 rounded-lg text-slate-400 hover:text-brand-text hover:bg-slate-50 transition-colors"
+                      >
+                        <X size={20} />
+                      </button>
+                    </div>
+
+                    {/* Solutions */}
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8 px-8 sm:px-10 2xl:px-12 py-10">
+                      {selected.solutions.map(solution => (
+                        <li key={solution.name} className="flex items-start gap-4">
+                          <SolutionIcon solution={solution} partner={selected} />
+                          <div>
+                            <div className="text-base 2xl:text-lg font-semibold text-brand-text tracking-tight leading-snug">
+                              {solution.name}
+                            </div>
+                            <p className="mt-1 text-sm 2xl:text-base text-brand-muted leading-relaxed">
+                              {solution.detail}
+                            </p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Business impact and next step */}
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 px-8 sm:px-10 2xl:px-12 py-7 bg-brand-mist border-t border-slate-100">
+                      <div className="border-l-2 border-brand-secondary pl-5">
+                        <div className="text-[13px] font-medium uppercase tracking-[0.2em] text-brand-action mb-1">
+                          Business Impact
+                        </div>
+                        <p className="text-sm 2xl:text-base text-brand-text font-semibold leading-relaxed">
+                          {selected.businessValue}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => onPageChange('contact')}
+                        className="self-start md:self-auto flex-shrink-0 inline-flex items-center gap-2 px-7 py-4 bg-brand-action hover:bg-brand-deep text-white rounded font-semibold text-[11px] 2xl:text-[12px] uppercase tracking-[0.15em] transition-colors cursor-pointer"
+                      >
+                        Talk to us <ArrowRight size={14} />
+                      </button>
+                    </div>
+                    </div>
+                  </div>
+                )}
+              </React.Fragment>
+            );
+          })}
         </div>
 
       </div>

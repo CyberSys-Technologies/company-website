@@ -1,101 +1,65 @@
 
 import React from 'react';
-import { NavLink, IndustryItem } from './types';
+import { Award, BrainCircuit, Cloud, GraduationCap, LayoutGrid, MonitorCog, ShieldCheck, Target, Users } from 'lucide-react';
+import { NavLink } from './types';
+import { INDUSTRIES } from './data/industries';
+
+// Main line, also reachable on WhatsApp
+export const WHATSAPP_URL = 'https://wa.me/2348025955618';
 
 export const NAV_LINKS: NavLink[] = [
-  { label: 'Company', path: 'company' },
   {
-    label: 'Services',
-    path: 'services',
+    label: 'About Us',
+    path: 'company',
     subLinks: [
-      { label: 'Cloud & Infrastructure', path: 'services-cloud', description: 'Resilient hybrid and private cloud architectures.' },
-      { label: 'Multicloud Mastery', path: 'services-multicloud', description: 'Unified orchestration across AWS, Azure, and OCI.' },
-      { label: 'Managed Services', path: 'services-managed', description: '24/7 operational continuity and optimization.' },
-      { label: 'Training & Consultancy', path: 'services-training', description: 'Expert knowledge transfer and architecture guidance.' },
+      { label: 'Who We Are', icon: <Users />, path: 'company', anchor: 'who-we-are', description: 'Our story and what we do.' },
+      { label: 'Mission & Vision', icon: <Target />, path: 'company', anchor: 'mission-vision', description: 'What drives us and where we are going.' },
+      { label: 'Why CyberSys', icon: <Award />, path: 'company', anchor: 'differentiators', description: 'Global standards, local resilience.' },
     ]
   },
-  { 
-    label: 'Solutions', 
+  {
+    label: 'Solutions',
     path: 'solutions',
     subLinks: [
-      { label: 'Custom Software Development', path: 'solutions-software', description: 'Bespoke enterprise applications engineered for scale.' },
-      { label: 'Digital Transformation', path: 'solutions-digital', description: 'Modernizing core operations with connected intelligence.' },
-      { label: 'Business Intelligence & Analytics', path: 'solutions-bi', description: 'Turning complex data into actionable strategic yield.' },
-      { label: 'Cybersecurity', path: 'solutions-cybersecurity', description: 'Enterprise-grade threat protection and governance.' },
+      { label: 'Cloud & Infrastructure', icon: <Cloud />, path: 'services-cloud', description: 'Hybrid, private and multicloud platforms built to scale.' },
+      { label: 'Cybersecurity', icon: <ShieldCheck />, path: 'solutions-cybersecurity', description: 'Threat protection, identity and compliance by design.' },
+      { label: 'AI & Data Analytics', icon: <BrainCircuit />, path: 'solutions-bi', description: 'Dashboards, predictive models and AI that drive decisions.' },
+      { label: 'Business Applications & ERP', icon: <LayoutGrid />, path: 'solutions-software', description: 'ERP, enterprise applications and custom software.' },
+      { label: 'IT & Managed Services', icon: <MonitorCog />, path: 'services-managed', description: 'Monitoring, support and operational management.' },
+      { label: 'Training & Consultancy', icon: <GraduationCap />, path: 'services-training', description: 'Advisory and partner-backed enablement.' },
     ]
   },
-  { 
-    label: 'Industries', 
+  {
+    label: 'Industries',
     path: 'industries',
     subLinks: [
-      { label: 'Financial Services', path: 'industries', description: 'Securing the backbone of digital banking.' },
-      { label: 'Government', path: 'industries', description: 'Digital sovereignty and public sector security.' },
-      { label: 'Telecommunications', path: 'industries', description: 'Scalable platforms for massive connectivity.' },
-      { label: 'Energy & Utilities', path: 'industries', description: 'Critical infrastructure and OT protection.' },
+      ...INDUSTRIES.map(industry => ({ label: industry.name, path: industry.page, description: industry.summary, icon: industry.icon })),
     ]
   },
-  { label: 'Multicloud', path: 'multicloud' },
+  { label: 'Careers', path: 'careers' },
   { label: 'Contact', path: 'contact' },
 ];
 
-export const CS5_FRAMEWORK = [
-  { term: 'Customer', description: 'Customer-centric approach to product and service delivery' },
-  { term: 'Synergy', description: 'Seamless integration across heterogeneous multicloud environments.' },
-  { term: 'Security', description: 'Compliance-aware infrastructure engineered by design.' },
-  { term: 'Systems', description: 'Resilient architectures for absolute operational continuity.' },
-  { term: 'Scalability', description: 'Building for today, ready for exponential global growth.' },
-  { term: 'Solutions', description: 'Outcome-driven technology delivery focusing on business yield.' },
-];
-
-export const CYBER_VALUES = [
-  { letter: 'C', value: 'Confidence', desc: 'Secure operations in any global jurisdiction.' },
-  { letter: 'Y', value: 'Yield-Focused', desc: 'Optimizing infrastructure for maximum business efficiency.' },
-  { letter: 'B', value: 'Bold Innovation', desc: 'Leading with African-first resilient design.' },
-  { letter: 'E', value: 'Excellence', desc: 'Adhering to world-class delivery and engineering standards.' },
-  { letter: 'R', value: 'Reliability', desc: 'Unwavering uptime for mission-critical environments.' },
-];
-
-export const INDUSTRIES: (IndustryItem & { icon: string })[] = [
-  { 
-    name: 'Government & Public Sector', 
-    description: 'Enabling digital sovereignty and citizen-facing platform security.',
-    focus: ['Secure Digital Government', 'Data Sovereignty', 'Infrastructure Resilience'],
-    icon: 'Landmark'
+// The C.O.R.E. value proposition, shown on About Us
+export const CORE_PILLARS = [
+  {
+    letter: 'C',
+    title: 'Compliance & Control',
+    desc: 'Built-in alignment with regulatory and compliance requirements. Audit-ready evidence.'
   },
-  { 
-    name: 'Financial Services', 
-    description: 'Securing the backbone of digital banking and payments across the continent.',
-    focus: ['Banking & Fintech Security', 'Regulatory Compliance', 'High Availability'],
-    icon: 'Shield'
+  {
+    letter: 'O',
+    title: 'Optimized Multi-Cloud',
+    desc: 'We match each workload to the right cloud partner (Azure, AWS, Oracle or Google Cloud) based on your needs, with costs kept under control.'
   },
-  { 
-    name: 'Telecommunications', 
-    description: 'Building scalable platforms for the next billion users.',
-    focus: ['Network Infra & Cloud', 'Large-Scale Security', 'Analytics'],
-    icon: 'Smartphone'
+  {
+    letter: 'R',
+    title: 'Resilient Security',
+    desc: 'Nigeria-based, 24/7 Managed SOC with AI threat hunting and proactive defense.'
   },
-  { 
-    name: 'Energy & Utilities', 
-    description: 'Protecting critical national infrastructure and optimizing performance.',
-    focus: ['Critical Infra Protection', 'OT Security', 'Data Monitoring'],
-    icon: 'Zap'
-  },
-  { 
-    name: 'Healthcare', 
-    description: 'Securing health data and enabling digital health platforms.',
-    focus: ['Data Security & Privacy', 'Digital Health Platforms', 'Compliance'],
-    icon: 'Activity'
-  },
-  { 
-    name: 'Education & Research', 
-    description: 'Powering digital learning and secure research data platforms.',
-    focus: ['Digital Learning Infra', 'Research Data Platforms', 'Secure Systems'],
-    icon: 'Book'
-  },
-  { 
-    name: 'Enterprise & SMEs', 
-    description: 'Accelerating secure cloud adoption for business growth.',
-    focus: ['Secure Cloud Adoption', 'Business Continuity', 'Growth Platforms'],
-    icon: 'Building'
+  {
+    letter: 'E',
+    title: 'Enterprise Analytics & AI',
+    desc: 'Real-time dashboards, predictive ML embedded in ERP and cloud workloads.'
   }
 ];

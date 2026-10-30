@@ -1,20 +1,27 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# CyberSys Technologies website
 
-# Run and deploy your AI Studio app
+Company website for CyberSys Technologies, built with React 19, TypeScript and Vite. Styling uses Tailwind (loaded from a CDN in `index.html`).
 
-This contains everything you need to run your app locally.
+## Run locally
 
-View your app in AI Studio: https://ai.studio/apps/drive/1D1Y7FneBM7IeaXJiPZkDZ8WZQo8da32p
+Requires Node.js.
 
-## Run Locally
+```
+npm install
+npm run dev       # http://localhost:3000
+npm run build     # type-check, then build into dist/
+npm run preview   # serve the built site
+```
 
-**Prerequisites:**  Node.js
+## Structure
 
+- `App.tsx` – hash-based page routing (`#solutions`, `#industries-oil-gas`, ...), plus redirects for old addresses
+- `components/` – layout (navbar, footer), home page slideshow and partner section, shared page building blocks
+- `pages/` – one file per page
+- `data/` – solution catalogue and industry content
+- `constants.tsx` – navigation menu, C.O.R.E. pillars, CS5 framework
+- `public/` – logos and photos (sources listed in `REVAMP_LOG.md`)
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+The contact form sends through FormSubmit to info@cybersystechnologies.com.
+
+See `REVAMP_LOG.md` for the full history of the 2026 redesign.
