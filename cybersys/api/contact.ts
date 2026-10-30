@@ -73,11 +73,14 @@ const rateLimited = (ip: string) => {
 
 const verifyTurnstile = async (token: string, ip: string) => {
   const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret || !token) return false;
+  // Reasons are logged for whoever checks Vercel → Logs; the visitor only sees a generic message
+  if (!secret) { console.warn('[contact] Turnstile: TURNSTILE_SECRET_KEY is not set'); return false; }
+  if (!token) { console.warn('[contact] Turnstile: no token sent (site key missing on the page, or the widget failed)'); return false; }
   const form = new URLSearchParams({ secret, response: token });
   if (ip) form.set('remoteip', ip);
   const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body: form });
-  const data = await res.json().catch(() => null) as { success?: boolean } | null;
+  const data = await res.json().catch(() => null) as { success?: boolean; hostname?: string; 'error-codes'?: string[] } | null;
+  if (data?.success !== true) console.warn('[contact] Turnstile rejected:', JSON.stringify(data?.['error-codes'] || data));
   return data?.success === true;
 };
 
@@ -159,6 +162,9 @@ export async function POST(request: Request): Promise<Response> {
     body: JSON.stringify({ from, to: [to], reply_to: fields.email, subject, html, text })
   }).catch(() => null);
 
-  if (!sent || !sent.ok) return json(502, { ok: false, error: 'We could not send your message. Please email us instead.' });
+  if (!sent || !sent.ok) {
+    console.warn('[contact] Resend refused the email:', sent ? sent.status + ' ' + (await sent.text().catch(() => '')) : 'network error');
+    return json(502, { ok: false, error: 'We could not send your message. Please email us instead.' });
+  }
   return json(200, { ok: true });
 }
