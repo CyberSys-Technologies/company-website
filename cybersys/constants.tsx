@@ -6,6 +6,7 @@ import { INDUSTRIES } from './data/industries';
 
 // Main line, also reachable on WhatsApp
 export const WHATSAPP_URL = 'https://wa.me/2348025955618';
+export const WHATSAPP_URL_2 = 'https://wa.me/2348109076541';
 
 export const NAV_LINKS: NavLink[] = [
   {

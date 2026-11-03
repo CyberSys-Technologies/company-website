@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronDown, ArrowRight, Linkedin, Instagram, Youtube, Mail } from 'lucide-react';
 import { Page, NavLink } from '../types';
-import { NAV_LINKS, WHATSAPP_URL } from '../constants';
+import { NAV_LINKS, WHATSAPP_URL, WHATSAPP_URL_2 } from '../constants';
 import { ROUTES } from '../routes';
 import WhatsAppIcon from './WhatsAppIcon';
 
@@ -355,6 +355,9 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
                 <p className="text-[13px] text-brand-mint font-medium uppercase tracking-[0.2em] mb-1">WhatsApp</p>
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs text-white/80 hover:text-brand-mint transition-colors font-medium">
                   <WhatsAppIcon size={14} /> +234 802 595 5618
+                </a>
+                <a href={WHATSAPP_URL_2} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 mt-1 text-xs text-white/80 hover:text-brand-mint transition-colors font-medium">
+                  <WhatsAppIcon size={14} /> +234 810 907 6541
                 </a>
               </div>
               <div>

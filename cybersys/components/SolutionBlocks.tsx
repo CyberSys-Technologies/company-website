@@ -157,7 +157,7 @@ export const ContactCTA: React.FC<{
             {[
               { icon: <Users />, label: consultLabel, value: 'Book a consultation', action: () => onPageChange('contact') },
               { icon: <Mail />, label: 'Email us', value: 'info@cybersystechnologies.com', href: 'mailto:info@cybersystechnologies.com' },
-              { icon: <Phone />, label: 'Call or WhatsApp us', value: '+234 802 595 5618', href: 'tel:+2348025955618' }
+              { icon: <Phone />, label: 'Call or WhatsApp us', value: '+234 802 595 5618 · +234 810 907 6541', href: 'tel:+2348025955618' }
             ].map(item => {
               const inner = (
                 <>

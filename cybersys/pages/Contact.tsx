@@ -6,7 +6,7 @@ import { SOLUTION_CATALOGUE } from '../data/solutions';
 import { Eyebrow, icon, useReveal } from '../components/SolutionBlocks';
 import WhatsAppIcon from '../components/WhatsAppIcon';
 import Turnstile, { TurnstileHandle, useTurnstileSiteKey } from '../components/Turnstile';
-import { WHATSAPP_URL } from '../constants';
+import { WHATSAPP_URL, WHATSAPP_URL_2 } from '../constants';
 
 const TOPICS = [
   ...SOLUTION_CATALOGUE.map(s => s.title),
@@ -162,6 +162,7 @@ const Contact: React.FC<{ from?: Page | null }> = ({ from = null }) => {
                     <span>
                       <span className="block text-sm text-brand-muted">WhatsApp</span>
                       <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="block mt-1 text-base font-bold text-brand-text hover:text-brand-primary transition-colors">+234 802 595 5618</a>
+                      <a href={WHATSAPP_URL_2} target="_blank" rel="noopener noreferrer" className="block text-base font-bold text-brand-text hover:text-brand-primary transition-colors">+234 810 907 6541</a>
                       <span className="block text-sm text-brand-muted">Chat with us or send a message</span>
                     </span>
                   </li>
