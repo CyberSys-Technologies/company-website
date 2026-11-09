@@ -34,6 +34,7 @@ export default {
       },
       animation: {
         'panel-in': 'panelIn 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+        'partner-fade': 'partnerFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both',
         'hero-rise': 'heroRise 1.2s cubic-bezier(0.16, 1, 0.3, 1) both',
         'hero-image': 'heroImage 2.4s cubic-bezier(0.16, 1, 0.3, 1) both',
         'dash-flow': 'dashFlow 1.2s linear infinite',
@@ -55,6 +56,10 @@ export default {
         heroImage: {
           '0%': { opacity: '0', transform: 'scale(1.06)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        partnerFade: {
+          '0%': { opacity: '0', transform: 'translateY(12px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         panelIn: {
           '0%': { opacity: '0', transform: 'translateY(-8px)' },

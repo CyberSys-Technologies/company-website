@@ -11,6 +11,9 @@ interface PartnerProduct {
 const SOPHOS = '/partners/sophos.svg';
 const CHECK_POINT = '/partners/checkpoint.webp';
 const MICROSOFT = '/partners/microsoft.svg';
+const FORTINET = '/partners/fortinet.svg';
+const PALO_ALTO = '/partners/paloalto.svg';
+const HUAWEI = '/partners/huawei.webp';
 
 // Capabilities mapped to the partner products CyberSys Technologies delivers
 const CAPABILITIES: { icon: React.ReactNode; title: string; desc: string; products: PartnerProduct[] }[] = [
@@ -20,6 +23,7 @@ const CAPABILITIES: { icon: React.ReactNode; title: string; desc: string; produc
     desc: 'Stop ransomware, malware and exploits on every laptop, server and mobile device, with detection and response across them.',
     products: [
       { name: 'Sophos Endpoint', logo: SOPHOS },
+      { name: 'Palo Alto Networks Cortex XDR', logo: PALO_ALTO },
       { name: 'Check Point Harmony Endpoint', logo: CHECK_POINT },
       { name: 'Microsoft Defender for Endpoint', logo: MICROSOFT }
     ]
@@ -29,8 +33,11 @@ const CAPABILITIES: { icon: React.ReactNode; title: string; desc: string; produc
     title: 'Network & Firewall Security',
     desc: 'Next-generation firewalls and gateways that inspect traffic, block intrusions and secure branch and data-centre networks.',
     products: [
+      { name: 'Fortinet FortiGate', logo: FORTINET },
+      { name: 'Palo Alto Networks NGFW', logo: PALO_ALTO },
       { name: 'Sophos Firewall', logo: SOPHOS },
-      { name: 'Check Point Quantum', logo: CHECK_POINT }
+      { name: 'Check Point Quantum', logo: CHECK_POINT },
+      { name: 'Huawei HiSecEngine', logo: HUAWEI }
     ]
   },
   {
@@ -38,6 +45,7 @@ const CAPABILITIES: { icon: React.ReactNode; title: string; desc: string; produc
     title: 'Cloud Security',
     desc: 'Posture management and workload protection across Azure, AWS, Google Cloud and Oracle Cloud environments.',
     products: [
+      { name: 'Palo Alto Networks Cortex Cloud', logo: PALO_ALTO },
       { name: 'Check Point CloudGuard', logo: CHECK_POINT },
       { name: 'Microsoft Defender for Cloud', logo: MICROSOFT }
     ]
@@ -48,6 +56,8 @@ const CAPABILITIES: { icon: React.ReactNode; title: string; desc: string; produc
     desc: 'Verify every user and device before granting access, with single sign-on, MFA and zero-trust access to applications.',
     products: [
       { name: 'Microsoft Entra ID', logo: MICROSOFT },
+      { name: 'Palo Alto Networks Prisma SASE', logo: PALO_ALTO },
+      { name: 'Fortinet FortiSASE', logo: FORTINET },
       { name: 'Sophos ZTNA', logo: SOPHOS }
     ]
   },
@@ -58,6 +68,7 @@ const CAPABILITIES: { icon: React.ReactNode; title: string; desc: string; produc
     products: [
       { name: 'Sophos Email', logo: SOPHOS },
       { name: 'Check Point Harmony Email', logo: CHECK_POINT },
+      { name: 'Fortinet FortiMail', logo: FORTINET },
       { name: 'Microsoft Defender for Office 365', logo: MICROSOFT }
     ]
   },
@@ -67,6 +78,7 @@ const CAPABILITIES: { icon: React.ReactNode; title: string; desc: string; produc
     desc: '24/7 threat hunting, monitoring and incident response from security analysts, backed by global threat intelligence.',
     products: [
       { name: 'Sophos MDR', logo: SOPHOS },
+      { name: 'Palo Alto Networks Cortex XSIAM', logo: PALO_ALTO },
       { name: 'Check Point Infinity ThreatCloud AI', logo: CHECK_POINT }
     ]
   }

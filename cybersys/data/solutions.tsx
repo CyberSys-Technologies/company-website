@@ -12,7 +12,8 @@ export interface SolutionCategory {
 }
 
 // The solutions catalogue, in menu order. Capabilities draw on the partner products
-// shown on the home page (Microsoft, Oracle, Google Cloud, AWS, Sophos, Check Point, DPAnalytics).
+// shown on the home page (Microsoft, Oracle, Google Cloud, AWS, Sophos, Check Point, Fortinet,
+// Palo Alto Networks, Huawei, DPAnalytics).
 export const SOLUTION_CATALOGUE: SolutionCategory[] = [
   {
     title: 'Cloud & Infrastructure',

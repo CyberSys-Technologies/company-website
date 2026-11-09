@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight, BrainCircuit, BrickWall, Building2, ChartColumn, ChartGantt, ChevronDown, Cloud, CloudCog, CodeXml,
-  Database, Infinity as InfinityIcon, KeyRound, LayoutDashboard, MailCheck, MonitorSmartphone, Network, Radar, ShieldCheck, X
+  Database, Globe, HardDrive, Infinity as InfinityIcon, KeyRound, LayoutDashboard, MailCheck, MonitorSmartphone, Network, Radar,
+  Route, ScanSearch, ShieldCheck, Wifi, X
 } from 'lucide-react';
 import { Page } from '../types';
 import NetworkBackdrop from './NetworkBackdrop';
@@ -11,7 +12,7 @@ export interface PartnerSolution {
   detail: string;
   /** Product logo in /public/partners/products */
   icon?: string;
-  /** Used where the vendor publishes no per-product logos (Oracle, Sophos, Check Point, DPAnalytics) */
+  /** Used where the vendor publishes no per-product logos (Oracle, Sophos, Check Point, Fortinet, Palo Alto Networks, Huawei, DPAnalytics) */
   lucideIcon?: React.ReactNode;
 }
 
@@ -25,6 +26,8 @@ export interface PartnerData {
   solutions: PartnerSolution[];
   businessValue: string;
   logoUrl: string;
+  /** Symbol for the square tile in the opened panel, where a wide wordmark would read too small */
+  markUrl?: string;
   /** 'mark' logos are symbols only, so the partner name is set beside them */
   logoType: 'wordmark' | 'mark';
   /** Height override for wordmarks whose artwork reads small at the default height */
@@ -136,6 +139,60 @@ export const PARTNERS: PartnerData[] = [
     accent: '#E5007E'
   },
   {
+    id: 'fortinet',
+    name: 'Fortinet',
+    summary: 'Next-generation firewalls, secure networking and SASE.',
+    tagline: 'Network security, secure networking and SASE',
+    solutions: [
+      { name: 'FortiGate', detail: 'Next-generation firewalls for head offices, branches and the cloud.', lucideIcon: <BrickWall size={22} /> },
+      { name: 'FortiSASE', detail: 'Secure access for remote users and branch offices.', lucideIcon: <Globe size={22} /> },
+      { name: 'FortiSwitch & FortiAP', detail: 'Secure wired and wireless networking, managed from FortiGate.', lucideIcon: <Wifi size={22} /> },
+      { name: 'FortiMail', detail: 'Protection against phishing, spam and email-borne malware.', lucideIcon: <MailCheck size={22} /> },
+      { name: 'FortiAnalyzer', detail: 'Central logging, analytics and reporting across the network.', lucideIcon: <ScanSearch size={22} /> }
+    ],
+    businessValue: 'Secure every part of the network, from head office to branch, on one platform.',
+    logoUrl: '/partners/fortinet.svg',
+    markUrl: '/partners/fortinet-mark.png',
+    logoType: 'wordmark',
+    logoHeight: 'h-6 2xl:h-7 min-[1800px]:h-8',
+    accent: '#DA291C'
+  },
+  {
+    id: 'paloalto',
+    name: 'Palo Alto Networks',
+    summary: 'Next-generation firewalls, SASE and AI-driven security operations.',
+    tagline: 'Network, cloud and security operations',
+    solutions: [
+      { name: 'Next-Generation Firewalls', detail: 'Hardware, virtual and cloud firewalls with built-in threat prevention.', lucideIcon: <BrickWall size={22} /> },
+      { name: 'Prisma SASE', detail: 'Secure access and SD-WAN for hybrid workforces and branches.', lucideIcon: <Globe size={22} /> },
+      { name: 'Cortex XDR', detail: 'Detection and response across endpoints, network and cloud.', lucideIcon: <ShieldCheck size={22} /> },
+      { name: 'Cortex XSIAM', detail: 'AI-driven platform for security operations centres.', lucideIcon: <Radar size={22} /> },
+      { name: 'Cortex Cloud', detail: 'Protection for cloud applications and workloads.', lucideIcon: <CloudCog size={22} /> }
+    ],
+    businessValue: 'Detect and stop threats faster across network, cloud and security operations.',
+    logoUrl: '/partners/paloalto.svg',
+    markUrl: '/partners/paloalto-mark.png',
+    logoType: 'wordmark',
+    accent: '#FA582D'
+  },
+  {
+    id: 'huawei',
+    name: 'Huawei',
+    summary: 'Enterprise networking, data storage and data-centre infrastructure.',
+    tagline: 'Enterprise networking, storage and data-centre infrastructure',
+    solutions: [
+      { name: 'CloudEngine Switches', detail: 'Campus and data-centre switching.', lucideIcon: <Network size={22} /> },
+      { name: 'AirEngine Wi-Fi', detail: 'High-performance enterprise wireless networks.', lucideIcon: <Wifi size={22} /> },
+      { name: 'NetEngine Routers', detail: 'Enterprise routing and SD-WAN for branch connectivity.', lucideIcon: <Route size={22} /> },
+      { name: 'HiSecEngine Firewalls', detail: 'Next-generation firewalls for network security.', lucideIcon: <BrickWall size={22} /> },
+      { name: 'OceanStor Storage', detail: 'All-flash and hybrid storage for business-critical data.', lucideIcon: <HardDrive size={22} /> }
+    ],
+    businessValue: 'Build fast, reliable and secure networks and data infrastructure.',
+    logoUrl: '/partners/huawei.webp',
+    logoType: 'mark',
+    accent: '#C7000B'
+  },
+  {
     id: 'dpanalytics',
     name: 'DPAnalytics',
     summary: 'Custom software, AI and data analytics.',
@@ -229,6 +286,73 @@ const SolutionIcon: React.FC<{ solution: PartnerSolution; partner: PartnerData }
   );
 };
 
+const PANEL_MS = 600;
+const PANEL_EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
+
+/**
+ * Slot beneath each card row. It glides open to the height of its content, resizes smoothly when
+ * switching partners and glides shut on close, keeping the last partner shown while it closes.
+ */
+const ExpandingPanel: React.FC<{
+  id: string;
+  partner: PartnerData | null;
+  children: (partner: PartnerData) => React.ReactNode;
+}> = ({ id, partner, children }) => {
+  const innerRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(0);
+  const [shown, setShown] = useState(partner);
+  // Shadows may spill outside the panel only once it has finished moving
+  const [settled, setSettled] = useState(false);
+  const open = !!partner;
+  const display = partner || shown;
+
+  useEffect(() => {
+    if (partner) setShown(partner);
+  }, [partner]);
+
+  useEffect(() => {
+    const el = innerRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver(() => setHeight(el.offsetHeight));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Once open, bring the panel into view (mainly for single-column layouts)
+  useEffect(() => {
+    setSettled(false);
+    if (!partner) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const timer = window.setTimeout(() => {
+      setSettled(true);
+      innerRef.current?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest' });
+    }, reduced ? 0 : PANEL_MS);
+    return () => window.clearTimeout(timer);
+  }, [partner]);
+
+  return (
+    <div
+      id={id}
+      inert={!open}
+      className="motion-reduce:!transition-none"
+      style={{
+        height: open ? height : 0,
+        opacity: open ? 1 : 0,
+        overflow: open && settled ? 'visible' : 'hidden',
+        transition: `height ${PANEL_MS}ms ${PANEL_EASE}, opacity ${open ? 300 : 450}ms ease-out`
+      }}
+    >
+      <div ref={innerRef} className="pt-5 scroll-mt-28">
+        {display && (
+          <div key={display.id} className="animate-partner-fade">
+            {children(display)}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 interface PartnerEcosystemProps {
   onPageChange: (p: Page) => void;
 }
@@ -236,17 +360,9 @@ interface PartnerEcosystemProps {
 const PartnerEcosystem: React.FC<PartnerEcosystemProps> = ({ onPageChange }) => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const columns = useColumns();
-  const panelRef = useRef<HTMLDivElement>(null);
   const [gridRef, gridInView] = useInView<HTMLDivElement>();
 
   const selected = PARTNERS.find(p => p.id === selectedId) || null;
-
-  // Keep the opened panel in view, mainly for single-column (mobile) layouts
-  useEffect(() => {
-    if (selectedId && panelRef.current) {
-      panelRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-  }, [selectedId]);
 
   const rows: PartnerData[][] = [];
   for (let i = 0; i < PARTNERS.length; i += columns) {
@@ -287,12 +403,13 @@ const PartnerEcosystem: React.FC<PartnerEcosystemProps> = ({ onPageChange }) => 
         </div>
 
         {/* Partner grid: the detail panel opens directly beneath the row of the selected card */}
-        <div ref={gridRef} className="space-y-5">
+        <div ref={gridRef}>
           {rows.map((row, rowIndex) => {
-            const rowHasSelection = !!selected && row.some(p => p.id === selected.id);
+            const rowSelection = selected && row.some(p => p.id === selected.id) ? selected : null;
+            const panelId = `partner-detail-${rowIndex}`;
             return (
               <React.Fragment key={rowIndex}>
-                <div className="flex justify-center" style={{ gap: `${CARD_GAP_REM}rem` }}>
+                <div className={`flex justify-center ${rowIndex > 0 ? 'mt-5' : ''}`} style={{ gap: `${CARD_GAP_REM}rem` }}>
                   {row.map(partner => {
                     const isSelected = partner.id === selectedId;
                     const order = PARTNERS.indexOf(partner);
@@ -306,7 +423,7 @@ const PartnerEcosystem: React.FC<PartnerEcosystemProps> = ({ onPageChange }) => 
                         type="button"
                         onClick={() => setSelectedId(isSelected ? null : partner.id)}
                         aria-expanded={isSelected}
-                        aria-controls="partner-detail"
+                        aria-controls={panelId}
                         className={`w-full h-full text-left bg-white rounded-xl border p-7 2xl:p-8 min-[1800px]:p-10 flex flex-col justify-between min-h-[200px] min-[1800px]:min-h-[250px] cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_50px_-30px_rgba(32,130,166,0.45)] ${
                           isSelected
                             ? 'border-brand-primary -translate-y-1 shadow-[0_24px_50px_-30px_rgba(32,130,166,0.45)]'
@@ -333,19 +450,15 @@ const PartnerEcosystem: React.FC<PartnerEcosystemProps> = ({ onPageChange }) => 
                   })}
                 </div>
 
-                {rowHasSelection && selected && (
-                  <div
-                    id="partner-detail"
-                    ref={panelRef}
-                    key={selected.id}
-                    className="animate-panel-in relative bg-white rounded-xl border-2 border-brand-secondary scroll-mt-28 overflow-hidden shadow-[0_24px_50px_-30px_rgba(1,203,174,0.45)]"
-                  >
+                <ExpandingPanel id={panelId} partner={rowSelection}>
+                  {selected => (
+                  <div className="relative bg-white rounded-xl border-2 border-brand-secondary overflow-hidden shadow-[0_24px_50px_-30px_rgba(1,203,174,0.45)]">
                     <div className="relative">
                     {/* Heading */}
                     <div className="flex items-start justify-between gap-6 px-8 sm:px-10 2xl:px-12 pt-8 sm:pt-10 pb-8 border-b border-slate-100">
                       <div className="flex items-center gap-5">
                         <span className="w-14 h-14 2xl:w-16 2xl:h-16 flex-shrink-0 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2.5">
-                          <img src={selected.logoUrl} alt="" className="max-w-full max-h-full object-contain" />
+                          <img src={selected.markUrl || selected.logoUrl} alt="" className="max-w-full max-h-full object-contain" />
                         </span>
                         <div>
                         <h3 className="text-2xl 2xl:text-3xl font-bold text-brand-text leading-tight">
@@ -403,7 +516,8 @@ const PartnerEcosystem: React.FC<PartnerEcosystemProps> = ({ onPageChange }) => 
                     </div>
                     </div>
                   </div>
-                )}
+                  )}
+                </ExpandingPanel>
               </React.Fragment>
             );
           })}

@@ -9,7 +9,7 @@ import { BackToSolutions, ContactCTA, Eyebrow, PrimaryButton, SectionHeader, ico
 const CLOUD_SOLUTIONS = [
   { icon: <CloudUpload />, title: 'Cloud Migration & Modernisation', desc: 'Move workloads to the cloud safely, and modernise them once they are there.' },
   { icon: <Network />, title: 'Hybrid & Multicloud Architecture', desc: 'Connect on-premise systems with Azure, AWS, Google Cloud and Oracle Cloud under one design.' },
-  { icon: <Server />, title: 'Private Cloud & Virtualisation', desc: 'Secure, high-performance private environments for regulated and sensitive workloads.' },
+  { icon: <Server />, title: 'Private Cloud & Virtualisation', desc: 'Secure, high-performance private environments for regulated and sensitive workloads, built on Huawei networking and storage.' },
   { icon: <DatabaseBackup />, title: 'Backup & Disaster Recovery', desc: 'Resilient backup and failover so critical services stay available.' },
   { icon: <TrendingDown />, title: 'Cloud Cost Optimisation', desc: 'FinOps practices that right-size resources and cut wasted spend.' },
   { icon: <Activity />, title: 'Monitoring & Management', desc: 'Ongoing visibility, capacity planning and performance tuning.' }

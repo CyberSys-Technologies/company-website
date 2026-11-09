@@ -85,7 +85,7 @@
       transform: none !important;
       transition: none !important;
     }
-    .animate-hero-rise, .animate-hero-image { animation: none !important; }
+    .animate-hero-rise, .animate-hero-image, .animate-partner-fade { animation: none !important; }
   }
   /* Multicloud diagram: drop card descriptions when the diagram is small */
   @container (max-width: 480px) { .mc-focus { display: none; } }

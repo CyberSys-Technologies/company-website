@@ -40,7 +40,7 @@ export const PAGE_META: Record<Page, { title: string; description: string }> = {
   },
   'solutions-cybersecurity': {
     title: 'Cybersecurity | CyberSys Technologies',
-    description: 'Endpoint, network, cloud, identity and email security plus risk and compliance, delivered with Sophos, Check Point and Microsoft by CyberSys Technologies.'
+    description: 'Endpoint, network, cloud, identity and email security plus risk and compliance, delivered with Sophos, Check Point, Fortinet, Palo Alto Networks and Microsoft by CyberSys Technologies.'
   },
   'solutions-bi': {
     title: 'AI & Data Analytics | CyberSys Technologies',

@@ -23,7 +23,10 @@ const PARTNERS: { name: string; logo: string; mark?: boolean }[] = [
   { name: 'Google Cloud', logo: '/partners/google-cloud.webp', mark: true },
   { name: 'Oracle', logo: '/partners/oracle.png' },
   { name: 'Sophos', logo: '/partners/sophos.svg', mark: true },
-  { name: 'Check Point', logo: '/partners/checkpoint.webp' }
+  { name: 'Check Point', logo: '/partners/checkpoint.webp' },
+  { name: 'Fortinet', logo: '/partners/fortinet.svg' },
+  { name: 'Palo Alto Networks', logo: '/partners/paloalto.svg' },
+  { name: 'Huawei', logo: '/partners/huawei.webp', mark: true }
 ];
 
 const TrainingConsultancy: React.FC<{ onPageChange: (p: Page) => void }> = ({ onPageChange }) => {
