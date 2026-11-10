@@ -91,7 +91,7 @@ export const PARTNERS: PartnerData[] = [
   {
     id: 'aws',
     name: 'Amazon Web Services',
-    summary: 'Scalable cloud infrastructure and services.',
+    summary: 'AWS: scalable cloud infrastructure, databases and AI services.',
     tagline: 'Cloud infrastructure, databases and AI services',
     solutions: [
       { name: 'Amazon EC2', detail: 'Elastic, on-demand compute capacity.', icon: `${ICONS}/aws-ec2.svg` },
@@ -124,7 +124,7 @@ export const PARTNERS: PartnerData[] = [
   {
     id: 'checkpoint',
     name: 'Check Point',
-    summary: 'Firewalls and advanced threat prevention.',
+    summary: 'Check Point firewalls and advanced threat prevention.',
     tagline: 'Network, cloud and workspace security',
     solutions: [
       { name: 'Quantum', detail: 'Network security gateways and firewalls.', lucideIcon: <Network size={22} /> },
@@ -141,7 +141,7 @@ export const PARTNERS: PartnerData[] = [
   {
     id: 'fortinet',
     name: 'Fortinet',
-    summary: 'Next-generation firewalls, secure networking and SASE.',
+    summary: 'Fortinet next-generation firewalls, secure networking and SASE.',
     tagline: 'Network security, secure networking and SASE',
     solutions: [
       { name: 'FortiGate', detail: 'Next-generation firewalls for head offices, branches and the cloud.', lucideIcon: <BrickWall size={22} /> },
@@ -160,7 +160,7 @@ export const PARTNERS: PartnerData[] = [
   {
     id: 'paloalto',
     name: 'Palo Alto Networks',
-    summary: 'Next-generation firewalls, SASE and AI-driven security operations.',
+    summary: 'Palo Alto Networks firewalls, SASE and AI-driven security operations.',
     tagline: 'Network, cloud and security operations',
     solutions: [
       { name: 'Next-Generation Firewalls', detail: 'Hardware, virtual and cloud firewalls with built-in threat prevention.', lucideIcon: <BrickWall size={22} /> },
@@ -195,7 +195,7 @@ export const PARTNERS: PartnerData[] = [
   {
     id: 'dpanalytics',
     name: 'DPAnalytics',
-    summary: 'Custom software, AI and data analytics.',
+    summary: 'DPAnalytics custom software, AI and data analytics.',
     tagline: 'Custom software, AI and analytics',
     solutions: [
       { name: 'Custom Application Software', detail: 'Applications built around your business processes.', lucideIcon: <CodeXml size={22} /> },

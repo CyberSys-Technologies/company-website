@@ -280,7 +280,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
               {/* All-white logo for the deep-blue footer (client-approved) */}
               <img src="/cybersys-logo.webp" alt="CyberSys Technologies" className="h-10 md:h-12 w-auto object-contain brightness-0 invert" />
               <p className="text-white/70 text-sm leading-relaxed font-medium max-w-sm">
-                Primary authority for resilient enterprise infrastructure and security architecture across the African continent.
+                Delivering resilient enterprise infrastructure, cybersecurity and digital transformation solutions across Africa.
               </p>
               <div className="flex gap-3">
                 {[
